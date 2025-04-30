@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NWn7NSCjliNS7aajzTh5KvTAVhBzSLFZiZCKlnf216k=",
+  "Hash": "40FiNbmCLkodkqT0D8Xi3WOFbDFZQiKOVMg50S+GPug=",
   "Source": "INFOP2",
   "BasePath": "_content/INFOP2",
   "Mode": "Default",
@@ -437,12 +437,12 @@
       "OriginalItemSpec": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Identity": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\7e00cysoi1-bhokqzjjwj.gz",
+      "Identity": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\7e00cysoi1-x65hp2tozm.gz",
       "SourceId": "INFOP2",
       "SourceType": "Discovered",
       "ContentRoot": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/INFOP2",
-      "RelativePath": "css/login#[.{fingerprint=bhokqzjjwj}]?.css.gz",
+      "RelativePath": "css/login#[.{fingerprint=x65hp2tozm}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -451,8 +451,8 @@
       "RelatedAsset": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\css\\login.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "lm5l18t2r6",
-      "Integrity": "vSCCEp/agQlztG8yZXg/J5aw35Kw3WFuia/t1AKtkEo=",
+      "Fingerprint": "1qzb27m7es",
+      "Integrity": "mWfjgGsnfWFysfZAoE6kjIeSgZS+VT9z2iVAiJPkhEA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\css\\login.css"
@@ -1438,8 +1438,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "bhokqzjjwj",
-      "Integrity": "727m8EMZjro4KVCieHv7YZ3x4DNLbmB5BiDY6srsQnw=",
+      "Fingerprint": "x65hp2tozm",
+      "Integrity": "d/qnf6FtaOz2tFl2lkpRoikVRA9k1nKs60VSFGVaJKU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\login.css"
@@ -2770,13 +2770,13 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/login.bhokqzjjwj.css",
-      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\7e00cysoi1-bhokqzjjwj.gz",
+      "Route": "css/login.css",
+      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\7e00cysoi1-x65hp2tozm.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.002262443439"
+          "Quality": "0.002092050209"
         }
       ],
       "ResponseHeaders": [
@@ -2786,19 +2786,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "441"
+          "Value": "477"
         },
         {
           "Name": "ETag",
-          "Value": "\"vSCCEp/agQlztG8yZXg/J5aw35Kw3WFuia/t1AKtkEo=\""
+          "Value": "\"mWfjgGsnfWFysfZAoE6kjIeSgZS+VT9z2iVAiJPkhEA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 03:03:56 GMT"
+          "Value": "Wed, 30 Apr 2025 05:42:37 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
+          "Value": "no-cache"
         },
         {
           "Name": "Content-Encoding",
@@ -2814,26 +2814,18 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"727m8EMZjro4KVCieHv7YZ3x4DNLbmB5BiDY6srsQnw=\""
+          "Value": "W/\"d/qnf6FtaOz2tFl2lkpRoikVRA9k1nKs60VSFGVaJKU=\""
         }
       ],
       "EndpointProperties": [
         {
-          "Name": "fingerprint",
-          "Value": "bhokqzjjwj"
-        },
-        {
-          "Name": "label",
-          "Value": "css/login.css"
-        },
-        {
           "Name": "integrity",
-          "Value": "sha256-727m8EMZjro4KVCieHv7YZ3x4DNLbmB5BiDY6srsQnw="
+          "Value": "sha256-d/qnf6FtaOz2tFl2lkpRoikVRA9k1nKs60VSFGVaJKU="
         }
       ]
     },
     {
-      "Route": "css/login.bhokqzjjwj.css",
+      "Route": "css/login.css",
       "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\css\\login.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2843,7 +2835,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1010"
+          "Value": "1089"
         },
         {
           "Name": "Content-Type",
@@ -2851,11 +2843,156 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"727m8EMZjro4KVCieHv7YZ3x4DNLbmB5BiDY6srsQnw=\""
+          "Value": "\"d/qnf6FtaOz2tFl2lkpRoikVRA9k1nKs60VSFGVaJKU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 03:03:56 GMT"
+          "Value": "Wed, 30 Apr 2025 05:42:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-d/qnf6FtaOz2tFl2lkpRoikVRA9k1nKs60VSFGVaJKU="
+        }
+      ]
+    },
+    {
+      "Route": "css/login.css.gz",
+      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\7e00cysoi1-x65hp2tozm.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "477"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mWfjgGsnfWFysfZAoE6kjIeSgZS+VT9z2iVAiJPkhEA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 30 Apr 2025 05:42:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mWfjgGsnfWFysfZAoE6kjIeSgZS+VT9z2iVAiJPkhEA="
+        }
+      ]
+    },
+    {
+      "Route": "css/login.x65hp2tozm.css",
+      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\7e00cysoi1-x65hp2tozm.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002092050209"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "477"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mWfjgGsnfWFysfZAoE6kjIeSgZS+VT9z2iVAiJPkhEA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 30 Apr 2025 05:42:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"d/qnf6FtaOz2tFl2lkpRoikVRA9k1nKs60VSFGVaJKU=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "x65hp2tozm"
+        },
+        {
+          "Name": "label",
+          "Value": "css/login.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-d/qnf6FtaOz2tFl2lkpRoikVRA9k1nKs60VSFGVaJKU="
+        }
+      ]
+    },
+    {
+      "Route": "css/login.x65hp2tozm.css",
+      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\css\\login.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1089"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"d/qnf6FtaOz2tFl2lkpRoikVRA9k1nKs60VSFGVaJKU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 30 Apr 2025 05:42:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2865,7 +3002,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "bhokqzjjwj"
+          "Value": "x65hp2tozm"
         },
         {
           "Name": "label",
@@ -2873,13 +3010,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-727m8EMZjro4KVCieHv7YZ3x4DNLbmB5BiDY6srsQnw="
+          "Value": "sha256-d/qnf6FtaOz2tFl2lkpRoikVRA9k1nKs60VSFGVaJKU="
         }
       ]
     },
     {
-      "Route": "css/login.bhokqzjjwj.css.gz",
-      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\7e00cysoi1-bhokqzjjwj.gz",
+      "Route": "css/login.x65hp2tozm.css.gz",
+      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\7e00cysoi1-x65hp2tozm.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2888,7 +3025,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "441"
+          "Value": "477"
         },
         {
           "Name": "Content-Type",
@@ -2896,11 +3033,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"vSCCEp/agQlztG8yZXg/J5aw35Kw3WFuia/t1AKtkEo=\""
+          "Value": "\"mWfjgGsnfWFysfZAoE6kjIeSgZS+VT9z2iVAiJPkhEA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 03:03:56 GMT"
+          "Value": "Wed, 30 Apr 2025 05:42:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2918,7 +3055,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "bhokqzjjwj"
+          "Value": "x65hp2tozm"
         },
         {
           "Name": "label",
@@ -2926,144 +3063,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-vSCCEp/agQlztG8yZXg/J5aw35Kw3WFuia/t1AKtkEo="
-        }
-      ]
-    },
-    {
-      "Route": "css/login.css",
-      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\7e00cysoi1-bhokqzjjwj.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.002262443439"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "441"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"vSCCEp/agQlztG8yZXg/J5aw35Kw3WFuia/t1AKtkEo=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 03:03:56 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"727m8EMZjro4KVCieHv7YZ3x4DNLbmB5BiDY6srsQnw=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-727m8EMZjro4KVCieHv7YZ3x4DNLbmB5BiDY6srsQnw="
-        }
-      ]
-    },
-    {
-      "Route": "css/login.css",
-      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\css\\login.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1010"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"727m8EMZjro4KVCieHv7YZ3x4DNLbmB5BiDY6srsQnw=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 03:03:56 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-727m8EMZjro4KVCieHv7YZ3x4DNLbmB5BiDY6srsQnw="
-        }
-      ]
-    },
-    {
-      "Route": "css/login.css.gz",
-      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\7e00cysoi1-bhokqzjjwj.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "441"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"vSCCEp/agQlztG8yZXg/J5aw35Kw3WFuia/t1AKtkEo=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 03:03:56 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-vSCCEp/agQlztG8yZXg/J5aw35Kw3WFuia/t1AKtkEo="
+          "Value": "sha256-mWfjgGsnfWFysfZAoE6kjIeSgZS+VT9z2iVAiJPkhEA="
         }
       ]
     },
