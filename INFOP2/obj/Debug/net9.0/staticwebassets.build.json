@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "E/iNAw73KxSCCS4GOb5qILSXQrKkJhdaYavPDwQ4XW4=",
+  "Hash": "VOw7CbIQrIlq87zB3tBj8jGABOITQaex5Dup/GCxmjQ=",
   "Source": "INFOP2",
   "BasePath": "_content/INFOP2",
   "Mode": "Default",
@@ -435,6 +435,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Identity": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\7e00cysoi1-2v820mbop3.gz",
+      "SourceId": "INFOP2",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/INFOP2",
+      "RelativePath": "css/login#[.{fingerprint=2v820mbop3}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\css\\login.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "7qkb7adek6",
+      "Integrity": "UaOCMN7cW2aY3bzS21kvf2VllWTx7eZQzE4xqEDvjx4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\css\\login.css"
     },
     {
       "Identity": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\8ku5rqkwo4-jj8uyg4cgr.gz",
@@ -1401,6 +1422,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\INFOP2.bundle.scp.css"
+    },
+    {
+      "Identity": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\css\\login.css",
+      "SourceId": "INFOP2",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\",
+      "BasePath": "_content/INFOP2",
+      "RelativePath": "css/login#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "2v820mbop3",
+      "Integrity": "XmHMjO4scLoM0nVWTumJqKqEHndwRr54mBgig4kJwZ8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\login.css"
     },
     {
       "Identity": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\css\\site.css",
@@ -2727,6 +2769,304 @@
     }
   ],
   "Endpoints": [
+    {
+      "Route": "css/login.2v820mbop3.css",
+      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\7e00cysoi1-2v820mbop3.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002583979328"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "386"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UaOCMN7cW2aY3bzS21kvf2VllWTx7eZQzE4xqEDvjx4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 30 Apr 2025 02:31:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"XmHMjO4scLoM0nVWTumJqKqEHndwRr54mBgig4kJwZ8=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "2v820mbop3"
+        },
+        {
+          "Name": "label",
+          "Value": "css/login.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-XmHMjO4scLoM0nVWTumJqKqEHndwRr54mBgig4kJwZ8="
+        }
+      ]
+    },
+    {
+      "Route": "css/login.2v820mbop3.css",
+      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\css\\login.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "805"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XmHMjO4scLoM0nVWTumJqKqEHndwRr54mBgig4kJwZ8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 30 Apr 2025 02:31:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "2v820mbop3"
+        },
+        {
+          "Name": "label",
+          "Value": "css/login.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-XmHMjO4scLoM0nVWTumJqKqEHndwRr54mBgig4kJwZ8="
+        }
+      ]
+    },
+    {
+      "Route": "css/login.2v820mbop3.css.gz",
+      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\7e00cysoi1-2v820mbop3.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "386"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UaOCMN7cW2aY3bzS21kvf2VllWTx7eZQzE4xqEDvjx4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 30 Apr 2025 02:31:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "2v820mbop3"
+        },
+        {
+          "Name": "label",
+          "Value": "css/login.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UaOCMN7cW2aY3bzS21kvf2VllWTx7eZQzE4xqEDvjx4="
+        }
+      ]
+    },
+    {
+      "Route": "css/login.css",
+      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\7e00cysoi1-2v820mbop3.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002583979328"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "386"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UaOCMN7cW2aY3bzS21kvf2VllWTx7eZQzE4xqEDvjx4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 30 Apr 2025 02:31:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"XmHMjO4scLoM0nVWTumJqKqEHndwRr54mBgig4kJwZ8=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-XmHMjO4scLoM0nVWTumJqKqEHndwRr54mBgig4kJwZ8="
+        }
+      ]
+    },
+    {
+      "Route": "css/login.css",
+      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\css\\login.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "805"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XmHMjO4scLoM0nVWTumJqKqEHndwRr54mBgig4kJwZ8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 30 Apr 2025 02:31:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-XmHMjO4scLoM0nVWTumJqKqEHndwRr54mBgig4kJwZ8="
+        }
+      ]
+    },
+    {
+      "Route": "css/login.css.gz",
+      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\7e00cysoi1-2v820mbop3.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "386"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UaOCMN7cW2aY3bzS21kvf2VllWTx7eZQzE4xqEDvjx4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 30 Apr 2025 02:31:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UaOCMN7cW2aY3bzS21kvf2VllWTx7eZQzE4xqEDvjx4="
+        }
+      ]
+    },
     {
       "Route": "css/site.b9sayid5wm.css",
       "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\5kr4qm5poo-b9sayid5wm.gz",
