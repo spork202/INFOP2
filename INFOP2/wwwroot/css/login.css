@@ -34,11 +34,6 @@ body {
     color: white;
 }
 
-h1 {
-    color: #394C74;
-    letter-spacing: 6px;
-}
-
 .form-control::placeholder {
     color: #B1B1B1;
     opacity: 1;
@@ -52,6 +47,8 @@ h1 {
     background: transparent;
 }
 
+/* Button Borders */
+
 .br-l {
     border-left: white;
 }
@@ -60,3 +57,17 @@ h1 {
     border-left: white;
     border-right: white;
 }
+
+
+/* Override */
+
+h1 {
+    color: #394C74;
+    letter-spacing: 6px;
+}
+
+p {
+    color: #575757;
+}
+
+
