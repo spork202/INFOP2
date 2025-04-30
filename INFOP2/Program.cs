@@ -1,4 +1,15 @@
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+// Initialize Firebase Admin SDK
+FirebaseApp.Create(new AppOptions()
+{
+    Credential = GoogleCredential.FromFile("firebase-adminsdk.json")
+});
+
 
 // Add services to the container.
 builder.Services.AddRazorPages();
