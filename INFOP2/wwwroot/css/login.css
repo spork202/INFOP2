@@ -14,7 +14,10 @@ body {
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-    text-align: center;    color: #B1B1B1;
+    text-align: center;    color: #B1B1B1;}
+
+.login-box form {
+    margin-top: 24%;
 }
 
 .btn-login {
@@ -43,4 +46,17 @@ h1 {
 
 .icon-muted {
     color: #B1B1B1;
+}
+
+.input-group-text {
+    background: transparent;
+}
+
+.br-l {
+    border-left: white;
+}
+
+.br-lr {
+    border-left: white;
+    border-right: white;
 }
