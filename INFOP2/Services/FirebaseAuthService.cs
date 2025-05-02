@@ -28,17 +28,5 @@ namespace INFOP2.Services
                 throw new Exception($"Authentication failed: {ex.Message}");
             }
         }
-
-        public async Task CreateUserAsync(string email, string password)
-        {
-            try
-            {
-                await _authProvider.CreateUserWithEmailAndPasswordAsync(email, password);
-            }
-            catch (FirebaseAuthException ex)
-            {
-                throw new Exception($"User creation failed: {ex.Message}");
-            }
-        }
     }
 }

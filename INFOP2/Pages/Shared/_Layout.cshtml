@@ -4,49 +4,72 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - INFOP2</title>
-    <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/INFOP2.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/sidebar.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">INFOP2</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <div>
+                <div class="sidebar-heading">
+                    <button class="btn-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a asp-page="/Index" class="list-group-item">
+                        <i class="fas fa-home me-2"></i> <span class="sidebar-text">Dashboard</span>
+                    </a>
+                    <a asp-page="/Masterlist" class="list-group-item">
+                        <i class="fas fa-address-book me-2"></i> <span class="sidebar-text">Masterlist</span>
+                    </a>
+                    <a asp-page="/Assetlist" class="list-group-item">
+                        <i class="fas fa-clipboard me-2"></i> <span class="sidebar-text">Assetlist</span>
+                    </a>
+                    <a asp-page="/Finance" class="list-group-item">
+                        <i class="fas fa-chart-line me-2"></i> <span class="sidebar-text">Finance</span>
+                    </a>
+                    <a asp-page="/TransportList" class="list-group-item"> 
+                        <i class="fas fa-van-shuttle me-2"></i> <span class="sidebar-text">Transport List</span>
+                    </a>
+                    <a asp-page="/PrayerMinistry" class="list-group-item">
+                        <i class="fas fa-place-of-worship me-2"></i> <span class="sidebar-text">Prayer Ministry</span>
+                    </a>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+            <div class="list-group list-group-flush list-group-bottom">
+                <a asp-page="/Login" class="list-group-item">
+                    <i class="fas fa-sign-out-alt me-2"></i> <span class="sidebar-text">Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+
+            <footer class="footer text-muted mt-5">
+                <div class="container txt-align-end">
+                    <p>v1.0.0.0</p>
+                </div>
+            </footer>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - INFOP2 - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
-
+    <!-- Scripts -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            document.getElementById("wrapper").classList.toggle("toggled");
+        });
+    </script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

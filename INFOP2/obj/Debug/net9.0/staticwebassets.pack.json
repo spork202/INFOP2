@@ -2,11 +2,19 @@
   "Files": [
     {
       "Id": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\INFOP2.bundle.scp.css",
-      "PackagePath": "staticwebassets\\INFOP2.76k7qr5s5m.bundle.scp.css"
+      "PackagePath": "staticwebassets\\INFOP2.quiga35qmp.bundle.scp.css"
+    },
+    {
+      "Id": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\css\\index.css",
+      "PackagePath": "staticwebassets\\css\\index.css"
     },
     {
       "Id": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\css\\login.css",
       "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
+      "Id": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\css\\sidebar.css",
+      "PackagePath": "staticwebassets\\css\\sidebar.css"
     },
     {
       "Id": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\css\\site.css",
