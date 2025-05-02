@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Projects\\INFOP2\\INFOP2\\INFOP2.csproj": {}
+    "G:\\Visual Studio Files\\INFOP2\\INFOP2\\INFOP2.csproj": {}
   },
   "projects": {
-    "E:\\Projects\\INFOP2\\INFOP2\\INFOP2.csproj": {
+    "G:\\Visual Studio Files\\INFOP2\\INFOP2\\INFOP2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projects\\INFOP2\\INFOP2\\INFOP2.csproj",
+        "projectUniqueName": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\INFOP2.csproj",
         "projectName": "INFOP2",
-        "projectPath": "E:\\Projects\\INFOP2\\INFOP2\\INFOP2.csproj",
-        "packagesPath": "C:\\Users\\gilbo\\.nuget\\packages\\",
-        "outputPath": "E:\\Projects\\INFOP2\\INFOP2\\obj\\",
+        "projectPath": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\INFOP2.csproj",
+        "packagesPath": "C:\\Users\\dan_a\\.nuget\\packages\\",
+        "outputPath": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\gilbo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dan_a\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -87,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
