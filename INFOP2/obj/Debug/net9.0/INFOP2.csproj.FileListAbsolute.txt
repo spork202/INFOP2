@@ -251,3 +251,4 @@ G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.csproj.Up2Date
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\5v3bxd8er3-quiga35qmp.gz
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\rclmhxyrex-quiga35qmp.gz
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\v0d6ax5ld6-1x52pfifrv.gz
+G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\b4wf50vy4k-rkfdxvpc9e.gz

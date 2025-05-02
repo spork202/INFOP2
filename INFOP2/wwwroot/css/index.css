@@ -1,0 +1,12 @@
+.table thead th {
+    background-color: #F3F3F3;
+    border: none;
+}
+
+.table tbody td {
+    border: none;
+}
+
+.table tr {
+    border: none;
+}
