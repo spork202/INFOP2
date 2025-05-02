@@ -80,8 +80,6 @@ G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\l5nqqhbfz1-2z0n
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\q2kj2mmjze-muycvpuwrr.gz
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\3615aw445r-87fc7y1x7t.gz
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\i0s32t8w6m-mlv21k5csn.gz
-G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\5v3bxd8er3-76k7qr5s5m.gz
-G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\rclmhxyrex-76k7qr5s5m.gz
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\staticwebassets.build.json
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\staticwebassets.development.json
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\staticwebassets.build.endpoints.json
@@ -223,3 +221,33 @@ E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\runtimes\win\lib\net7.0\System.Manage
 E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.csproj.Up2Date
 E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\Firebase.Auth.dll
 E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\System.ServiceModel.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Firebase.Auth.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\FirebaseAdmin.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Api.CommonProtos.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Api.Gax.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Api.Gax.Grpc.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Api.Gax.Rest.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Apis.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Apis.Auth.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Apis.Core.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Cloud.Firestore.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Cloud.Firestore.V1.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Cloud.Location.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.LongRunning.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Protobuf.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Grpc.Auth.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Grpc.Core.Api.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Grpc.Net.Client.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Grpc.Net.Common.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\System.ServiceModel.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Newtonsoft.Json.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\System.CodeDom.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\System.Linq.Async.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\System.Management.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\runtimes\win\lib\net7.0\System.Management.dll
+G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.csproj.AssemblyReference.cache
+G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.csproj.Up2Date
+G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\5v3bxd8er3-quiga35qmp.gz
+G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\rclmhxyrex-quiga35qmp.gz
+G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\v0d6ax5ld6-1x52pfifrv.gz

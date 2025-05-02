@@ -36,7 +36,7 @@ app.MapRazorPages();
 // Redirect root URL to /Login
 app.MapGet("/", context =>
 {
-    context.Response.Redirect("/Login");
+    context.Response.Redirect("/Index");
     return Task.CompletedTask;
 });
 
