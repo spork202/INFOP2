@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "G9Vy+N347eULtRF+dhLD2GNpUkOM/xeKRvnCedNRPlI=",
+  "Hash": "YwcKbR1ztK9b1SQozhEdaFCwEW6FTPgdGFqh7Vn1Gno=",
   "Source": "INFOP2",
   "BasePath": "_content/INFOP2",
   "Mode": "Default",
@@ -395,12 +395,12 @@
       "OriginalItemSpec": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\css\\site.css"
     },
     {
-      "Identity": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\5v3bxd8er3-76k7qr5s5m.gz",
+      "Identity": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\5v3bxd8er3-quiga35qmp.gz",
       "SourceId": "INFOP2",
       "SourceType": "Computed",
       "ContentRoot": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/INFOP2",
-      "RelativePath": "INFOP2#[.{fingerprint=76k7qr5s5m}]?.styles.css.gz",
+      "RelativePath": "INFOP2#[.{fingerprint=quiga35qmp}]?.styles.css.gz",
       "AssetKind": "All",
       "AssetMode": "CurrentProject",
       "AssetRole": "Alternative",
@@ -409,8 +409,8 @@
       "RelatedAsset": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\scopedcss\\bundle\\INFOP2.styles.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "7l73f3p200",
-      "Integrity": "K7RHuLMs4MRuEtGzOGDEhqqHkwcVJXiiOwVmqb8eVio=",
+      "Fingerprint": "1sd2mw5ppl",
+      "Integrity": "v2cJ/jcIZuucQz63deIsZ3+bUTYuYQumtxBvIHkdch8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\scopedcss\\bundle\\INFOP2.styles.css"
@@ -624,6 +624,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Identity": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\b4wf50vy4k-rkfdxvpc9e.gz",
+      "SourceId": "INFOP2",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/INFOP2",
+      "RelativePath": "css/index#[.{fingerprint=rkfdxvpc9e}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\css\\index.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "1f4umtbxai",
+      "Integrity": "IzQUkvB1YKSZbsDcsODNBXRjTzWctcIXaEFrelj1q6U=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\css\\index.css"
     },
     {
       "Identity": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\bzfr1rrrsn-ausgxo2sd3.gz",
@@ -1193,12 +1214,12 @@
       "OriginalItemSpec": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Identity": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\rclmhxyrex-76k7qr5s5m.gz",
+      "Identity": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\rclmhxyrex-quiga35qmp.gz",
       "SourceId": "INFOP2",
       "SourceType": "Computed",
       "ContentRoot": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/INFOP2",
-      "RelativePath": "INFOP2#[.{fingerprint=76k7qr5s5m}]!.bundle.scp.css.gz",
+      "RelativePath": "INFOP2#[.{fingerprint=quiga35qmp}]!.bundle.scp.css.gz",
       "AssetKind": "All",
       "AssetMode": "Reference",
       "AssetRole": "Alternative",
@@ -1207,8 +1228,8 @@
       "RelatedAsset": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\INFOP2.bundle.scp.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "7l73f3p200",
-      "Integrity": "K7RHuLMs4MRuEtGzOGDEhqqHkwcVJXiiOwVmqb8eVio=",
+      "Fingerprint": "1sd2mw5ppl",
+      "Integrity": "v2cJ/jcIZuucQz63deIsZ3+bUTYuYQumtxBvIHkdch8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\INFOP2.bundle.scp.css"
@@ -1296,6 +1317,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Identity": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\v0d6ax5ld6-1x52pfifrv.gz",
+      "SourceId": "INFOP2",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/INFOP2",
+      "RelativePath": "css/sidebar#[.{fingerprint=1x52pfifrv}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\css\\sidebar.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "36un3pnb8s",
+      "Integrity": "hfA4iuBQacqha3AKP3ifu1e/DK6f7I/QuUJmUl5v/vw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\css\\sidebar.css"
     },
     {
       "Identity": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\vevujmlvc9-gye83jo8yx.gz",
@@ -1396,8 +1438,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "76k7qr5s5m",
-      "Integrity": "IajZuhkIdAnSzsgmS218+HdwXfZUR4XB2YDejI4bGko=",
+      "Fingerprint": "quiga35qmp",
+      "Integrity": "jjbskT3WXVyrpxf3vcPZqB9+av5w+TrsQ9+X9BP+vdo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\scopedcss\\bundle\\INFOP2.styles.css"
@@ -1417,11 +1459,32 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "76k7qr5s5m",
-      "Integrity": "IajZuhkIdAnSzsgmS218+HdwXfZUR4XB2YDejI4bGko=",
+      "Fingerprint": "quiga35qmp",
+      "Integrity": "jjbskT3WXVyrpxf3vcPZqB9+av5w+TrsQ9+X9BP+vdo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\INFOP2.bundle.scp.css"
+    },
+    {
+      "Identity": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\css\\index.css",
+      "SourceId": "INFOP2",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\",
+      "BasePath": "_content/INFOP2",
+      "RelativePath": "css/index#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "rkfdxvpc9e",
+      "Integrity": "G7117jzxL9pdD6fQlJm43Ru5l3KKQDCoJxWYNLymCM0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\index.css"
     },
     {
       "Identity": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\css\\login.css",
@@ -1443,6 +1506,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\login.css"
+    },
+    {
+      "Identity": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\css\\sidebar.css",
+      "SourceId": "INFOP2",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\",
+      "BasePath": "_content/INFOP2",
+      "RelativePath": "css/sidebar#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "1x52pfifrv",
+      "Integrity": "db+NgEJZqDAcz1F/5gJKLx1mGPCjMvSXxfv7fhr6tPY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\sidebar.css"
     },
     {
       "Identity": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\css\\site.css",
@@ -2770,6 +2854,304 @@
   ],
   "Endpoints": [
     {
+      "Route": "css/index.css",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\b4wf50vy4k-rkfdxvpc9e.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.009433962264"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "105"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IzQUkvB1YKSZbsDcsODNBXRjTzWctcIXaEFrelj1q6U=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 16:36:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"G7117jzxL9pdD6fQlJm43Ru5l3KKQDCoJxWYNLymCM0=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-G7117jzxL9pdD6fQlJm43Ru5l3KKQDCoJxWYNLymCM0="
+        }
+      ]
+    },
+    {
+      "Route": "css/index.css",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\css\\index.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "151"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"G7117jzxL9pdD6fQlJm43Ru5l3KKQDCoJxWYNLymCM0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 16:36:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-G7117jzxL9pdD6fQlJm43Ru5l3KKQDCoJxWYNLymCM0="
+        }
+      ]
+    },
+    {
+      "Route": "css/index.css.gz",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\b4wf50vy4k-rkfdxvpc9e.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "105"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IzQUkvB1YKSZbsDcsODNBXRjTzWctcIXaEFrelj1q6U=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 16:36:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-IzQUkvB1YKSZbsDcsODNBXRjTzWctcIXaEFrelj1q6U="
+        }
+      ]
+    },
+    {
+      "Route": "css/index.rkfdxvpc9e.css",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\b4wf50vy4k-rkfdxvpc9e.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.009433962264"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "105"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IzQUkvB1YKSZbsDcsODNBXRjTzWctcIXaEFrelj1q6U=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 16:36:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"G7117jzxL9pdD6fQlJm43Ru5l3KKQDCoJxWYNLymCM0=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rkfdxvpc9e"
+        },
+        {
+          "Name": "label",
+          "Value": "css/index.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-G7117jzxL9pdD6fQlJm43Ru5l3KKQDCoJxWYNLymCM0="
+        }
+      ]
+    },
+    {
+      "Route": "css/index.rkfdxvpc9e.css",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\css\\index.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "151"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"G7117jzxL9pdD6fQlJm43Ru5l3KKQDCoJxWYNLymCM0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 16:36:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rkfdxvpc9e"
+        },
+        {
+          "Name": "label",
+          "Value": "css/index.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-G7117jzxL9pdD6fQlJm43Ru5l3KKQDCoJxWYNLymCM0="
+        }
+      ]
+    },
+    {
+      "Route": "css/index.rkfdxvpc9e.css.gz",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\b4wf50vy4k-rkfdxvpc9e.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "105"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IzQUkvB1YKSZbsDcsODNBXRjTzWctcIXaEFrelj1q6U=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 16:36:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rkfdxvpc9e"
+        },
+        {
+          "Name": "label",
+          "Value": "css/index.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-IzQUkvB1YKSZbsDcsODNBXRjTzWctcIXaEFrelj1q6U="
+        }
+      ]
+    },
+    {
       "Route": "css/login.css",
       "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\7e00cysoi1-x65hp2tozm.gz",
       "Selectors": [
@@ -3064,6 +3446,304 @@
         {
           "Name": "integrity",
           "Value": "sha256-mWfjgGsnfWFysfZAoE6kjIeSgZS+VT9z2iVAiJPkhEA="
+        }
+      ]
+    },
+    {
+      "Route": "css/sidebar.1x52pfifrv.css",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\v0d6ax5ld6-1x52pfifrv.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002232142857"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "447"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hfA4iuBQacqha3AKP3ifu1e/DK6f7I/QuUJmUl5v/vw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 16:36:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"db+NgEJZqDAcz1F/5gJKLx1mGPCjMvSXxfv7fhr6tPY=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1x52pfifrv"
+        },
+        {
+          "Name": "label",
+          "Value": "css/sidebar.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-db+NgEJZqDAcz1F/5gJKLx1mGPCjMvSXxfv7fhr6tPY="
+        }
+      ]
+    },
+    {
+      "Route": "css/sidebar.1x52pfifrv.css",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\css\\sidebar.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1320"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"db+NgEJZqDAcz1F/5gJKLx1mGPCjMvSXxfv7fhr6tPY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 16:36:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1x52pfifrv"
+        },
+        {
+          "Name": "label",
+          "Value": "css/sidebar.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-db+NgEJZqDAcz1F/5gJKLx1mGPCjMvSXxfv7fhr6tPY="
+        }
+      ]
+    },
+    {
+      "Route": "css/sidebar.1x52pfifrv.css.gz",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\v0d6ax5ld6-1x52pfifrv.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "447"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hfA4iuBQacqha3AKP3ifu1e/DK6f7I/QuUJmUl5v/vw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 16:36:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1x52pfifrv"
+        },
+        {
+          "Name": "label",
+          "Value": "css/sidebar.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-hfA4iuBQacqha3AKP3ifu1e/DK6f7I/QuUJmUl5v/vw="
+        }
+      ]
+    },
+    {
+      "Route": "css/sidebar.css",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\v0d6ax5ld6-1x52pfifrv.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002232142857"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "447"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hfA4iuBQacqha3AKP3ifu1e/DK6f7I/QuUJmUl5v/vw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 16:36:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"db+NgEJZqDAcz1F/5gJKLx1mGPCjMvSXxfv7fhr6tPY=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-db+NgEJZqDAcz1F/5gJKLx1mGPCjMvSXxfv7fhr6tPY="
+        }
+      ]
+    },
+    {
+      "Route": "css/sidebar.css",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\wwwroot\\css\\sidebar.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1320"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"db+NgEJZqDAcz1F/5gJKLx1mGPCjMvSXxfv7fhr6tPY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 16:36:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-db+NgEJZqDAcz1F/5gJKLx1mGPCjMvSXxfv7fhr6tPY="
+        }
+      ]
+    },
+    {
+      "Route": "css/sidebar.css.gz",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\v0d6ax5ld6-1x52pfifrv.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "447"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hfA4iuBQacqha3AKP3ifu1e/DK6f7I/QuUJmUl5v/vw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 16:36:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-hfA4iuBQacqha3AKP3ifu1e/DK6f7I/QuUJmUl5v/vw="
         }
       ]
     },
@@ -3664,13 +4344,13 @@
       ]
     },
     {
-      "Route": "INFOP2.76k7qr5s5m.bundle.scp.css",
-      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\rclmhxyrex-76k7qr5s5m.gz",
+      "Route": "INFOP2.bundle.scp.css",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\rclmhxyrex-quiga35qmp.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.001851851852"
+          "Quality": "0.001808318264"
         }
       ],
       "ResponseHeaders": [
@@ -3680,19 +4360,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "539"
+          "Value": "552"
         },
         {
           "Name": "ETag",
-          "Value": "\"K7RHuLMs4MRuEtGzOGDEhqqHkwcVJXiiOwVmqb8eVio=\""
+          "Value": "\"v2cJ/jcIZuucQz63deIsZ3+bUTYuYQumtxBvIHkdch8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 17:37:33 GMT"
+          "Value": "Fri, 02 May 2025 16:40:15 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
+          "Value": "no-cache"
         },
         {
           "Name": "Content-Encoding",
@@ -3708,26 +4388,18 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"IajZuhkIdAnSzsgmS218+HdwXfZUR4XB2YDejI4bGko=\""
+          "Value": "W/\"jjbskT3WXVyrpxf3vcPZqB9+av5w+TrsQ9+X9BP+vdo=\""
         }
       ],
       "EndpointProperties": [
         {
-          "Name": "fingerprint",
-          "Value": "76k7qr5s5m"
-        },
-        {
-          "Name": "label",
-          "Value": "INFOP2.bundle.scp.css"
-        },
-        {
           "Name": "integrity",
-          "Value": "sha256-IajZuhkIdAnSzsgmS218+HdwXfZUR4XB2YDejI4bGko="
+          "Value": "sha256-jjbskT3WXVyrpxf3vcPZqB9+av5w+TrsQ9+X9BP+vdo="
         }
       ]
     },
     {
-      "Route": "INFOP2.76k7qr5s5m.bundle.scp.css",
+      "Route": "INFOP2.bundle.scp.css",
       "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\INFOP2.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -3737,7 +4409,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1124"
+          "Value": "1181"
         },
         {
           "Name": "Content-Type",
@@ -3745,11 +4417,156 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"IajZuhkIdAnSzsgmS218+HdwXfZUR4XB2YDejI4bGko=\""
+          "Value": "\"jjbskT3WXVyrpxf3vcPZqB9+av5w+TrsQ9+X9BP+vdo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 17:37:33 GMT"
+          "Value": "Fri, 02 May 2025 16:40:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-jjbskT3WXVyrpxf3vcPZqB9+av5w+TrsQ9+X9BP+vdo="
+        }
+      ]
+    },
+    {
+      "Route": "INFOP2.bundle.scp.css.gz",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\rclmhxyrex-quiga35qmp.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "552"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"v2cJ/jcIZuucQz63deIsZ3+bUTYuYQumtxBvIHkdch8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 16:40:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-v2cJ/jcIZuucQz63deIsZ3+bUTYuYQumtxBvIHkdch8="
+        }
+      ]
+    },
+    {
+      "Route": "INFOP2.quiga35qmp.bundle.scp.css",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\rclmhxyrex-quiga35qmp.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001808318264"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "552"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"v2cJ/jcIZuucQz63deIsZ3+bUTYuYQumtxBvIHkdch8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 16:40:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"jjbskT3WXVyrpxf3vcPZqB9+av5w+TrsQ9+X9BP+vdo=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "quiga35qmp"
+        },
+        {
+          "Name": "label",
+          "Value": "INFOP2.bundle.scp.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-jjbskT3WXVyrpxf3vcPZqB9+av5w+TrsQ9+X9BP+vdo="
+        }
+      ]
+    },
+    {
+      "Route": "INFOP2.quiga35qmp.bundle.scp.css",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\INFOP2.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1181"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jjbskT3WXVyrpxf3vcPZqB9+av5w+TrsQ9+X9BP+vdo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 02 May 2025 16:40:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3759,7 +4576,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "76k7qr5s5m"
+          "Value": "quiga35qmp"
         },
         {
           "Name": "label",
@@ -3767,13 +4584,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-IajZuhkIdAnSzsgmS218+HdwXfZUR4XB2YDejI4bGko="
+          "Value": "sha256-jjbskT3WXVyrpxf3vcPZqB9+av5w+TrsQ9+X9BP+vdo="
         }
       ]
     },
     {
-      "Route": "INFOP2.76k7qr5s5m.bundle.scp.css.gz",
-      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\rclmhxyrex-76k7qr5s5m.gz",
+      "Route": "INFOP2.quiga35qmp.bundle.scp.css.gz",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\rclmhxyrex-quiga35qmp.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3782,7 +4599,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "539"
+          "Value": "552"
         },
         {
           "Name": "Content-Type",
@@ -3790,11 +4607,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"K7RHuLMs4MRuEtGzOGDEhqqHkwcVJXiiOwVmqb8eVio=\""
+          "Value": "\"v2cJ/jcIZuucQz63deIsZ3+bUTYuYQumtxBvIHkdch8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 17:37:33 GMT"
+          "Value": "Fri, 02 May 2025 16:40:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3812,7 +4629,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "76k7qr5s5m"
+          "Value": "quiga35qmp"
         },
         {
           "Name": "label",
@@ -3820,18 +4637,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-K7RHuLMs4MRuEtGzOGDEhqqHkwcVJXiiOwVmqb8eVio="
+          "Value": "sha256-v2cJ/jcIZuucQz63deIsZ3+bUTYuYQumtxBvIHkdch8="
         }
       ]
     },
     {
-      "Route": "INFOP2.76k7qr5s5m.styles.css",
-      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\5v3bxd8er3-76k7qr5s5m.gz",
+      "Route": "INFOP2.quiga35qmp.styles.css",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\5v3bxd8er3-quiga35qmp.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.001851851852"
+          "Quality": "0.001808318264"
         }
       ],
       "ResponseHeaders": [
@@ -3841,15 +4658,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "539"
+          "Value": "552"
         },
         {
           "Name": "ETag",
-          "Value": "\"K7RHuLMs4MRuEtGzOGDEhqqHkwcVJXiiOwVmqb8eVio=\""
+          "Value": "\"v2cJ/jcIZuucQz63deIsZ3+bUTYuYQumtxBvIHkdch8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 17:37:33 GMT"
+          "Value": "Fri, 02 May 2025 16:40:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3869,13 +4686,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"IajZuhkIdAnSzsgmS218+HdwXfZUR4XB2YDejI4bGko=\""
+          "Value": "W/\"jjbskT3WXVyrpxf3vcPZqB9+av5w+TrsQ9+X9BP+vdo=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "76k7qr5s5m"
+          "Value": "quiga35qmp"
         },
         {
           "Name": "label",
@@ -3883,12 +4700,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-IajZuhkIdAnSzsgmS218+HdwXfZUR4XB2YDejI4bGko="
+          "Value": "sha256-jjbskT3WXVyrpxf3vcPZqB9+av5w+TrsQ9+X9BP+vdo="
         }
       ]
     },
     {
-      "Route": "INFOP2.76k7qr5s5m.styles.css",
+      "Route": "INFOP2.quiga35qmp.styles.css",
       "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\scopedcss\\bundle\\INFOP2.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -3898,7 +4715,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1124"
+          "Value": "1181"
         },
         {
           "Name": "Content-Type",
@@ -3906,11 +4723,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"IajZuhkIdAnSzsgmS218+HdwXfZUR4XB2YDejI4bGko=\""
+          "Value": "\"jjbskT3WXVyrpxf3vcPZqB9+av5w+TrsQ9+X9BP+vdo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 17:37:33 GMT"
+          "Value": "Fri, 02 May 2025 16:40:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3920,7 +4737,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "76k7qr5s5m"
+          "Value": "quiga35qmp"
         },
         {
           "Name": "label",
@@ -3928,13 +4745,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-IajZuhkIdAnSzsgmS218+HdwXfZUR4XB2YDejI4bGko="
+          "Value": "sha256-jjbskT3WXVyrpxf3vcPZqB9+av5w+TrsQ9+X9BP+vdo="
         }
       ]
     },
     {
-      "Route": "INFOP2.76k7qr5s5m.styles.css.gz",
-      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\5v3bxd8er3-76k7qr5s5m.gz",
+      "Route": "INFOP2.quiga35qmp.styles.css.gz",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\5v3bxd8er3-quiga35qmp.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3943,7 +4760,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "539"
+          "Value": "552"
         },
         {
           "Name": "Content-Type",
@@ -3951,11 +4768,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"K7RHuLMs4MRuEtGzOGDEhqqHkwcVJXiiOwVmqb8eVio=\""
+          "Value": "\"v2cJ/jcIZuucQz63deIsZ3+bUTYuYQumtxBvIHkdch8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 17:37:33 GMT"
+          "Value": "Fri, 02 May 2025 16:40:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3973,7 +4790,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "76k7qr5s5m"
+          "Value": "quiga35qmp"
         },
         {
           "Name": "label",
@@ -3981,155 +4798,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-K7RHuLMs4MRuEtGzOGDEhqqHkwcVJXiiOwVmqb8eVio="
-        }
-      ]
-    },
-    {
-      "Route": "INFOP2.bundle.scp.css",
-      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\rclmhxyrex-76k7qr5s5m.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.001851851852"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "539"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"K7RHuLMs4MRuEtGzOGDEhqqHkwcVJXiiOwVmqb8eVio=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 17:37:33 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"IajZuhkIdAnSzsgmS218+HdwXfZUR4XB2YDejI4bGko=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-IajZuhkIdAnSzsgmS218+HdwXfZUR4XB2YDejI4bGko="
-        }
-      ]
-    },
-    {
-      "Route": "INFOP2.bundle.scp.css",
-      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\INFOP2.bundle.scp.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1124"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"IajZuhkIdAnSzsgmS218+HdwXfZUR4XB2YDejI4bGko=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 17:37:33 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-IajZuhkIdAnSzsgmS218+HdwXfZUR4XB2YDejI4bGko="
-        }
-      ]
-    },
-    {
-      "Route": "INFOP2.bundle.scp.css.gz",
-      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\rclmhxyrex-76k7qr5s5m.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "539"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"K7RHuLMs4MRuEtGzOGDEhqqHkwcVJXiiOwVmqb8eVio=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 17:37:33 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-K7RHuLMs4MRuEtGzOGDEhqqHkwcVJXiiOwVmqb8eVio="
+          "Value": "sha256-v2cJ/jcIZuucQz63deIsZ3+bUTYuYQumtxBvIHkdch8="
         }
       ]
     },
     {
       "Route": "INFOP2.styles.css",
-      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\5v3bxd8er3-76k7qr5s5m.gz",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\5v3bxd8er3-quiga35qmp.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.001851851852"
+          "Quality": "0.001808318264"
         }
       ],
       "ResponseHeaders": [
@@ -4139,15 +4819,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "539"
+          "Value": "552"
         },
         {
           "Name": "ETag",
-          "Value": "\"K7RHuLMs4MRuEtGzOGDEhqqHkwcVJXiiOwVmqb8eVio=\""
+          "Value": "\"v2cJ/jcIZuucQz63deIsZ3+bUTYuYQumtxBvIHkdch8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 17:37:33 GMT"
+          "Value": "Fri, 02 May 2025 16:40:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4167,13 +4847,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"IajZuhkIdAnSzsgmS218+HdwXfZUR4XB2YDejI4bGko=\""
+          "Value": "W/\"jjbskT3WXVyrpxf3vcPZqB9+av5w+TrsQ9+X9BP+vdo=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-IajZuhkIdAnSzsgmS218+HdwXfZUR4XB2YDejI4bGko="
+          "Value": "sha256-jjbskT3WXVyrpxf3vcPZqB9+av5w+TrsQ9+X9BP+vdo="
         }
       ]
     },
@@ -4188,7 +4868,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1124"
+          "Value": "1181"
         },
         {
           "Name": "Content-Type",
@@ -4196,11 +4876,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"IajZuhkIdAnSzsgmS218+HdwXfZUR4XB2YDejI4bGko=\""
+          "Value": "\"jjbskT3WXVyrpxf3vcPZqB9+av5w+TrsQ9+X9BP+vdo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 17:37:33 GMT"
+          "Value": "Fri, 02 May 2025 16:40:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4210,13 +4890,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-IajZuhkIdAnSzsgmS218+HdwXfZUR4XB2YDejI4bGko="
+          "Value": "sha256-jjbskT3WXVyrpxf3vcPZqB9+av5w+TrsQ9+X9BP+vdo="
         }
       ]
     },
     {
       "Route": "INFOP2.styles.css.gz",
-      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\5v3bxd8er3-76k7qr5s5m.gz",
+      "AssetFile": "E:\\Projects\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\5v3bxd8er3-quiga35qmp.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4225,7 +4905,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "539"
+          "Value": "552"
         },
         {
           "Name": "Content-Type",
@@ -4233,11 +4913,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"K7RHuLMs4MRuEtGzOGDEhqqHkwcVJXiiOwVmqb8eVio=\""
+          "Value": "\"v2cJ/jcIZuucQz63deIsZ3+bUTYuYQumtxBvIHkdch8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 30 Apr 2025 17:37:33 GMT"
+          "Value": "Fri, 02 May 2025 16:40:15 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4255,7 +4935,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-K7RHuLMs4MRuEtGzOGDEhqqHkwcVJXiiOwVmqb8eVio="
+          "Value": "sha256-v2cJ/jcIZuucQz63deIsZ3+bUTYuYQumtxBvIHkdch8="
         }
       ]
     },

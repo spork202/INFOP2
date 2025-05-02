@@ -80,8 +80,6 @@ G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\l5nqqhbfz1-2z0n
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\q2kj2mmjze-muycvpuwrr.gz
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\3615aw445r-87fc7y1x7t.gz
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\i0s32t8w6m-mlv21k5csn.gz
-G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\5v3bxd8er3-76k7qr5s5m.gz
-G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\rclmhxyrex-76k7qr5s5m.gz
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\staticwebassets.build.json
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\staticwebassets.development.json
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\staticwebassets.build.endpoints.json
@@ -97,106 +95,47 @@ G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.pdb
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.genruntimeconfig.cache
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\ref\INFOP2.dll
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\7e00cysoi1-x65hp2tozm.gz
-E:\Projects\INFOP2\infop2\bin\Debug\net9.0\appsettings.Development.json
-E:\Projects\INFOP2\infop2\bin\Debug\net9.0\appsettings.json
-E:\Projects\INFOP2\infop2\bin\Debug\net9.0\INFOP2.staticwebassets.runtime.json
-E:\Projects\INFOP2\infop2\bin\Debug\net9.0\INFOP2.staticwebassets.endpoints.json
-E:\Projects\INFOP2\infop2\bin\Debug\net9.0\INFOP2.exe
-E:\Projects\INFOP2\infop2\bin\Debug\net9.0\INFOP2.deps.json
-E:\Projects\INFOP2\infop2\bin\Debug\net9.0\INFOP2.runtimeconfig.json
-E:\Projects\INFOP2\infop2\bin\Debug\net9.0\INFOP2.dll
-E:\Projects\INFOP2\infop2\bin\Debug\net9.0\INFOP2.pdb
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\INFOP2.GeneratedMSBuildEditorConfig.editorconfig
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\INFOP2.AssemblyInfoInputs.cache
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\INFOP2.AssemblyInfo.cs
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\INFOP2.csproj.CoreCompileInputs.cache
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\INFOP2.MvcApplicationPartsAssemblyInfo.cache
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\INFOP2.RazorAssemblyInfo.cache
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\INFOP2.RazorAssemblyInfo.cs
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\INFOP2.sourcelink.json
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\scopedcss\bundle\INFOP2.styles.css
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\scopedcss\projectbundle\INFOP2.bundle.scp.css
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\7e00cysoi1-x65hp2tozm.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\5kr4qm5poo-b9sayid5wm.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\3e50dvuo7j-61n19gt1b8.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\9k6oejjngk-xtxxf3hu2r.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\x76gai612n-t1cqhe9u97.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\hhqww1x8pj-c2jlpeoesf.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\3ohzb0qbrx-sejl45xvog.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\trygdao529-aexeepp0ev.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\gv8fyk1o1b-xvp3kq03qx.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\bzfr1rrrsn-ausgxo2sd3.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\fdvxuvnzfc-22vffe00uq.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\9iuzmgqpft-cosvhxvwiu.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\4fmrz9dgba-qesaa3a1fm.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\1gb6x04omp-fvhpjtyr6v.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\8q4f6f1wrc-tmc1g35s3z.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\jir6wx7c1s-fsbi9cje9m.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\4jq7zu6o9k-rxsg74s51o.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\a24967v2pt-ee0r1s7dh0.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\hi64y4qjhq-q9ht133ko3.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\089vrnunqb-jd9uben2k1.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\vevujmlvc9-gye83jo8yx.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\56u8bifwdo-r4e9w2rdcm.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\2nazri2axk-wl58j5mj3v.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\ihf0uqckpj-c2oey78nd0.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\pfkna23w69-d4r6k3f320.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\3rrrjvk58q-j5mq2jizvt.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\9w9umfq296-keugtjm085.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\jx3fbnc9ch-nvvlpmu67g.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\lyix366fhb-zub09dkrxp.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\1k764ojqcq-pj5nd1wqec.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\tqcbfsp5hn-43atpzeawx.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\0vsox75v4q-v0zj4ognzu.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\5a3q31yncp-ynyaa8k90p.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\24h9nr04ci-hrwsygsryq.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\gn8wg7n672-c63t5i9ira.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\7bkxysn15x-ft3s53vfgj.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\vl2z1egdn5-4094rpi4f9.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\yjxqqvmdcg-6pdc2jztkx.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\n7fajp91bb-hd3gran6i8.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\r7ektphj0u-iovd86k7lj.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\d9mn67bp58-ltid2c489k.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\fnk74la56k-kbrnm935zg.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\8ku5rqkwo4-8vyfqsqgz1.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\o55s1a04gh-y7v9cxd14o.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\kktjolt6v1-u9q1upor1n.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\shyl7baois-h1s4sie4z3.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\9wqyt7go2d-4d85u1mtcx.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\e786ycy1n3-0j3bgjxly4.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\jv74ypj3w9-03hjc8e09r.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\4ia32nj1rb-48y08845bh.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\2apm9v14av-356vix0kms.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\qq2q6vrj6p-83jwlth58m.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\szrnzh9u0a-mrlpezrjn3.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\9sydd42dd8-worgj0nhwm.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\mfvobbd766-gk0pw8i4co.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\jobdpgdnch-x0q3zqp4vz.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\lxuarp8c5r-d6nrnj6jjx.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\oklrpvxxqp-m9qm4tazc0.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\35ydudana9-ttgo8qnofa.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\l5nqqhbfz1-jjsuc0puko.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\q2kj2mmjze-9vr69e8ynj.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\3615aw445r-87fc7y1x7t.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\i0s32t8w6m-mlv21k5csn.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\5v3bxd8er3-76k7qr5s5m.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\compressed\rclmhxyrex-76k7qr5s5m.gz
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\staticwebassets.build.json
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\staticwebassets.development.json
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\staticwebassets\msbuild.INFOP2.Microsoft.AspNetCore.StaticWebAssets.props
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\staticwebassets\msbuild.INFOP2.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\staticwebassets\msbuild.build.INFOP2.props
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.INFOP2.props
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.INFOP2.props
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\staticwebassets.pack.json
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\INFOP2.dll
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\refint\INFOP2.dll
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\INFOP2.pdb
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\INFOP2.genruntimeconfig.cache
-E:\Projects\INFOP2\infop2\obj\Debug\net9.0\ref\INFOP2.dll
-E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.csproj.AssemblyReference.cache
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Firebase.Auth.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\FirebaseAdmin.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Api.CommonProtos.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Api.Gax.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Api.Gax.Grpc.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Api.Gax.Rest.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Apis.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Apis.Auth.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Apis.Core.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Cloud.Firestore.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Cloud.Firestore.V1.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Cloud.Location.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.LongRunning.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Google.Protobuf.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Grpc.Auth.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Grpc.Core.Api.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Grpc.Net.Client.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Grpc.Net.Common.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\System.ServiceModel.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\Newtonsoft.Json.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\System.CodeDom.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\System.Linq.Async.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\System.Management.dll
+G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\runtimes\win\lib\net7.0\System.Management.dll
+G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.csproj.AssemblyReference.cache
+G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.csproj.Up2Date
+G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\5v3bxd8er3-quiga35qmp.gz
+G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\rclmhxyrex-quiga35qmp.gz
+G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\v0d6ax5ld6-1x52pfifrv.gz
+G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\b4wf50vy4k-rkfdxvpc9e.gz
+E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\appsettings.Development.json
+E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\appsettings.json
+E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\INFOP2.staticwebassets.runtime.json
+E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\INFOP2.staticwebassets.endpoints.json
+E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\INFOP2.exe
+E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\INFOP2.deps.json
+E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\INFOP2.runtimeconfig.json
+E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\INFOP2.dll
+E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\INFOP2.pdb
+E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\Firebase.Auth.dll
 E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\FirebaseAdmin.dll
 E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\Google.Api.CommonProtos.dll
 E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\Google.Api.Gax.dll
@@ -215,11 +154,103 @@ E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\Grpc.Core.Api.dll
 E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\Grpc.Net.Client.dll
 E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\Grpc.Net.Common.dll
 E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
+E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\System.ServiceModel.dll
 E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\Newtonsoft.Json.dll
 E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\System.CodeDom.dll
 E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\System.Linq.Async.dll
 E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\System.Management.dll
 E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\runtimes\win\lib\net7.0\System.Management.dll
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.csproj.AssemblyReference.cache
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.GeneratedMSBuildEditorConfig.editorconfig
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.AssemblyInfoInputs.cache
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.AssemblyInfo.cs
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.csproj.CoreCompileInputs.cache
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.MvcApplicationPartsAssemblyInfo.cache
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.RazorAssemblyInfo.cache
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.RazorAssemblyInfo.cs
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.sourcelink.json
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\scopedcss\bundle\INFOP2.styles.css
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\scopedcss\projectbundle\INFOP2.bundle.scp.css
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\b4wf50vy4k-rkfdxvpc9e.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\7e00cysoi1-x65hp2tozm.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\v0d6ax5ld6-1x52pfifrv.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\5kr4qm5poo-b9sayid5wm.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\3e50dvuo7j-61n19gt1b8.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\9k6oejjngk-xtxxf3hu2r.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\x76gai612n-t1cqhe9u97.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\hhqww1x8pj-c2jlpeoesf.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\3ohzb0qbrx-sejl45xvog.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\trygdao529-aexeepp0ev.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\gv8fyk1o1b-xvp3kq03qx.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\bzfr1rrrsn-ausgxo2sd3.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\fdvxuvnzfc-22vffe00uq.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\9iuzmgqpft-cosvhxvwiu.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\4fmrz9dgba-qesaa3a1fm.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\1gb6x04omp-fvhpjtyr6v.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\8q4f6f1wrc-tmc1g35s3z.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\jir6wx7c1s-fsbi9cje9m.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\4jq7zu6o9k-rxsg74s51o.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\a24967v2pt-ee0r1s7dh0.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\hi64y4qjhq-q9ht133ko3.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\089vrnunqb-jd9uben2k1.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\vevujmlvc9-gye83jo8yx.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\56u8bifwdo-r4e9w2rdcm.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\2nazri2axk-wl58j5mj3v.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\ihf0uqckpj-c2oey78nd0.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\pfkna23w69-d4r6k3f320.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\3rrrjvk58q-j5mq2jizvt.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\9w9umfq296-keugtjm085.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\jx3fbnc9ch-nvvlpmu67g.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\lyix366fhb-zub09dkrxp.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\1k764ojqcq-pj5nd1wqec.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\tqcbfsp5hn-43atpzeawx.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\0vsox75v4q-v0zj4ognzu.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\5a3q31yncp-ynyaa8k90p.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\24h9nr04ci-hrwsygsryq.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\gn8wg7n672-c63t5i9ira.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\7bkxysn15x-ft3s53vfgj.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\vl2z1egdn5-4094rpi4f9.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\yjxqqvmdcg-6pdc2jztkx.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\n7fajp91bb-hd3gran6i8.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\r7ektphj0u-iovd86k7lj.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\d9mn67bp58-ltid2c489k.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\fnk74la56k-kbrnm935zg.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\8ku5rqkwo4-8vyfqsqgz1.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\o55s1a04gh-y7v9cxd14o.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\kktjolt6v1-u9q1upor1n.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\shyl7baois-h1s4sie4z3.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\9wqyt7go2d-4d85u1mtcx.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\e786ycy1n3-0j3bgjxly4.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\jv74ypj3w9-03hjc8e09r.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\4ia32nj1rb-48y08845bh.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\2apm9v14av-356vix0kms.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\qq2q6vrj6p-83jwlth58m.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\szrnzh9u0a-mrlpezrjn3.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\9sydd42dd8-worgj0nhwm.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\mfvobbd766-gk0pw8i4co.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\jobdpgdnch-x0q3zqp4vz.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\lxuarp8c5r-d6nrnj6jjx.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\oklrpvxxqp-m9qm4tazc0.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\35ydudana9-ttgo8qnofa.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\l5nqqhbfz1-jjsuc0puko.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\q2kj2mmjze-9vr69e8ynj.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\3615aw445r-87fc7y1x7t.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\i0s32t8w6m-mlv21k5csn.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\5v3bxd8er3-quiga35qmp.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\rclmhxyrex-quiga35qmp.gz
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\staticwebassets.build.json
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\staticwebassets.development.json
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\staticwebassets\msbuild.INFOP2.Microsoft.AspNetCore.StaticWebAssets.props
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\staticwebassets\msbuild.INFOP2.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\staticwebassets\msbuild.build.INFOP2.props
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.INFOP2.props
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.INFOP2.props
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\staticwebassets.pack.json
 E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.csproj.Up2Date
-E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\Firebase.Auth.dll
-E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\System.ServiceModel.dll
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.dll
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\refint\INFOP2.dll
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.pdb
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.genruntimeconfig.cache
+E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\ref\INFOP2.dll

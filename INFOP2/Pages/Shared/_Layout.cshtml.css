@@ -46,3 +46,7 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+
+.txt-align-end {
+  text-align: end;
+}

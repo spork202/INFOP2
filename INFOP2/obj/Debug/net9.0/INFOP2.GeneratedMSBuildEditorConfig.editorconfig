@@ -24,8 +24,16 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjZXNzRGVuaWVkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/Projects/INFOP2/INFOP2/Pages/Assetlist.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXNzZXRsaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/Projects/INFOP2/INFOP2/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Projects/INFOP2/INFOP2/Pages/Finance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmluYW5jZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Projects/INFOP2/INFOP2/Pages/Index.cshtml]
@@ -36,12 +44,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/Projects/INFOP2/INFOP2/Pages/Masterlist.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFzdGVybGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Projects/INFOP2/INFOP2/Pages/PrayerMinistry.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJheWVyTWluaXN0cnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/Projects/INFOP2/INFOP2/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Projects/INFOP2/INFOP2/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Projects/INFOP2/INFOP2/Pages/TransportList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhbnNwb3J0TGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Projects/INFOP2/INFOP2/Pages/_ViewImports.cshtml]
