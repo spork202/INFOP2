@@ -65,7 +65,7 @@ namespace INFOP2.Pages
                     new ClaimsPrincipal(claimsIdentity),
                     authProperties);
 
-                return RedirectToPage("/Error");
+                return RedirectToPage("/Index");
             }
             catch (Exception ex)
             {
