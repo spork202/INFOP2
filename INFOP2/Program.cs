@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddScoped<INFOP2.Services.FirebaseAuthService>();
+builder.Services.AddLogging(logging => logging.AddConsole());
 
 // Add authentication
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -13,6 +14,10 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.LoginPath = "/Login";
         options.AccessDeniedPath = "/AccessDenied";
+        options.Cookie.SameSite = SameSiteMode.Lax;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.None; // Temporary for local testing
+        options.Cookie.HttpOnly = true;
+        options.ExpireTimeSpan = TimeSpan.FromHours(1);
     });
 
 var app = builder.Build();
@@ -28,12 +33,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
-app.UseAuthentication(); // Add authentication middleware
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
 
-// Redirect root URL to /Login
+// Redirect root URL to /Index
 app.MapGet("/", context =>
 {
     context.Response.Redirect("/Index");
