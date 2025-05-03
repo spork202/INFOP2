@@ -60,17 +60,17 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Jtxf9L\u002B5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"5430"},{"Name":"Content-Type","Value":"image/x-icon"},{"Name":"ETag","Value":"\u0022Jtxf9L\u002B5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM=\u0022"},{"Name":"Last-Modified","Value":"Wed, 30 Apr 2025 17:37:33 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/INFOP2/INFOP2.bundle.scp.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\INFOP2.quiga35qmp.bundle.scp.css'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/INFOP2/INFOP2.6yonfbrbks.bundle.scp.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\INFOP2.6yonfbrbks.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-jjbskT3WXVyrpxf3vcPZqB9\u002Bav5w\u002BTrsQ9\u002BX9BP\u002Bvdo="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1181"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022jjbskT3WXVyrpxf3vcPZqB9\u002Bav5w\u002BTrsQ9\u002BX9BP\u002Bvdo=\u0022"},{"Name":"Last-Modified","Value":"Fri, 02 May 2025 17:16:11 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"6yonfbrbks"},{"Name":"integrity","Value":"sha256-8jZiZ5RG28accMMItxQZtBW\u002BSlcgWivA/RvIgj9UmZI="},{"Name":"label","Value":"_content/INFOP2/INFOP2.bundle.scp.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1183"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00228jZiZ5RG28accMMItxQZtBW\u002BSlcgWivA/RvIgj9UmZI=\u0022"},{"Name":"Last-Modified","Value":"Sat, 03 May 2025 10:38:22 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/INFOP2/INFOP2.quiga35qmp.bundle.scp.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\INFOP2.quiga35qmp.bundle.scp.css'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/INFOP2/INFOP2.bundle.scp.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\INFOP2.6yonfbrbks.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"quiga35qmp"},{"Name":"integrity","Value":"sha256-jjbskT3WXVyrpxf3vcPZqB9\u002Bav5w\u002BTrsQ9\u002BX9BP\u002Bvdo="},{"Name":"label","Value":"_content/INFOP2/INFOP2.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1181"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022jjbskT3WXVyrpxf3vcPZqB9\u002Bav5w\u002BTrsQ9\u002BX9BP\u002Bvdo=\u0022"},{"Name":"Last-Modified","Value":"Fri, 02 May 2025 17:16:11 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-8jZiZ5RG28accMMItxQZtBW\u002BSlcgWivA/RvIgj9UmZI="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1183"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00228jZiZ5RG28accMMItxQZtBW\u002BSlcgWivA/RvIgj9UmZI=\u0022"},{"Name":"Last-Modified","Value":"Sat, 03 May 2025 10:38:22 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/INFOP2/js/site.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))</AssetFile>
