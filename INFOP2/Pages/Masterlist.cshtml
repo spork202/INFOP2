@@ -2,10 +2,154 @@
 @model INFOP2.Pages.Masterlist
 @{
     ViewData["Title"] = "Masterlist";
+    Layout = "_Layout";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h3 class="display-5">@ViewData["Title"]</h3>
+            <h4 class="h6">Hello, <strong>@User.Identity.Name</strong></h4>
+        </div>
+    </div>
 
-<div>
-    
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <form method="get" class="d-flex">
+                <input type="text" class="form-control me-2" placeholder="Search by name..." asp-for="SearchTerm" />
+                <button type="submit" class="btn btn-outline-secondary">Search</button>
+            </form>
+        </div>
+        <div class="col-md-6 text-end">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add</button>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h5>Lists</h5>
+            <a href="#" class="text-primary">View All</a>
+        </div>
+    </div>
+
+    @if (Model.PersonList.Any())
+    {
+        <div class="table-container">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                <a asp-page="./Masterlist" asp-all-route-data="@(new Dictionary<string, string> { { "SortOrder", Model.SortOrder == "name_asc" ? "name_desc" : "name_asc" }, { "SearchTerm", Model.SearchTerm } })">
+                                    Name @(Model.SortOrder == "name_asc" ? "▲" : Model.SortOrder == "name_desc" ? "▼" : "")
+                                </a>
+                            </th>
+                            <th>BC Family</th>
+                            <th>Ministry</th>
+                            <th>Contact No.</th>
+                            <th>KSA Address</th>
+                            <th>Birthdate</th>
+                            <th>View</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var person in Model.PersonList)
+                        {
+                            <tr>
+                                <td>@person.Name</td>
+                                <td>@person.BCFamily</td>
+                                <td>@person.Ministry</td>
+                                <td>@person.ContactNumber</td>
+                                <td>@person.KSAAddress</td>
+                                <td>@(person.Birthdate?.ToString("MM/dd/yyyy") ?? "")</td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-primary">Detail</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="row mt-3">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+                <span>
+                    @(Model.CurrentPage == 1 ? 1 : (Model.CurrentPage - 1) * Model.PageSize + 1)-@(Math.Min(Model.CurrentPage * Model.PageSize, Model.TotalItems)) of @Model.TotalItems This page you're on @Model.CurrentPage
+                </span>
+                <div>
+                    <a class="btn btn-sm btn-outline-secondary @(Model.CurrentPage == 1 ? "disabled" : "")" 
+                       asp-page="./Masterlist" 
+                       asp-route-CurrentPage="@(Model.CurrentPage - 1)" 
+                       asp-route-SearchTerm="@Model.SearchTerm" 
+                       asp-route-SortOrder="@Model.SortOrder">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                    <a class="btn btn-sm btn-outline-secondary @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")" 
+                       asp-page="./Masterlist" 
+                       asp-route-CurrentPage="@(Model.CurrentPage + 1)" 
+                       asp-route-SearchTerm="@Model.SearchTerm" 
+                       asp-route-SortOrder="@Model.SortOrder">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <p>No people in the masterlist. Click "Add" to start.</p>
+    }
+
+    <!-- Add Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">Add Person</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form asp-page-handler="Add" method="post">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label asp-for="Input.Name" class="form-label">Name</label>
+                            <input asp-for="Input.Name" class="form-control" />
+                            <span asp-validation-for="Input.Name" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Input.BCFamily" class="form-label">BC Family</label>
+                            <input asp-for="Input.BCFamily" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Input.Ministry" class="form-label">Ministry</label>
+                            <input asp-for="Input.Ministry" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Input.ContactNumber" class="form-label">Contact No.</label>
+                            <input asp-for="Input.ContactNumber" class="form-control" />
+                            <span asp-validation-for="Input.ContactNumber" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Input.KSAAddress" class="form-label">KSA Address</label>
+                            <input asp-for="Input.KSAAddress" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Input.Birthdate" class="form-label">Birthdate</label>
+                            <input asp-for="Input.Birthdate" class="form-control" type="date" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
