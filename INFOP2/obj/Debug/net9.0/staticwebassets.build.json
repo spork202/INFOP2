@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "AqZg8f3ClNzhq+uIZkKv478EvWDeCy7cUiTlowM3Y2A=",
+  "Hash": "+9qx5JE1oi4H/5HekIhDJ4kKDRiPJWA2c2yoHrR1dZU=",
   "Source": "INFOP2",
   "BasePath": "_content/INFOP2",
   "Mode": "Default",
@@ -1319,12 +1319,12 @@
       "OriginalItemSpec": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Identity": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\v0d6ax5ld6-1x52pfifrv.gz",
+      "Identity": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\v0d6ax5ld6-fk8d719q8r.gz",
       "SourceId": "INFOP2",
       "SourceType": "Discovered",
       "ContentRoot": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/INFOP2",
-      "RelativePath": "css/sidebar#[.{fingerprint=1x52pfifrv}]?.css.gz",
+      "RelativePath": "css/sidebar#[.{fingerprint=fk8d719q8r}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -1333,8 +1333,8 @@
       "RelatedAsset": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\css\\sidebar.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "36un3pnb8s",
-      "Integrity": "hfA4iuBQacqha3AKP3ifu1e/DK6f7I/QuUJmUl5v/vw=",
+      "Fingerprint": "b2m44vai2m",
+      "Integrity": "s8jkVi5zPJYMvgLakVjjTMpaBCDzmuJmcKeKp6DX5/o=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\css\\sidebar.css"
@@ -1522,8 +1522,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "1x52pfifrv",
-      "Integrity": "db+NgEJZqDAcz1F/5gJKLx1mGPCjMvSXxfv7fhr6tPY=",
+      "Fingerprint": "fk8d719q8r",
+      "Integrity": "YXja2nEeMA7Eug/E7GXbJdXv4Ps13RcnH2jmpLDVmOE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\sidebar.css"
@@ -3450,13 +3450,13 @@
       ]
     },
     {
-      "Route": "css/sidebar.1x52pfifrv.css",
-      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\v0d6ax5ld6-1x52pfifrv.gz",
+      "Route": "css/sidebar.css",
+      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\v0d6ax5ld6-fk8d719q8r.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.002232142857"
+          "Quality": "0.002020202020"
         }
       ],
       "ResponseHeaders": [
@@ -3466,19 +3466,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "447"
+          "Value": "494"
         },
         {
           "Name": "ETag",
-          "Value": "\"hfA4iuBQacqha3AKP3ifu1e/DK6f7I/QuUJmUl5v/vw=\""
+          "Value": "\"s8jkVi5zPJYMvgLakVjjTMpaBCDzmuJmcKeKp6DX5/o=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 02 May 2025 06:15:59 GMT"
+          "Value": "Sun, 04 May 2025 13:08:21 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
+          "Value": "no-cache"
         },
         {
           "Name": "Content-Encoding",
@@ -3494,26 +3494,18 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"db+NgEJZqDAcz1F/5gJKLx1mGPCjMvSXxfv7fhr6tPY=\""
+          "Value": "W/\"YXja2nEeMA7Eug/E7GXbJdXv4Ps13RcnH2jmpLDVmOE=\""
         }
       ],
       "EndpointProperties": [
         {
-          "Name": "fingerprint",
-          "Value": "1x52pfifrv"
-        },
-        {
-          "Name": "label",
-          "Value": "css/sidebar.css"
-        },
-        {
           "Name": "integrity",
-          "Value": "sha256-db+NgEJZqDAcz1F/5gJKLx1mGPCjMvSXxfv7fhr6tPY="
+          "Value": "sha256-YXja2nEeMA7Eug/E7GXbJdXv4Ps13RcnH2jmpLDVmOE="
         }
       ]
     },
     {
-      "Route": "css/sidebar.1x52pfifrv.css",
+      "Route": "css/sidebar.css",
       "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\css\\sidebar.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -3523,7 +3515,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1320"
+          "Value": "1424"
         },
         {
           "Name": "Content-Type",
@@ -3531,11 +3523,156 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"db+NgEJZqDAcz1F/5gJKLx1mGPCjMvSXxfv7fhr6tPY=\""
+          "Value": "\"YXja2nEeMA7Eug/E7GXbJdXv4Ps13RcnH2jmpLDVmOE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 02 May 2025 06:15:59 GMT"
+          "Value": "Sun, 04 May 2025 13:08:21 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YXja2nEeMA7Eug/E7GXbJdXv4Ps13RcnH2jmpLDVmOE="
+        }
+      ]
+    },
+    {
+      "Route": "css/sidebar.css.gz",
+      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\v0d6ax5ld6-fk8d719q8r.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "494"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"s8jkVi5zPJYMvgLakVjjTMpaBCDzmuJmcKeKp6DX5/o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 04 May 2025 13:08:21 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-s8jkVi5zPJYMvgLakVjjTMpaBCDzmuJmcKeKp6DX5/o="
+        }
+      ]
+    },
+    {
+      "Route": "css/sidebar.fk8d719q8r.css",
+      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\v0d6ax5ld6-fk8d719q8r.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002020202020"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "494"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"s8jkVi5zPJYMvgLakVjjTMpaBCDzmuJmcKeKp6DX5/o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 04 May 2025 13:08:21 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"YXja2nEeMA7Eug/E7GXbJdXv4Ps13RcnH2jmpLDVmOE=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "fk8d719q8r"
+        },
+        {
+          "Name": "label",
+          "Value": "css/sidebar.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YXja2nEeMA7Eug/E7GXbJdXv4Ps13RcnH2jmpLDVmOE="
+        }
+      ]
+    },
+    {
+      "Route": "css/sidebar.fk8d719q8r.css",
+      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\css\\sidebar.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1424"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YXja2nEeMA7Eug/E7GXbJdXv4Ps13RcnH2jmpLDVmOE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 04 May 2025 13:08:21 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3545,7 +3682,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "1x52pfifrv"
+          "Value": "fk8d719q8r"
         },
         {
           "Name": "label",
@@ -3553,13 +3690,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-db+NgEJZqDAcz1F/5gJKLx1mGPCjMvSXxfv7fhr6tPY="
+          "Value": "sha256-YXja2nEeMA7Eug/E7GXbJdXv4Ps13RcnH2jmpLDVmOE="
         }
       ]
     },
     {
-      "Route": "css/sidebar.1x52pfifrv.css.gz",
-      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\v0d6ax5ld6-1x52pfifrv.gz",
+      "Route": "css/sidebar.fk8d719q8r.css.gz",
+      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\v0d6ax5ld6-fk8d719q8r.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3568,7 +3705,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "447"
+          "Value": "494"
         },
         {
           "Name": "Content-Type",
@@ -3576,11 +3713,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hfA4iuBQacqha3AKP3ifu1e/DK6f7I/QuUJmUl5v/vw=\""
+          "Value": "\"s8jkVi5zPJYMvgLakVjjTMpaBCDzmuJmcKeKp6DX5/o=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 02 May 2025 06:15:59 GMT"
+          "Value": "Sun, 04 May 2025 13:08:21 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3598,7 +3735,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "1x52pfifrv"
+          "Value": "fk8d719q8r"
         },
         {
           "Name": "label",
@@ -3606,144 +3743,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-hfA4iuBQacqha3AKP3ifu1e/DK6f7I/QuUJmUl5v/vw="
-        }
-      ]
-    },
-    {
-      "Route": "css/sidebar.css",
-      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\v0d6ax5ld6-1x52pfifrv.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.002232142857"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "447"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"hfA4iuBQacqha3AKP3ifu1e/DK6f7I/QuUJmUl5v/vw=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 02 May 2025 06:15:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"db+NgEJZqDAcz1F/5gJKLx1mGPCjMvSXxfv7fhr6tPY=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-db+NgEJZqDAcz1F/5gJKLx1mGPCjMvSXxfv7fhr6tPY="
-        }
-      ]
-    },
-    {
-      "Route": "css/sidebar.css",
-      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\wwwroot\\css\\sidebar.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1320"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"db+NgEJZqDAcz1F/5gJKLx1mGPCjMvSXxfv7fhr6tPY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 02 May 2025 06:15:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-db+NgEJZqDAcz1F/5gJKLx1mGPCjMvSXxfv7fhr6tPY="
-        }
-      ]
-    },
-    {
-      "Route": "css/sidebar.css.gz",
-      "AssetFile": "G:\\Visual Studio Files\\INFOP2\\INFOP2\\obj\\Debug\\net9.0\\compressed\\v0d6ax5ld6-1x52pfifrv.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "447"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"hfA4iuBQacqha3AKP3ifu1e/DK6f7I/QuUJmUl5v/vw=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 02 May 2025 06:15:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-hfA4iuBQacqha3AKP3ifu1e/DK6f7I/QuUJmUl5v/vw="
+          "Value": "sha256-s8jkVi5zPJYMvgLakVjjTMpaBCDzmuJmcKeKp6DX5/o="
         }
       ]
     },

@@ -4,17 +4,22 @@ body {
 
 #wrapper {
     display: flex;
+    min-height: 100vh;
 }
 
 #sidebar-wrapper {
     width: 250px;
     background-color: #394C74;
     color: white;
-    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: sticky; /* Scroll Follow */
+    top: 0;
     height: 100vh;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+    z-index: 1000;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -22,9 +27,7 @@ body {
 }
 
 .sidebar-heading {
-    padding-left: 2px;
-    padding-top: 2vw;
-    padding-bottom: 4vw;
+    padding: 2vw 2px 4vw;
     font-weight: bold;
     text-align: center;
     display: flex;
@@ -77,4 +80,5 @@ body {
 #page-content-wrapper {
     flex: 1;
     padding: 20px;
+    overflow-x: hidden;
 }
