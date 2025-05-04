@@ -31,7 +31,7 @@
         <form method="post">
             <div class="mb-3 input-group">
                 <span class="input-group-text"><i class="fas fa-envelope icon-muted"></i></span>
-                <input asp-for="Email" class="form-control br-l" placeholder="Enter your email" type="email" />
+                <input asp-for="Email" class="form-control br-l" placeholder="Enter your email" type="email" id="emailInput" />
             </div>
 
             <div class="mb-3 input-group">
@@ -42,7 +42,7 @@
                 </span>
             </div>
             <div class="mb-3 form-check text-start">
-                <input asp-for="RememberMe" class="form-check-input" />
+                <input asp-for="RememberMe" class="form-check-input" id="rememberMe" />
                 <label class="form-check-label" asp-for="RememberMe">Remember me</label>
             </div>
 
@@ -51,6 +51,7 @@
     </div>
 
     <script>
+        // Toggle password visibility
         function togglePasswordVisibility() {
             const passwordInput = document.getElementById('passwordInput');
             const togglePasswordIcon = document.getElementById('togglePasswordIcon');
@@ -64,6 +65,32 @@
                 togglePasswordIcon.classList.add('fa-eye');
             }
         }
-    </script>
+        // Save to localStorage on form submit
+        document.querySelector("form").addEventListener("submit", function () {
+            const email = document.getElementById("emailInput").value;
+            const password = document.getElementById("passwordInput").value;
+            const remember = document.getElementById("rememberMe").checked;
+
+            if (remember) {
+                localStorage.setItem("rememberMe", "true");
+                localStorage.setItem("savedEmail", email);
+                localStorage.setItem("savedPassword", password); // Remove line if you don't want to save password
+            } else {
+                localStorage.removeItem("rememberMe");
+                localStorage.removeItem("savedEmail");
+                localStorage.removeItem("savedPassword");
+            }
+        });
+
+        // Load from localStorage on page load
+        window.addEventListener("DOMContentLoaded", function () {
+            const remember = localStorage.getItem("rememberMe") === "true";
+            if (remember) {
+                document.getElementById("emailInput").value = localStorage.getItem("savedEmail") || "";
+                document.getElementById("passwordInput").value = localStorage.getItem("savedPassword") || "";
+                document.getElementById("rememberMe").checked = true;
+            }
+        });
+    </script>  
 </body>
 </html>
