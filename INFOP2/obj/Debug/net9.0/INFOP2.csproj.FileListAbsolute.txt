@@ -122,10 +122,7 @@ G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\System.Management.dll
 G:\Visual Studio Files\INFOP2\INFOP2\bin\Debug\net9.0\runtimes\win\lib\net7.0\System.Management.dll
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.csproj.AssemblyReference.cache
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.csproj.Up2Date
-G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\5v3bxd8er3-quiga35qmp.gz
-G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\rclmhxyrex-quiga35qmp.gz
 G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\v0d6ax5ld6-1x52pfifrv.gz
-G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\b4wf50vy4k-rkfdxvpc9e.gz
 E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\appsettings.Development.json
 E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\appsettings.json
 E:\Projects\INFOP2\INFOP2\bin\Debug\net9.0\INFOP2.staticwebassets.runtime.json
@@ -254,3 +251,6 @@ E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\INFOP2.genruntimeconfig.cache
 E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\ref\INFOP2.dll
 E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\5v3bxd8er3-6yonfbrbks.gz
 E:\Projects\INFOP2\INFOP2\obj\Debug\net9.0\compressed\rclmhxyrex-6yonfbrbks.gz
+G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\5v3bxd8er3-6yonfbrbks.gz
+G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\rclmhxyrex-6yonfbrbks.gz
+G:\Visual Studio Files\INFOP2\INFOP2\obj\Debug\net9.0\compressed\b4wf50vy4k-h8ihxqh4ar.gz
