@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace INFOP2.Pages;
 
+using Microsoft.Extensions.Logging;
+
 public class PrivacyModel : PageModel
 {
     private readonly ILogger<PrivacyModel> _logger;
