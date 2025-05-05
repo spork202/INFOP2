@@ -1,11 +1,65 @@
 @page
 @model INFOP2.Pages.PrayerMinistry
 @{
-    ViewData["Title"] = "PrayerMinistry";
+    ViewData["Title"] = "Prayer Ministry";
 }
 
-<h1>@ViewData["Title"]</h1>
-
-<div>
-    
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h3 class="display-5">@ViewData["Title"]</h3>
+            <h4 class="h6">Hello, <strong>@User.Identity.Name</strong></h4>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="mb-3 d-flex justify-content-end">
+            <button type="button" class="btn btn-primary" aria-label="Add item">
+                <i class="fa fa-plus me-1"></i>Add 
+            </button>
+        </div>
+        <div class="card border-0 shadow-sm rounded-4 mb-4">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center fw-bold">
+                PRAYER OF THANKSGIVING
+                <a href="#" class="text-decoration-none">Edit</a>
+            </div>
+            <div class="card-body">
+                <table class="table table-borderless">
+                    <thead class="table-light">
+                    <tr>
+                        <th>Notes</th>
+                        <th>Remarks</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Lorem Ipsum</td>
+                        <td>Lorem Ipsum</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card border-0 shadow-sm rounded-4 mb-4">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center fw-bold">
+                PRAY FOR THE WORLD
+                <a href="#" class="text-decoration-none">Edit</a>
+            </div>
+            <div class="card-body">
+                <table class="table table-borderless">
+                    <thead class="table-light">
+                    <tr>
+                        <th>Notes</th>
+                        <th>Remarks</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Lorem Ipsum</td>
+                        <td>Lorem Ipsum</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
