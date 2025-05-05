@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 
 namespace INFOP2.Services
 {
+    using System;
+
     public class FirebaseAuthService
     {
         private readonly FirebaseAuthProvider _authProvider;
