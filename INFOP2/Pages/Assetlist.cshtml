@@ -6,25 +6,82 @@
 }
 
 <div class="container mt-5">
-    <div class="row mb-4">
-        <div class="col-12 d-flex justify-content-between align-items-center">
-            <h3 class="display-5">@ViewData["Title"]</h3>
-            <h4 class="h6">Hello, <strong>@User.Identity.Name</strong></h4>
+    <!-- Header -->
+    <div class="row mb-4 align-items-center">
+        <div class="col-12 col-md-6">
+            <h3 class="display-5 mb-0">@ViewData["Title"]</h3>
+            <p class="text-muted">Manage your assets</p>
+        </div>
+        <div class="col-12 col-md-6 text-md-end">
+            <h4 class="h6 mb-0">Hello, <strong>@User.Identity.Name</strong></h4>
         </div>
     </div>
 
-    <div class="row mb-3">
-        <div class="col-md-6">
+    <!-- Summary Cards -->
+    <div class="row mb-5">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body d-flex align-items-center">
+                    <i class="fas fa-boxes text-primary fa-2x me-3"></i>
+                    <div>
+                        <h6 class="card-subtitle mb-1 text-muted">Total Assets</h6>
+                        <h4 class="card-title mb-0" id="total-assets">0</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body d-flex align-items-center">
+                    <i class="fas fa-check-circle text-success fa-2x me-3"></i>
+                    <div>
+                        <h6 class="card-subtitle mb-1 text-muted">Active Assets</h6>
+                        <h4 class="card-title mb-0" id="active-assets">0</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body d-flex align-items-center">
+                    <i class="fas fa-tools text-warning fa-2x me-3"></i>
+                    <div>
+                        <h6 class="card-subtitle mb-1 text-muted">Under Maintenance</h6>
+                        <h4 class="card-title mb-0" id="maintenance-assets">0</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Asset Status Distribution</h5>
+                    <canvas id="assetChart" height="100"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search and Add Button -->
+    <div class="row mb-3 align-items-center">
+        <div class="col-md-6 mb-3 mb-md-0">
             <form id="search-form" method="get" class="d-flex">
-                <input type="text" class="form-control me-2" placeholder="Search by name..." asp-for="SearchTerm" id="search-term" />
-                <button type="submit" class="btn btn-outline-secondary">Search</button>
+                <input type="text" class="form-control me-2 rounded-pill" placeholder="Search by name..." asp-for="SearchTerm" id="search-term" />
+                <button type="submit" class="btn btn-outline-primary rounded-pill">Search</button>
             </form>
         </div>
-        <div class="col-md-6 text-end">
-            <button id="add-btn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Asset</button>
+        <div class="col-md-6 text-md-end">
+            <button id="add-btn" class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#addModal">
+                <i class="fas fa-plus me-1"></i> Add Asset
+            </button>
         </div>
     </div>
 
+    <!-- Asset List -->
     <div class="row mb-3">
         <div class="col-12 d-flex justify-content-between align-items-center">
             <h5>Asset List</h5>
@@ -35,11 +92,11 @@
     <div id="table-container">
         <div class="table-container">
             <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
+                <table class="table table-striped table-hover align-middle">
+                    <thead class="table-dark">
                         <tr>
                             <th>
-                                <a id="sort-name" asp-page="./Assetlist" asp-all-route-data="@(new Dictionary<string, string> { { "SortOrder", Model.SortOrder == "name_asc" ? "name_desc" : "name_asc" }, { "SearchTerm", Model.SearchTerm } })">
+                                <a id="sort-name" asp-page="./Assetlist" asp-all-route-data="@(new Dictionary<string, string> { { "SortOrder", Model.SortOrder == "name_asc" ? "name_desc" : "name_asc" }, { "SearchTerm", Model.SearchTerm } })" class="text-white text-decoration-none">
                                     Name <span id="sort-icon">@(Model.SortOrder == "name_asc" ? "▲" : Model.SortOrder == "name_desc" ? "▼" : "")</span>
                                 </a>
                             </th>
@@ -57,35 +114,33 @@
                 </table>
             </div>
         </div>
-         <!-- Pagination -->
-        <div class="d-flex justify-content-end align-items-center mt-3">
-            <small class="me-3 text-muted">1 - 10 of 25</small>
-            <small class="me-3">|</small>
-            <small class="me-3">This page you're on</small>
-            <nav>
-                <ul class="pagination pagination-sm mb-0">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                            <i class="fas fa-angle-left"></i>
-                        </a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="fas fa-angle-right"></i>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
 
-    <div id="no-data" style="display: none;">
-        <p>No assets in the list. Click "Add Asset" to start.</p>
+        <!-- Pagination -->
+        <div class="row mt-3">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+                <span id="pagination-info" class="text-muted"></span>
+                <div>
+                    <a id="prev-page" class="btn btn-sm btn-outline-primary rounded-pill me-1" 
+                       asp-page="./Assetlist" 
+                       asp-route-CurrentPage="@(Model.CurrentPage - 1)" 
+                       asp-route-SearchTerm="@Model.SearchTerm" 
+                       asp-route-SortOrder="@Model.SortOrder">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                    <a id="next-page" class="btn btn-sm btn-outline-primary rounded-pill" 
+                       asp-page="./Assetlist" 
+                       asp-route-CurrentPage="@(Model.CurrentPage + 1)" 
+                       asp-route-SearchTerm="@Model.SearchTerm" 
+                       asp-route-SortOrder="@Model.SortOrder">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="no-data" class="text-center mt-4" style="display: none;">
+        <p class="text-muted">No assets in the list. Click "Add Asset" to start.</p>
     </div>
 
     <!-- Add Modal -->
@@ -185,6 +240,8 @@
 </div>
 
 @section Scripts {
+    <!-- Include Chart.js for the pie chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script>
@@ -195,6 +252,9 @@
         let totalPages = 0;
         let sortOrder = '@Model.SortOrder' || 'name_asc';
         let searchTerm = '@Model.SearchTerm' || '';
+
+        // Chart instance
+        let assetChart;
 
         // Load Assets from Firestore on page load
         window.onload = function () {
@@ -237,6 +297,8 @@
                 currentPage = Math.max(1, Math.min(currentPage, totalPages));
                 renderTable();
                 updatePagination();
+                updateSummary();
+                updateChart();
 
                 if (assets.length === 0) {
                     document.getElementById('table-container').style.display = 'none';
@@ -260,6 +322,7 @@
 
             for (let i = start; i < end; i++) {
                 const asset = assets[i];
+                const badgeClass = asset.Status === 'Active' ? 'bg-success' : asset.Status === 'Inactive' ? 'bg-danger' : 'bg-warning';
                 const row = `
                     <tr>
                         <td>${asset.Name}</td>
@@ -267,16 +330,69 @@
                         <td>${asset.SerialNumber}</td>
                         <td>${asset.Location}</td>
                         <td>${asset.PurchaseDate ? asset.PurchaseDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : ''}</td>
-                        <td>${asset.Status}</td>
+                        <td><span class="badge ${badgeClass}">${asset.Status}</span></td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-primary me-1" onclick="openDetail('${asset.Id}')">Detail</a>
-                            <button class="btn btn-sm btn-warning me-1" onclick="openEdit('${asset.Id}')">Edit</button>
-                            <button class="btn btn-sm btn-danger" onclick="deleteAsset('${asset.Id}')">Delete</button>
+                            <a href="#" class="btn btn-sm btn-primary me-1 rounded-pill" onclick="openDetail('${asset.Id}')"><i class="fas fa-eye"></i></a>
+                            <button class="btn btn-sm btn-warning me-1 rounded-pill" onclick="openEdit('${asset.Id}')"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-danger rounded-pill" onclick="deleteAsset('${asset.Id}')"><i class="fas fa-trash"></i></button>
                         </td>
                     </tr>
                 `;
                 tbody.innerHTML += row;
             }
+        }
+
+        // Update Summary (Total Assets, Active Assets, Under Maintenance)
+        function updateSummary() {
+            let totalAssets = assets.length;
+            let activeAssets = assets.filter(asset => asset.Status === 'Active').length;
+            let maintenanceAssets = assets.filter(asset => asset.Status === 'Under Maintenance').length;
+
+            document.getElementById('total-assets').innerText = totalAssets;
+            document.getElementById('active-assets').innerText = activeAssets;
+            document.getElementById('maintenance-assets').innerText = maintenanceAssets;
+        }
+
+        // Update Chart (Asset Status Distribution)
+        function updateChart() {
+            const statusCounts = {
+                Active: assets.filter(asset => asset.Status === 'Active').length,
+                Inactive: assets.filter(asset => asset.Status === 'Inactive').length,
+                'Under Maintenance': assets.filter(asset => asset.Status === 'Under Maintenance').length
+            };
+
+            const labels = Object.keys(statusCounts);
+            const data = Object.values(statusCounts);
+            const backgroundColors = ['rgba(40, 167, 69, 0.6)', 'rgba(220, 53, 69, 0.6)', 'rgba(255, 193, 7, 0.6)'];
+            const borderColors = ['rgba(40, 167, 69, 1)', 'rgba(220, 53, 69, 1)', 'rgba(255, 193, 7, 1)'];
+
+            // Destroy existing chart if it exists
+            if (assetChart) {
+                assetChart.destroy();
+            }
+
+            // Create new chart
+            const ctx = document.getElementById('assetChart').getContext('2d');
+            assetChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: backgroundColors,
+                        borderColor: borderColors,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        }
+                    }
+                }
+            });
         }
 
         // Update Pagination
@@ -316,8 +432,8 @@
             }
 
             const asset = {
-                Name: name.toLowerCase(), // For search
-                DisplayName: name, // For display
+                Name: name.toLowerCase(),
+                DisplayName: name,
                 Category: category,
                 SerialNumber: serialNumber,
                 Location: location,
