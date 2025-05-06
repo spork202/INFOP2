@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("INFOP2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eadcb0e2187446814b17f66897b57ccf06cb78a4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4c445d8d6b8cebed7cb0a72f07925a4052cf8805")]
 [assembly: System.Reflection.AssemblyProductAttribute("INFOP2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("INFOP2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
