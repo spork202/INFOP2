@@ -5,47 +5,99 @@
     Layout = "_Layout";
 }
 
-
-
 <div class="container mt-5">
-    <div class="row mb-4">
-        <div class="col-12 d-flex justify-content-between align-items-center">
-            <h3 class="display-5">@ViewData["Title"]</h3>
-            <h4 class="h6">Hello, <strong>@User.Identity.Name</strong></h4>
+    <!-- Header -->
+    <div class="row mb-4 align-items-center">
+        <div class="col-12 col-md-6">
+            <h3 class="display-5 mb-0">@ViewData["Title"]</h3>
+            <p class="text-muted">Manage your people</p>
+        </div>
+        <div class="col-12 col-md-6 text-md-end">
+            <h4 class="h6 mb-0">Hello, <strong>@User.Identity.Name</strong></h4>
         </div>
     </div>
 
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <form method="get" class="d-flex">
-                <input type="text" class="form-control me-2" placeholder="Search by name..." asp-for="SearchTerm" />
-                <button type="submit" class="btn btn-outline-secondary">Search</button>
+    <!-- Summary Cards -->
+    <div class="row mb-5">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body d-flex align-items-center">
+                    <i class="fas fa-users text-primary fa-2x me-3"></i>
+                    <div>
+                        <h6 class="card-subtitle mb-1 text-muted">Total People</h6>
+                        <h4 class="card-title mb-0" id="total-people">0</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body d-flex align-items-center">
+                    <i class="fas fa-home text-success fa-2x me-3"></i>
+                    <div>
+                        <h6 class="card-subtitle mb-1 text-muted">BC Families</h6>
+                        <h4 class="card-title mb-0" id="bc-families">0</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body d-flex align-items-center">
+                    <i class="fas fa-church text-warning fa-2x me-3"></i>
+                    <div>
+                        <h6 class="card-subtitle mb-1 text-muted">Ministries</h6>
+                        <h4 class="card-title mb-0" id="ministries">0</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">People by BC Family</h5>
+                    <canvas id="masterlistChart" height="100"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search and Add Button -->
+    <div class="row mb-3 align-items-center">
+        <div class="col-md-6 mb-3 mb-md-0">
+            <form id="search-form" method="get" class="d-flex">
+                <input type="text" class="form-control me-2 rounded-pill" placeholder="Search by name..." asp-for="SearchTerm" id="search-term" />
+                <button type="submit" class="btn btn-outline-primary rounded-pill">Search</button>
             </form>
         </div>
-        <div class="col-md-6 text-end">
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
-                <i class="fa fa-plus me-1"></i>Add
+        <div class="col-md-6 text-md-end">
+            <button id="add-btn" class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#addModal">
+                <i class="fas fa-plus me-1"></i> Add Person
             </button>
         </div>
     </div>
 
+    <!-- Masterlist -->
     <div class="row mb-3">
         <div class="col-12 d-flex justify-content-between align-items-center">
-            <h5>Lists</h5>
+            <h5>People List</h5>
             <a href="#" class="text-primary">View All</a>
         </div>
     </div>
 
-    @if (Model.PersonList.Any())
-    {
+    <div id="table-container">
         <div class="table-container">
             <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
+                <table class="table table-striped table-hover align-middle">
+                    <thead class="table-dark">
                         <tr>
                             <th>
-                                <a asp-page="./Masterlist" asp-all-route-data="@(new Dictionary<string, string> { { "SortOrder", Model.SortOrder == "name_asc" ? "name_desc" : "name_asc" }, { "SearchTerm", Model.SearchTerm } })">
-                                    Name @(Model.SortOrder == "name_asc" ? "▲" : Model.SortOrder == "name_desc" ? "▼" : "")
+                                <a id="sort-name" asp-page="./Masterlist" asp-all-route-data="@(new Dictionary<string, string> { { "SortOrder", Model.SortOrder == "name_asc" ? "name_desc" : "name_asc" }, { "SearchTerm", Model.SearchTerm } })" class="text-white text-decoration-none">
+                                    Name <span id="sort-icon">@(Model.SortOrder == "name_asc" ? "▲" : Model.SortOrder == "name_desc" ? "▼" : "")</span>
                                 </a>
                             </th>
                             <th>BC Family</th>
@@ -53,30 +105,17 @@
                             <th>Contact No.</th>
                             <th>KSA Address</th>
                             <th>Birthdate</th>
-                            <th>View</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach (var person in Model.PersonList)
-                        {
-                            <tr>
-                                <td>@person.Name</td>
-                                <td>@person.BCFamily</td>
-                                <td>@person.Ministry</td>
-                                <td>@person.ContactNumber</td>
-                                <td>@person.KSAAddress</td>
-                                <td>@(person.Birthdate?.ToString("MM/dd/yyyy") ?? "")</td>
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-primary">Detail</a>
-                                </td>
-                            </tr>
-                        }
+                    <tbody id="person-table-body">
+                        <!-- Populated by JavaScript -->
                     </tbody>
                 </table>
             </div>
         </div>
-       
-        <!-- Pagination -->
+
+         <!-- Pagination -->
         <div class="d-flex justify-content-end align-items-center mt-3">
             <small class="me-3 text-muted">1 - 10 of 25</small>
             <small class="me-3">|</small>
@@ -102,35 +141,11 @@
                 </ul>
             </nav>
         </div>
-        @* <!-- Pagination --> *@
-        @* <div class="row mt-3"> *@
-        @*     <div class="col-12 d-flex justify-content-between align-items-center"> *@
-        @*         <span> *@
-        @*             @(Model.CurrentPage == 1 ? 1 : (Model.CurrentPage - 1) * Model.PageSize + 1)-@(Math.Min(Model.CurrentPage * Model.PageSize, Model.TotalItems)) of @Model.TotalItems This page you're on @Model.CurrentPage *@
-        @*         </span> *@
-        @*         <div> *@
-        @*             <a class="btn btn-sm btn-outline-secondary @(Model.CurrentPage == 1 ? "disabled" : "")"  *@
-        @*                asp-page="./Masterlist"  *@
-        @*                asp-route-CurrentPage="@(Model.CurrentPage - 1)"  *@
-        @*                asp-route-SearchTerm="@Model.SearchTerm"  *@
-        @*                asp-route-SortOrder="@Model.SortOrder"> *@
-        @*                 <i class="bi bi-chevron-left"></i> *@
-        @*             </a> *@
-        @*             <a class="btn btn-sm btn-outline-secondary @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")"  *@
-        @*                asp-page="./Masterlist"  *@
-        @*                asp-route-CurrentPage="@(Model.CurrentPage + 1)"  *@
-        @*                asp-route-SearchTerm="@Model.SearchTerm"  *@
-        @*                asp-route-SortOrder="@Model.SortOrder"> *@
-        @*                 <i class="bi bi-chevron-right"></i> *@
-        @*             </a> *@
-        @*         </div> *@
-        @*     </div> *@
-        @* </div> *@
-    }
-    else
-    {
-        <p>No people in the masterlist. Click "Add" to start.</p>
-    }
+    </div>
+
+    <div id="no-data" class="text-center mt-4" style="display: none;">
+        <p class="text-muted">No people in the list. Click "Add Person" to start.</p>
+    </div>
 
     <!-- Add Modal -->
     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
@@ -140,46 +155,398 @@
                     <h5 class="modal-title" id="addModalLabel">Add Person</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form asp-page-handler="Add" method="post">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label asp-for="Input.Name" class="form-label">Name</label>
-                            <input asp-for="Input.Name" class="form-control" />
-                            <span asp-validation-for="Input.Name" class="text-danger"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label asp-for="Input.BCFamily" class="form-label">BC Family</label>
-                            <input asp-for="Input.BCFamily" class="form-control" />
-                        </div>
-                        <div class="mb-3">
-                            <label asp-for="Input.Ministry" class="form-label">Ministry</label>
-                            <input asp-for="Input.Ministry" class="form-control" />
-                        </div>
-                        <div class="mb-3">
-                            <label asp-for="Input.ContactNumber" class="form-label">Contact No.</label>
-                            <input asp-for="Input.ContactNumber" class="form-control" />
-                            <span asp-validation-for="Input.ContactNumber" class="text-danger"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label asp-for="Input.KSAAddress" class="form-label">KSA Address</label>
-                            <input asp-for="Input.KSAAddress" class="form-control" />
-                        </div>
-                        <div class="mb-3">
-                            <label asp-for="Input.Birthdate" class="form-label">Birthdate</label>
-                            <input asp-for="Input.Birthdate" class="form-control" type="date" />
-                        </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="add-name" class="form-label">Name</label>
+                        <input id="add-name" class="form-control" required />
+                        <span id="add-name-error" class="text-danger"></span>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                    <div class="mb-3">
+                        <label for="add-bcfamily" class="form-label">BC Family</label>
+                        <input id="add-bcfamily" class="form-control" />
                     </div>
-                </form>
+                    <div class="mb-3">
+                        <label for="add-ministry" class="form-label">Ministry</label>
+                        <input id="add-ministry" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="add-contactnumber" class="form-label">Contact No.</label>
+                        <input id="add-contactnumber" class="form-control" />
+                        <span id="add-contactnumber-error" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="add-ksaaddress" class="form-label">KSA Address</label>
+                        <input id="add-ksaaddress" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="add-birthdate" class="form-label">Birthdate</label>
+                        <input id="add-birthdate" class="form-control" type="date" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addPerson()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Person</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="edit-id" />
+                    <div class="mb-3">
+                        <label for="edit-name" class="form-label">Name</label>
+                        <input id="edit-name" class="form-control" required />
+                        <span id="edit-name-error" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-bcfamily" class="form-label">BC Family</label>
+                        <input id="edit-bcfamily" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-ministry" class="form-label">Ministry</label>
+                        <input id="edit-ministry" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-contactnumber" class="form-label">Contact No.</label>
+                        <input id="edit-contactnumber" class="form-control" />
+                        <span id="edit-contactnumber-error" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-ksaaddress" class="form-label">KSA Address</label>
+                        <input id="edit-ksaaddress" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-birthdate" class="form-label">Birthdate</label>
+                        <input id="edit-birthdate" class="form-control" type="date" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="updatePerson()">Save</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 @section Scripts {
+    <!-- Include Chart.js for the bar chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        let people = [];
+        let currentPage = @Model.CurrentPage;
+        const pageSize = @Model.PageSize;
+        let totalItems = 0;
+        let totalPages = 0;
+        let sortOrder = '@Model.SortOrder' || 'name_asc';
+        let searchTerm = '@Model.SearchTerm' || '';
+
+        // Chart instance
+        let masterlistChart;
+
+        // Load People from Firestore on page load
+        window.onload = function () {
+            loadPeople();
+        };
+
+        // Load People from Firestore
+        function loadPeople() {
+            let query = db.collection('people');
+
+            if (searchTerm) {
+                query = query.where('Name', '>=', searchTerm.toLowerCase())
+                             .where('Name', '<=', searchTerm.toLowerCase() + '\uf8ff');
+            }
+
+            query.get().then(snapshot => {
+                people = [];
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    people.push({
+                        Id: doc.id,
+                        Name: data.DisplayName,
+                        BCFamily: data.BCFamily || '',
+                        Ministry: data.Ministry || '',
+                        ContactNumber: data.ContactNumber || '',
+                        KSAAddress: data.KSAAddress || '',
+                        Birthdate: data.Birthdate ? new Date(data.Birthdate.seconds * 1000) : null
+                    });
+                });
+
+                // Sort
+                if (sortOrder === 'name_desc') {
+                    people.sort((a, b) => b.Name.localeCompare(a.Name));
+                } else {
+                    people.sort((a, b) => a.Name.localeCompare(b.Name));
+                }
+
+                totalItems = people.length;
+                totalPages = Math.ceil(totalItems / pageSize);
+                currentPage = Math.max(1, Math.min(currentPage, totalPages));
+                renderTable();
+                updatePagination();
+                updateSummary();
+                updateChart();
+
+                if (people.length === 0) {
+                    document.getElementById('table-container').style.display = 'none';
+                    document.getElementById('no-data').style.display = 'block';
+                } else {
+                    document.getElementById('table-container').style.display = 'block';
+                    document.getElementById('no-data').style.display = 'none';
+                }
+            }).catch(error => {
+                console.error("Error loading people:", error);
+            });
+        }
+
+        // Render Table
+        function renderTable() {
+            const tbody = document.getElementById('person-table-body');
+            tbody.innerHTML = '';
+
+            const start = (currentPage - 1) * pageSize;
+            const end = Math.min(start + pageSize, people.length);
+
+            for (let i = start; i < end; i++) {
+                const person = people[i];
+                const row = `
+                    <tr>
+                        <td>${person.Name}</td>
+                        <td>${person.BCFamily}</td>
+                        <td>${person.Ministry}</td>
+                        <td>${person.ContactNumber}</td>
+                        <td>${person.KSAAddress}</td>
+                        <td>${person.Birthdate ? person.Birthdate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : ''}</td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-primary me-1 rounded-pill" onclick="openDetail('${person.Id}')"><i class="fas fa-eye"></i></a>
+                            <button class="btn btn-sm btn-warning me-1 rounded-pill" onclick="openEdit('${person.Id}')"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-danger rounded-pill" onclick="deletePerson('${person.Id}')"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            }
+        }
+
+        // Update Summary (Total People, BC Families, Ministries)
+        function updateSummary() {
+            let totalPeople = people.length;
+            let bcFamilies = [...new Set(people.map(p => p.BCFamily).filter(f => f))].length;
+            let ministries = [...new Set(people.map(p => p.Ministry).filter(m => m))].length;
+
+            document.getElementById('total-people').innerText = totalPeople;
+            document.getElementById('bc-families').innerText = bcFamilies;
+            document.getElementById('ministries').innerText = ministries;
+        }
+
+        // Update Chart (People by BC Family)
+        function updateChart() {
+            const bcFamilyCounts = {};
+            people.forEach(person => {
+                const bcFamily = person.BCFamily || 'None';
+                bcFamilyCounts[bcFamily] = (bcFamilyCounts[bcFamily] || 0) + 1;
+            });
+
+            const labels = Object.keys(bcFamilyCounts);
+            const data = Object.values(bcFamilyCounts);
+            const backgroundColors = labels.map((_, index) => `hsl(${(index * 360 / labels.length) % 360}, 70%, 60%)`);
+
+            // Destroy existing chart if it exists
+            if (masterlistChart) {
+                masterlistChart.destroy();
+            }
+
+            // Create new chart
+            const ctx = document.getElementById('masterlistChart').getContext('2d');
+            masterlistChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'People',
+                        data: data,
+                        backgroundColor: backgroundColors,
+                        borderColor: backgroundColors.map(color => color.replace('60%)', '50%)')),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of People'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'BC Family'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+
+        // Update Pagination
+        function updatePagination() {
+            const start = currentPage === 1 ? 1 : (currentPage - 1) * pageSize + 1;
+            const end = Math.min(currentPage * pageSize, totalItems);
+            document.getElementById('pagination-info').innerText = `${start}-${end} of ${totalItems} This page you're on ${currentPage}`;
+
+            const prevBtn = document.getElementById('prev-page');
+            const nextBtn = document.getElementById('next-page');
+
+            if (currentPage === 1) {
+                prevBtn.classList.add('disabled');
+            } else {
+                prevBtn.classList.remove('disabled');
+            }
+
+            if (currentPage === totalPages || totalPages === 0) {
+                nextBtn.classList.add('disabled');
+            } else {
+                nextBtn.classList.remove('disabled');
+            }
+        }
+
+        // Add Person
+        function addPerson() {
+            const name = document.getElementById('add-name').value;
+            const bcFamily = document.getElementById('add-bcfamily').value;
+            const ministry = document.getElementById('add-ministry').value;
+            const contactNumber = document.getElementById('add-contactnumber').value;
+            const ksaAddress = document.getElementById('add-ksaaddress').value;
+            const birthdate = document.getElementById('add-birthdate').value;
+
+            if (!name) {
+                document.getElementById('add-name-error').innerText = 'Name is required';
+                return;
+            }
+            if (contactNumber && !/^\+?\d{10,15}$/.test(contactNumber)) {
+                document.getElementById('add-contactnumber-error').innerText = 'Invalid phone number';
+                return;
+            }
+
+            const person = {
+                Name: name.toLowerCase(),
+                DisplayName: name,
+                BCFamily: bcFamily,
+                Ministry: ministry,
+                ContactNumber: contactNumber,
+                KSAAddress: ksaAddress,
+                Birthdate: birthdate ? new Date(birthdate) : null
+            };
+
+            db.collection('people').add(person).then(() => {
+                $('#addModal').modal('hide');
+                loadPeople();
+            }).catch(error => {
+                console.error("Error adding person:", error);
+            });
+        }
+
+        // Open Edit Modal
+        function openEdit(id) {
+            const person = people.find(p => p.Id === id);
+            if (person) {
+                document.getElementById('edit-id').value = person.Id;
+                document.getElementById('edit-name').value = person.Name;
+                document.getElementById('edit-bcfamily').value = person.BCFamily;
+                document.getElementById('edit-ministry').value = person.Ministry;
+                document.getElementById('edit-contactnumber').value = person.ContactNumber;
+                document.getElementById('edit-ksaaddress').value = person.KSAAddress;
+                document.getElementById('edit-birthdate').value = person.Birthdate ? person.Birthdate.toISOString().split('T')[0] : '';
+                $('#editModal').modal('show');
+            }
+        }
+
+        // Update Person
+        function updatePerson() {
+            const id = document.getElementById('edit-id').value;
+            const name = document.getElementById('edit-name').value;
+            const bcFamily = document.getElementById('edit-bcfamily').value;
+            const ministry = document.getElementById('edit-ministry').value;
+            const contactNumber = document.getElementById('edit-contactnumber').value;
+            const ksaAddress = document.getElementById('edit-ksaaddress').value;
+            const birthdate = document.getElementById('edit-birthdate').value;
+
+            if (!name) {
+                document.getElementById('edit-name-error').innerText = 'Name is required';
+                return;
+            }
+            if (contactNumber && !/^\+?\d{10,15}$/.test(contactNumber)) {
+                document.getElementById('edit-contactnumber-error').innerText = 'Invalid phone number';
+                return;
+            }
+
+            const person = {
+                Name: name.toLowerCase(),
+                DisplayName: name,
+                BCFamily: bcFamily,
+                Ministry: ministry,
+                ContactNumber: contactNumber,
+                KSAAddress: ksaAddress,
+                Birthdate: birthdate ? new Date(birthdate) : null
+            };
+
+            db.collection('people').doc(id).update(person).then(() => {
+                $('#editModal').modal('hide');
+                loadPeople();
+            }).catch(error => {
+                console.error("Error updating person:", error);
+            });
+        }
+
+        // Delete Person
+        function deletePerson(id) {
+            if (confirm('Are you sure you want to delete this person?')) {
+                db.collection('people').doc(id).delete().then(() => {
+                    loadPeople();
+                }).catch(error => {
+                    console.error("Error deleting person:", error);
+                });
+            }
+        }
+
+        // Open Detail (Placeholder)
+        function openDetail(id) {
+            alert('Detail view for ID: ' + id);
+            // Implement detail view as needed
+        }
+
+        // Search Handler
+        document.getElementById('search-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            searchTerm = document.getElementById('search-term').value;
+            currentPage = 1;
+            window.location.href = `/Masterlist?CurrentPage=${currentPage}&SearchTerm=${searchTerm}&SortOrder=${sortOrder}`;
+        });
+
+        // Sort Handler
+        document.getElementById('sort-name').addEventListener('click', (e) => {
+            e.preventDefault();
+            sortOrder = sortOrder === 'name_asc' ? 'name_desc' : 'name_asc';
+            window.location.href = `/Masterlist?CurrentPage=${currentPage}&SearchTerm=${searchTerm}&SortOrder=${sortOrder}`;
+        });
+    </script>
 }
