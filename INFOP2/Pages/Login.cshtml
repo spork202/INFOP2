@@ -65,7 +65,7 @@
                 togglePasswordIcon.classList.add('fa-eye');
             }
         }
-        // Save to localStorage on form submit
+        // Save to localStorage on form submitted
         document.querySelector("form").addEventListener("submit", function () {
             const email = document.getElementById("emailInput").value;
             const password = document.getElementById("passwordInput").value;
@@ -82,7 +82,7 @@
             }
         });
 
-        // Load from localStorage on page load
+        // Load from localStorage on a page load
         window.addEventListener("DOMContentLoaded", function () {
             const remember = localStorage.getItem("rememberMe") === "true";
             if (remember) {
