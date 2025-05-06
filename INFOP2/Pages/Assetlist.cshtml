@@ -2,6 +2,7 @@
 @model INFOP2.Pages.Assetlist
 @{
     ViewData["Title"] = "Assetlist";
+    Layout = "_Layout";
 }
 
 <div class="container mt-5">
@@ -11,4 +12,403 @@
             <h4 class="h6">Hello, <strong>@User.Identity.Name</strong></h4>
         </div>
     </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <form id="search-form" method="get" class="d-flex">
+                <input type="text" class="form-control me-2" placeholder="Search by name..." asp-for="SearchTerm" id="search-term" />
+                <button type="submit" class="btn btn-outline-secondary">Search</button>
+            </form>
+        </div>
+        <div class="col-md-6 text-end">
+            <button id="add-btn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Asset</button>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h5>Asset List</h5>
+            <a href="#" class="text-primary">View All</a>
+        </div>
+    </div>
+
+    <div id="table-container">
+        <div class="table-container">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                <a id="sort-name" asp-page="./Assetlist" asp-all-route-data="@(new Dictionary<string, string> { { "SortOrder", Model.SortOrder == "name_asc" ? "name_desc" : "name_asc" }, { "SearchTerm", Model.SearchTerm } })">
+                                    Name <span id="sort-icon">@(Model.SortOrder == "name_asc" ? "▲" : Model.SortOrder == "name_desc" ? "▼" : "")</span>
+                                </a>
+                            </th>
+                            <th>Category</th>
+                            <th>Serial Number</th>
+                            <th>Location</th>
+                            <th>Purchase Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="asset-table-body">
+                        <!-- Populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="row mt-3">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+                <span id="pagination-info"></span>
+                <div>
+                    <a id="prev-page" class="btn btn-sm btn-outline-secondary" 
+                       asp-page="./Assetlist" 
+                       asp-route-CurrentPage="@(Model.CurrentPage - 1)" 
+                       asp-route-SearchTerm="@Model.SearchTerm" 
+                       asp-route-SortOrder="@Model.SortOrder">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                    <a id="next-page" class="btn btn-sm btn-outline-secondary" 
+                       asp-page="./Assetlist" 
+                       asp-route-CurrentPage="@(Model.CurrentPage + 1)" 
+                       asp-route-SearchTerm="@Model.SearchTerm" 
+                       asp-route-SortOrder="@Model.SortOrder">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="no-data" style="display: none;">
+        <p>No assets in the list. Click "Add Asset" to start.</p>
+    </div>
+
+    <!-- Add Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">Add Asset</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="add-name" class="form-label">Name</label>
+                        <input id="add-name" class="form-control" required />
+                        <span id="add-name-error" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="add-category" class="form-label">Category</label>
+                        <input id="add-category" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="add-serialnumber" class="form-label">Serial Number</label>
+                        <input id="add-serialnumber" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="add-location" class="form-label">Location</label>
+                        <input id="add-location" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="add-purchasedate" class="form-label">Purchase Date</label>
+                        <input id="add-purchasedate" class="form-control" type="date" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="add-status" class="form-label">Status</label>
+                        <select id="add-status" class="form-control">
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                            <option value="Under Maintenance">Under Maintenance</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addAsset()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Asset</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="edit-id" />
+                    <div class="mb-3">
+                        <label for="edit-name" class="form-label">Name</label>
+                        <input id="edit-name" class="form-control" required />
+                        <span id="edit-name-error" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-category" class="form-label">Category</label>
+                        <input id="edit-category" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-serialnumber" class="form-label">Serial Number</label>
+                        <input id="edit-serialnumber" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-location" class="form-label">Location</label>
+                        <input id="edit-location" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-purchasedate" class="form-label">Purchase Date</label>
+                        <input id="edit-purchasedate" class="form-control" type="date" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-status" class="form-label">Status</label>
+                        <select id="edit-status" class="form-control">
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                            <option value="Under Maintenance">Under Maintenance</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="updateAsset()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        let assets = [];
+        let currentPage = @Model.CurrentPage;
+        const pageSize = @Model.PageSize;
+        let totalItems = 0;
+        let totalPages = 0;
+        let sortOrder = '@Model.SortOrder' || 'name_asc';
+        let searchTerm = '@Model.SearchTerm' || '';
+
+        // Load Assets from Firestore on page load
+        window.onload = function () {
+            loadAssets();
+        };
+
+        // Load Assets from Firestore
+        function loadAssets() {
+            let query = db.collection('assets');
+
+            if (searchTerm) {
+                query = query.where('Name', '>=', searchTerm.toLowerCase())
+                             .where('Name', '<=', searchTerm.toLowerCase() + '\uf8ff');
+            }
+
+            query.get().then(snapshot => {
+                assets = [];
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    assets.push({
+                        Id: doc.id,
+                        Name: data.DisplayName,
+                        Category: data.Category || '',
+                        SerialNumber: data.SerialNumber || '',
+                        Location: data.Location || '',
+                        PurchaseDate: data.PurchaseDate ? new Date(data.PurchaseDate.seconds * 1000) : null,
+                        Status: data.Status || ''
+                    });
+                });
+
+                // Sort
+                if (sortOrder === 'name_desc') {
+                    assets.sort((a, b) => b.Name.localeCompare(a.Name));
+                } else {
+                    assets.sort((a, b) => a.Name.localeCompare(b.Name));
+                }
+
+                totalItems = assets.length;
+                totalPages = Math.ceil(totalItems / pageSize);
+                currentPage = Math.max(1, Math.min(currentPage, totalPages));
+                renderTable();
+                updatePagination();
+
+                if (assets.length === 0) {
+                    document.getElementById('table-container').style.display = 'none';
+                    document.getElementById('no-data').style.display = 'block';
+                } else {
+                    document.getElementById('table-container').style.display = 'block';
+                    document.getElementById('no-data').style.display = 'none';
+                }
+            }).catch(error => {
+                console.error("Error loading assets:", error);
+            });
+        }
+
+        // Render Table
+        function renderTable() {
+            const tbody = document.getElementById('asset-table-body');
+            tbody.innerHTML = '';
+
+            const start = (currentPage - 1) * pageSize;
+            const end = Math.min(start + pageSize, assets.length);
+
+            for (let i = start; i < end; i++) {
+                const asset = assets[i];
+                const row = `
+                    <tr>
+                        <td>${asset.Name}</td>
+                        <td>${asset.Category}</td>
+                        <td>${asset.SerialNumber}</td>
+                        <td>${asset.Location}</td>
+                        <td>${asset.PurchaseDate ? asset.PurchaseDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : ''}</td>
+                        <td>${asset.Status}</td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-primary me-1" onclick="openDetail('${asset.Id}')">Detail</a>
+                            <button class="btn btn-sm btn-warning me-1" onclick="openEdit('${asset.Id}')">Edit</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteAsset('${asset.Id}')">Delete</button>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            }
+        }
+
+        // Update Pagination
+        function updatePagination() {
+            const start = currentPage === 1 ? 1 : (currentPage - 1) * pageSize + 1;
+            const end = Math.min(currentPage * pageSize, totalItems);
+            document.getElementById('pagination-info').innerText = `${start}-${end} of ${totalItems} This page you're on ${currentPage}`;
+
+            const prevBtn = document.getElementById('prev-page');
+            const nextBtn = document.getElementById('next-page');
+
+            if (currentPage === 1) {
+                prevBtn.classList.add('disabled');
+            } else {
+                prevBtn.classList.remove('disabled');
+            }
+
+            if (currentPage === totalPages || totalPages === 0) {
+                nextBtn.classList.add('disabled');
+            } else {
+                nextBtn.classList.remove('disabled');
+            }
+        }
+
+        // Add Asset
+        function addAsset() {
+            const name = document.getElementById('add-name').value;
+            const category = document.getElementById('add-category').value;
+            const serialNumber = document.getElementById('add-serialnumber').value;
+            const location = document.getElementById('add-location').value;
+            const purchaseDate = document.getElementById('add-purchasedate').value;
+            const status = document.getElementById('add-status').value;
+
+            if (!name) {
+                document.getElementById('add-name-error').innerText = 'Name is required';
+                return;
+            }
+
+            const asset = {
+                Name: name.toLowerCase(), // For search
+                DisplayName: name, // For display
+                Category: category,
+                SerialNumber: serialNumber,
+                Location: location,
+                PurchaseDate: purchaseDate ? new Date(purchaseDate) : null,
+                Status: status
+            };
+
+            db.collection('assets').add(asset).then(() => {
+                $('#addModal').modal('hide');
+                loadAssets();
+            }).catch(error => {
+                console.error("Error adding asset:", error);
+            });
+        }
+
+        // Open Edit Modal
+        function openEdit(id) {
+            const asset = assets.find(a => a.Id === id);
+            if (asset) {
+                document.getElementById('edit-id').value = asset.Id;
+                document.getElementById('edit-name').value = asset.Name;
+                document.getElementById('edit-category').value = asset.Category;
+                document.getElementById('edit-serialnumber').value = asset.SerialNumber;
+                document.getElementById('edit-location').value = asset.Location;
+                document.getElementById('edit-purchasedate').value = asset.PurchaseDate ? asset.PurchaseDate.toISOString().split('T')[0] : '';
+                document.getElementById('edit-status').value = asset.Status;
+                $('#editModal').modal('show');
+            }
+        }
+
+        // Update Asset
+        function updateAsset() {
+            const id = document.getElementById('edit-id').value;
+            const name = document.getElementById('edit-name').value;
+            const category = document.getElementById('edit-category').value;
+            const serialNumber = document.getElementById('edit-serialnumber').value;
+            const location = document.getElementById('edit-location').value;
+            const purchaseDate = document.getElementById('edit-purchasedate').value;
+            const status = document.getElementById('edit-status').value;
+
+            if (!name) {
+                document.getElementById('edit-name-error').innerText = 'Name is required';
+                return;
+            }
+
+            const asset = {
+                Name: name.toLowerCase(),
+                DisplayName: name,
+                Category: category,
+                SerialNumber: serialNumber,
+                Location: location,
+                PurchaseDate: purchaseDate ? new Date(purchaseDate) : null,
+                Status: status
+            };
+
+            db.collection('assets').doc(id).update(asset).then(() => {
+                $('#editModal').modal('hide');
+                loadAssets();
+            }).catch(error => {
+                console.error("Error updating asset:", error);
+            });
+        }
+
+        // Delete Asset
+        function deleteAsset(id) {
+            if (confirm('Are you sure you want to delete this asset?')) {
+                db.collection('assets').doc(id).delete().then(() => {
+                    loadAssets();
+                }).catch(error => {
+                    console.error("Error deleting asset:", error);
+                });
+            }
+        }
+
+        // Open Detail (Placeholder)
+        function openDetail(id) {
+            alert('Detail view for ID: ' + id);
+            // Implement detail view as needed
+        }
+
+        // Search Handler
+        document.getElementById('search-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            searchTerm = document.getElementById('search-term').value;
+            currentPage = 1;
+            window.location.href = `/Assetlist?CurrentPage=${currentPage}&SearchTerm=${searchTerm}&SortOrder=${sortOrder}`;
+        });
+
+        // Sort Handler
+        document.getElementById('sort-name').addEventListener('click', (e) => {
+            e.preventDefault();
+            sortOrder = sortOrder === 'name_asc' ? 'name_desc' : 'name_asc';
+            window.location.href = `/Assetlist?CurrentPage=${currentPage}&SearchTerm=${searchTerm}&SortOrder=${sortOrder}`;
+        });
+    </script>
+}
