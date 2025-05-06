@@ -57,30 +57,32 @@
                 </table>
             </div>
         </div>
-
-        <!-- Pagination -->
-        <div class="row mt-3">
-            <div class="col-12 d-flex justify-content-between align-items-center">
-                <span id="pagination-info"></span>
-                <div>
-                    <a id="prev-page" class="btn btn-sm btn-outline-secondary" 
-                       asp-page="./Assetlist" 
-                       asp-route-CurrentPage="@(Model.CurrentPage - 1)" 
-                       asp-route-SearchTerm="@Model.SearchTerm" 
-                       asp-route-SortOrder="@Model.SortOrder">
-                        <i class="bi bi-chevron-left"></i>
-                    </a>
-                    <a id="next-page" class="btn btn-sm btn-outline-secondary" 
-                       asp-page="./Assetlist" 
-                       asp-route-CurrentPage="@(Model.CurrentPage + 1)" 
-                       asp-route-SearchTerm="@Model.SearchTerm" 
-                       asp-route-SortOrder="@Model.SortOrder">
-                        <i class="bi bi-chevron-right"></i>
-                    </a>
-                </div>
-            </div>
+         <!-- Pagination -->
+        <div class="d-flex justify-content-end align-items-center mt-3">
+            <small class="me-3 text-muted">1 - 10 of 25</small>
+            <small class="me-3">|</small>
+            <small class="me-3">This page you're on</small>
+            <nav>
+                <ul class="pagination pagination-sm mb-0">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                            <i class="fas fa-angle-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fas fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-    </div>
 
     <div id="no-data" style="display: none;">
         <p>No assets in the list. Click "Add Asset" to start.</p>
