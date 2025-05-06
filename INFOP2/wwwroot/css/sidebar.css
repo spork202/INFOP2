@@ -50,6 +50,7 @@ body {
     display: flex;
     align-items: center;
     transition: all 0.3s ease;
+    height: 40px;
 }
 
 .list-group-item i {
@@ -81,4 +82,10 @@ body {
     flex: 1;
     padding: 20px;
     overflow-x: hidden;
+}
+
+.sb-txt-overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
