@@ -55,7 +55,7 @@
 
             <footer class="footer text-muted mt-5">
                 <div class="container txt-align-end">
-                    <p>v2.2.0.0</p>
+                    <p>v2.2.1.0</p>
                 </div>
             </footer>
         </div>
@@ -65,8 +65,18 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.getElementById("menu-toggle").addEventListener("click", function () {
-            document.getElementById("wrapper").classList.toggle("toggled");
+        const sidebarToggleBtn = document.getElementById("menu-toggle");
+        const wrapper = document.getElementById("wrapper");
+
+        // Load saved state
+        if (localStorage.getItem("sidebarToggled") === "true") {
+            wrapper.classList.add("toggled");
+        }
+
+        // Toggle & save state
+        sidebarToggleBtn.addEventListener("click", function () {
+            wrapper.classList.toggle("toggled");
+            localStorage.setItem("sidebarToggled", wrapper.classList.contains("toggled"));
         });
     </script>
     <script src="~/js/site.js" asp-append-version="true"></script>
