@@ -11,72 +11,54 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-    <div class="d-flex" id="wrapper">
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <div>
-                <div class="sidebar-heading">
-                    <button class="btn-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
-                </div>
-                <div class="list-group list-group-flush">
-                    <a asp-page="/Index" class="list-group-item">
-                        <i class="fas fa-home me-2"></i> <span class="sidebar-text sb-txt-overflow">Dashboard</span>
-                    </a>
-                    <a asp-page="/Masterlist" class="list-group-item">
-                        <i class="fas fa-address-book me-2"></i> <span class="sidebar-text sb-txt-overflow">Masterlist</span>
-                    </a>
-                    <a asp-page="/Assetlist" class="list-group-item">
-                        <i class="fas fa-clipboard me-2"></i> <span class="sidebar-text sb-txt-overflow">Assetlist</span>
-                    </a>
-                    <a asp-page="/Finance" class="list-group-item">
-                        <i class="fas fa-chart-line me-2"></i> <span class="sidebar-text sb-txt-overflow">Finance</span>
-                    </a>
-                    <a asp-page="/TransportList" class="list-group-item"> 
-                        <i class="fas fa-van-shuttle me-2"></i> <span class="sidebar-text sb-txt-overflow">Transport List</span>
-                    </a>
-                    <a asp-page="/PrayerMinistry" class="list-group-item">
-                        <i class="fas fa-place-of-worship me-2"></i> <span class="sidebar-text sb-txt-overflow">Prayer Ministry</span>
-                    </a>
-                </div>
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <div>
+            <div class="sidebar-heading">
+                <button class="btn-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
             </div>
-
-            <div class="list-group list-group-flush list-group-bottom">
-                <a asp-page="/Login" class="list-group-item">
-                    <i class="fas fa-sign-out-alt me-2"></i> <span class="sidebar-text sidebar-text sb-txt-overflow">Logout</span>
+            <div class="list-group list-group-flush">
+                <a asp-page="/Index" class="list-group-item">
+                    <i class="fas fa-home me-2"></i> <span class="sidebar-text sb-txt-overflow">Dashboard</span>
+                </a>
+                <a asp-page="/Masterlist" class="list-group-item">
+                    <i class="fas fa-address-book me-2"></i> <span class="sidebar-text sb-txt-overflow">Masterlist</span>
+                </a>
+                <a asp-page="/Assetlist" class="list-group-item">
+                    <i class="fas fa-clipboard me-2"></i> <span class="sidebar-text sb-txt-overflow">Assetlist</span>
+                </a>
+                <a asp-page="/Finance" class="list-group-item">
+                    <i class="fas fa-chart-line me-2"></i> <span class="sidebar-text sb-txt-overflow">Finance</span>
+                </a>
+                <a asp-page="/TransportList" class="list-group-item"> 
+                    <i class="fas fa-van-shuttle me-2"></i> <span class="sidebar-text sb-txt-overflow">Transport List</span>
+                </a>
+                <a asp-page="/PrayerMinistry" class="list-group-item">
+                    <i class="fas fa-place-of-worship me-2"></i> <span class="sidebar-text sb-txt-overflow">Prayer Ministry</span>
                 </a>
             </div>
         </div>
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-            <div class="container txt-align-end">
-                <p>v1.0.1-alpha</p>
-            </div>
+        <div class="list-group list-group-flush list-group-bottom">
+            <a asp-page="/Login" class="list-group-item">
+                <i class="fas fa-sign-out-alt me-2"></i> <span class="sidebar-text sidebar-text sb-txt-overflow">Logout</span>
+            </a>
         </div>
     </div>
-
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+        <div class="container txt-align-end">
+            <p>v1.0.1-alpha</p>
+        </div>
+    </div>
+</div>
     <!-- Scripts -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        const sidebarToggleBtn = document.getElementById("menu-toggle");
-        const wrapper = document.getElementById("wrapper");
-
-        // Load saved state
-        if (localStorage.getItem("sidebarToggled") === "true") {
-            wrapper.classList.add("toggled");
-        }
-
-        // Toggle & save state
-        sidebarToggleBtn.addEventListener("click", function () {
-            wrapper.classList.toggle("toggled");
-            localStorage.setItem("sidebarToggled", wrapper.classList.contains("toggled"));
-        });
-    </script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/sidebar.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

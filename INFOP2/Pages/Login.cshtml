@@ -14,83 +14,42 @@
     <link rel="stylesheet" href="~/css/login.css" />
 </head>
 <body>
-    <div class="login-box">
-        <h1 class="mb-2 fw-bold">Login</h1>
-        <p class="mb-4">Please enter your email and password</p>
+<div class="login-box">
+    <h1 class="mb-2 fw-bold">Login</h1>
+    <p class="mb-4">Please enter your email and password</p>
 
-        @if (!ModelState.IsValid)
-        {
-            <div class="alert alert-danger">
-                @foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                {
-                    <p>@error.ErrorMessage</p>
-                }
-            </div>
-        }
-
-        <form method="post">
-            <div class="mb-3 input-group">
-                <span class="input-group-text"><i class="fas fa-envelope icon-muted"></i></span>
-                <input asp-for="Email" class="form-control br-l" placeholder="Enter your email" type="email" id="emailInput" />
-            </div>
-
-            <div class="mb-3 input-group">
-                <span class="input-group-text"><i class="fas fa-lock icon-muted"></i></span>
-                <input asp-for="Password" class="form-control br-lr" type="password" placeholder="Enter your password" id="passwordInput" />
-                <span class="input-group-text" onclick="togglePasswordVisibility()" style="cursor: pointer;">
-                    <i class="fas fa-eye icon-muted" id="togglePasswordIcon"></i>
-                </span>
-            </div>
-            <div class="mb-3 form-check text-start">
-                <input asp-for="RememberMe" class="form-check-input" id="rememberMe" />
-                <label class="form-check-label" asp-for="RememberMe">Remember me</label>
-            </div>
-
-            <button type="submit" class="btn btn-login">LOG IN</button>
-        </form>
-    </div>
-
-    <script>
-        // Toggle password visibility
-        function togglePasswordVisibility() {
-            const passwordInput = document.getElementById('passwordInput');
-            const togglePasswordIcon = document.getElementById('togglePasswordIcon');
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                togglePasswordIcon.classList.remove('fa-eye');
-                togglePasswordIcon.classList.add('fa-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                togglePasswordIcon.classList.remove('fa-eye-slash');
-                togglePasswordIcon.classList.add('fa-eye');
+    @if (!ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            @foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <p>@error.ErrorMessage</p>
             }
-        }
-        // Save to localStorage on form submitted
-        document.querySelector("form").addEventListener("submit", function () {
-            const email = document.getElementById("emailInput").value;
-            const password = document.getElementById("passwordInput").value;
-            const remember = document.getElementById("rememberMe").checked;
+        </div>
+    }
 
-            if (remember) {
-                localStorage.setItem("rememberMe", "true");
-                localStorage.setItem("savedEmail", email);
-                localStorage.setItem("savedPassword", password); // Remove line if you don't want to save password
-            } else {
-                localStorage.removeItem("rememberMe");
-                localStorage.removeItem("savedEmail");
-                localStorage.removeItem("savedPassword");
-            }
-        });
+    <form method="post">
+        <div class="mb-3 input-group">
+            <span class="input-group-text"><i class="fas fa-envelope icon-muted"></i></span>
+            <input asp-for="Email" class="form-control br-l" placeholder="Enter your email" type="email" id="emailInput" />
+        </div>
 
-        // Load from localStorage on a page load
-        window.addEventListener("DOMContentLoaded", function () {
-            const remember = localStorage.getItem("rememberMe") === "true";
-            if (remember) {
-                document.getElementById("emailInput").value = localStorage.getItem("savedEmail") || "";
-                document.getElementById("passwordInput").value = localStorage.getItem("savedPassword") || "";
-                document.getElementById("rememberMe").checked = true;
-            }
-        });
-    </script>  
+        <div class="mb-3 input-group">
+            <span class="input-group-text"><i class="fas fa-lock icon-muted"></i></span>
+            <input asp-for="Password" class="form-control br-lr" type="password" placeholder="Enter your password" id="passwordInput" />
+            <span class="input-group-text" onclick="togglePasswordVisibility()" style="cursor: pointer;">
+                <i class="fas fa-eye icon-muted" id="togglePasswordIcon"></i>
+            </span>
+        </div>
+        <div class="mb-3 form-check text-start">
+            <input asp-for="RememberMe" class="form-check-input" id="rememberMe" />
+            <label class="form-check-label" asp-for="RememberMe">Remember me</label>
+        </div>
+
+        <button type="submit" class="btn btn-login">LOG IN</button>
+    </form>
+</div>
+    <!-- Scripts -->
+    <script src="~/js/login.js" asp-append-version="true"></script>
 </body>
 </html>
