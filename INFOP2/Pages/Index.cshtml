@@ -2,198 +2,180 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Dashboard";
-    Layout = "_Layout"; // Use layout with side menu
+    Layout = "_Layout";
 }
 
-<div class="container mt-5">
-    <div class="row mb-4">
-        <div class="col-12 d-flex justify-content-between align-items-center">
-            <h3 class="display-5">@ViewData["Title"]</h3>
-            <h4 class="h6">Hello, <strong>@User.Identity.Name</strong></h4>
-        </div>
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">@ViewData["Title"]</h2>
+        <h5 class="text-muted">Welcome, <span class="fw-semibold">@User.Identity.Name</span></h5>
     </div>
+
     <div class="row g-4">
+        <!-- Summary Cards -->
         <div class="col-md-3">
-            <div class="card shadow-sm border-0 rounded-4" style="height: 150px;">
-                <div class="card-body text-start">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="card-title fw-bold mb-0">Masterlist</h5>
-                        <a href="/masterlist">
-                            <i class="fas fa-chevron-right text-muted"></i>
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="text-uppercase text-muted">Masterlist</h6>
+                        <a href="/masterlist" class="text-decoration-none">
+                            <i class="fas fa-arrow-right text-secondary"></i>
                         </a>
                     </div>
-                    <p class="display-6 mb-0 mt-2">100</p>
+                    <h3 class="fw-bold">100</h3>
                 </div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card shadow-sm border-0 rounded-4" style="height: 150px;">
-                <div class="card-body text-start">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="card-title fw-bold mb-0">Assetlist</h5>
-                        <a href="/assetlist">
-                            <i class="fas fa-chevron-right text-muted"></i>
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="text-uppercase text-muted">Assetlist</h6>
+                        <a href="/assetlist" class="text-decoration-none">
+                            <i class="fas fa-arrow-right text-secondary"></i>
                         </a>
                     </div>
-                    <p class="display-6 mb-0 mt-2">40</p>
+                    <h3 class="fw-bold">40</h3>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="card shadow-sm border-0 rounded-4" style="height: 150px;">
-                <div class="card-body text-start">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="card-title fw-bold">Finance</h5>
-                        <a href="/finance">
-                            <i class="fas fa-chevron-right text-muted"></i>
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="text-uppercase text-muted">Finance</h6>
+                        <a href="/finance" class="text-decoration-none">
+                            <i class="fas fa-arrow-right text-secondary"></i>
                         </a>
                     </div>
-                    <p class="display-6 mb-0">$10,000</p>
+                    <h3 class="fw-bold">$10,000</h3>
                 </div>
             </div>
         </div>
+
+        <!-- Transport List -->
         <div class="col-md-6">
-            <div class="card shadow-sm border-0 rounded-4 table-responsive" style="height: 220px;">
-                <div class="card-body text-start">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="card-title fw-bold">Transport List</h5>
-                        <a href="/transportlist">
-                            <i class="fas fa-chevron-right text-muted"></i>
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="text-uppercase text-muted">Transport List</h6>
+                        <a href="/transportlist" class="text-decoration-none">
+                            <i class="fas fa-arrow-right text-secondary"></i>
                         </a>
                     </div>
-                    <div>
-                        <table class="table mt-3">
-                            <thead>
-                            <tr>
-                                <th>Driver</th>
-                                <th>Members</th>
-                            </tr>
+                    <div class="table-responsive mt-3">
+                        <table class="table align-middle table-sm">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Driver</th>
+                                    <th>Members</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>John Doe</td>
-                                <td>Jane Doe, Alex Smith, Maria Lopez</td>
-                            </tr>
-                            <tr>
-                                <td>Chris Johnson</td>
-                                <td>Emma Brown, Bob McPlaceholder</td>
-                            </tr>
+                                <tr>
+                                    <td>John Doe</td>
+                                    <td>Jane Doe, Alex Smith, Maria Lopez</td>
+                                </tr>
+                                <tr>
+                                    <td>Chris Johnson</td>
+                                    <td>Emma Brown, Bob McPlaceholder</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Prayer Ministry -->
         <div class="col-md-6">
-            <div class="card shadow-sm border-0 rounded-4 table-responsive" style="height: 220px;">
-                <div class="card-body text-start">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="card-title fw-bold">Prayer Ministry</h5>
-                        <a href="/prayerministry">
-                            <i class="fas fa-chevron-right text-muted"></i>
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="text-uppercase text-muted">Prayer Ministry</h6>
+                        <a href="/prayerministry" class="text-decoration-none">
+                            <i class="fas fa-arrow-right text-secondary"></i>
                         </a>
                     </div>
-                    <div>
-                        <table class="table mt-3">
-                            <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Remarks</th>
-                            </tr>
+                    <div class="table-responsive mt-3">
+                        <table class="table align-middle table-sm">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Remarks</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Prayer for Thanksgiving</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Thank you for this April</td>
-                                <td></td>
-                            </tr>
+                                <tr>
+                                    <td>Prayer for Thanksgiving</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Thank you for this April</td>
+                                    <td></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Schedule List -->
         <div class="col-md-12">
             <div class="card shadow-sm border-0 rounded-4">
-                <div class="card-body text-start">
-                <h5 class="card-title fw-bold">Schedules</h5>
-                <div class="table-responsive">
-                    <table class="table mt-3 align-middle">
-                    <thead>
-                        <tr>
-                        <th>Event</th>
-                        <th>Details</th>
-                        <th>Date & Time</th>
-                        <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <td>Sunday Worship</td>
-                        <td>
-                            <div class="d-flex flex-column">
-                            <div class="d-flex justify-content-between">
-                                <span>Welcome & Opening Prayer</span>
-                                <span class="text-muted">Music Ministry</span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span>Praise & Worship</span>
-                                <span class="text-muted">Pastor Mike Sample</span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span>Offering/Giving</span>
-                                <span class="text-muted">Jane Random</span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span>Special Numbers/Announcements</span>
-                                <span class="text-muted">John Random</span>
-                            </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div>April 13, 2025</div>
-                            <div>10:00 AM</div>
-                        </td>
-                        <td>
-                            <span class="badge bg-success-subtle text-success fw-semibold rounded-pill px-3 py-2">Upcoming</span>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>Sunday Worship</td>
-                        <td>
-                            <div class="d-flex flex-column">
-                            <div class="d-flex justify-content-between">
-                                <span>Welcome & Opening Prayer</span>
-                                <span class="text-muted">Music Ministry</span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span>Praise & Worship</span>
-                                <span class="text-muted">Pastor Whisker McNom</span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span>Offering/Giving</span>
-                                <span class="text-muted">Chris Wilson</span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span>Special Numbers/Announcements</span>
-                                <span class="text-muted">Anna Miller</span>
-                            </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div>April 20, 2025</div>
-                            <div>10:00 AM</div>
-                        </td>
-                        <td>
-                            <span class="badge bg-danger-subtle text-danger fw-semibold rounded-pill px-3 py-2">Ended</span>
-                        </td>
-                        </tr>
-                    </tbody>
-                    </table>
-                </div>
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted mb-3">Schedules</h6>
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Event</th>
+                                    <th>Details</th>
+                                    <th>Date & Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Sunday Worship</td>
+                                    <td>
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="d-flex justify-content-between"><span>Welcome & Opening Prayer</span> <span class="text-muted">Music Ministry</span></li>
+                                            <li class="d-flex justify-content-between"><span>Praise & Worship</span> <span class="text-muted">Pastor Mike Sample</span></li>
+                                            <li class="d-flex justify-content-between"><span>Offering/Giving</span> <span class="text-muted">Jane Random</span></li>
+                                            <li class="d-flex justify-content-between"><span>Special Numbers</span> <span class="text-muted">John Random</span></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <div>April 13, 2025</div>
+                                        <div>10:00 AM</div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-success text-white rounded-pill px-3 py-2">Upcoming</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sunday Worship</td>
+                                    <td>
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="d-flex justify-content-between"><span>Welcome & Opening Prayer</span> <span class="text-muted">Music Ministry</span></li>
+                                            <li class="d-flex justify-content-between"><span>Praise & Worship</span> <span class="text-muted">Pastor Whisker McNom</span></li>
+                                            <li class="d-flex justify-content-between"><span>Offering/Giving</span> <span class="text-muted">Chris Wilson</span></li>
+                                            <li class="d-flex justify-content-between"><span>Special Numbers</span> <span class="text-muted">Anna Miller</span></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <div>April 20, 2025</div>
+                                        <div>10:00 AM</div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-danger text-white rounded-pill px-3 py-2">Ended</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
