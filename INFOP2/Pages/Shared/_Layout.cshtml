@@ -42,7 +42,7 @@
 
             <div class="list-group list-group-flush list-group-bottom">
                 <a asp-page="/Login" class="list-group-item">
-                    <i class="fas fa-sign-out-alt me-2"></i> <span class="sidebar-text">Logout</span>
+                    <i class="fas fa-sign-out-alt me-2"></i> <span class="sidebar-text sidebar-text sb-txt-overflow">Logout</span>
                 </a>
             </div>
         </div>
@@ -52,12 +52,9 @@
             <main role="main" class="pb-3">
                 @RenderBody()
             </main>
-
-            <footer class="footer text-muted mt-5">
-                <div class="container txt-align-end">
-                    <p>v1.0.0-alpha</p>
-                </div>
-            </footer>
+            <div class="container txt-align-end">
+                <p>v1.0.0-alpha</p>
+            </div>
         </div>
     </div>
 
