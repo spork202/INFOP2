@@ -11,55 +11,171 @@
             <h4 class="h6">Hello, <strong>@User.Identity.Name</strong></h4>
         </div>
     </div>
+
+    <!-- Add Event Button -->
+    <div class="col-md-12 mb-3">
+        <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addEventModal">
+            <i class="fa fa-plus me-1"></i> Add Prayer Event
+        </button>
+    </div>
+
+    <!-- Prayer Event Cards -->
     <div class="col-md-12">
-        <div class="mb-3 d-flex justify-content-end">
-            <button type="button" class="btn btn-primary" aria-label="Add item">
-                <i class="fa fa-plus me-1"></i>Add 
-            </button>
-        </div>
+        <!-- Card 1: PRAYER OF THANKSGIVING -->
         <div class="card border-0 shadow-sm rounded-4 mb-4">
-            <div class="card-header bg-white d-flex justify-content-between align-items-center fw-bold">
-                PRAYER OF THANKSGIVING
-                <a href="#" class="text-decoration-none">Edit</a>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <strong>PRAYER OF THANKSGIVING</strong>
+                <div>
+                    <button class="btn btn-outline-primary btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#editEventModal" onclick="loadEventForEdit('1', 'PRAYER OF THANKSGIVING', 'Lorem Ipsum', 'Lorem Ipsum')">
+                        <i class="fa fa-edit"></i> Edit
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#deleteEventModal">
+                        <i class="fa fa-trash"></i> Delete
+                    </button>
+                </div>
             </div>
             <div class="card-body">
                 <table class="table table-borderless">
                     <thead class="table-light">
-                    <tr>
-                        <th>Notes</th>
-                        <th>Remarks</th>
-                    </tr>
+                        <tr>
+                            <th>Notes</th>
+                            <th>Remarks</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Lorem Ipsum</td>
-                        <td>Lorem Ipsum</td>
-                    </tr>
+                        <tr>
+                            <td>Lorem Ipsum</td>
+                            <td>Lorem Ipsum</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+
+        <!-- Card 2: PRAY FOR THE WORLD -->
         <div class="card border-0 shadow-sm rounded-4 mb-4">
-            <div class="card-header bg-white d-flex justify-content-between align-items-center fw-bold">
-                PRAY FOR THE WORLD
-                <a href="#" class="text-decoration-none">Edit</a>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <strong>PRAY FOR THE WORLD</strong>
+                <div>
+                    <button class="btn btn-outline-primary btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#editEventModal" onclick="loadEventForEdit('2', 'PRAY FOR THE WORLD', 'Lorem Ipsum', 'Lorem Ipsum')">
+                        <i class="fa fa-edit"></i> Edit
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#deleteEventModal">
+                        <i class="fa fa-trash"></i> Delete
+                    </button>
+                </div>
             </div>
             <div class="card-body">
                 <table class="table table-borderless">
                     <thead class="table-light">
-                    <tr>
-                        <th>Notes</th>
-                        <th>Remarks</th>
-                    </tr>
+                        <tr>
+                            <th>Notes</th>
+                            <th>Remarks</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Lorem Ipsum</td>
-                        <td>Lorem Ipsum</td>
-                    </tr>
+                        <tr>
+                            <td>Lorem Ipsum</td>
+                            <td>Lorem Ipsum</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Add Event Modal -->
+<div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="addEventModalLabel">Create Prayer Event</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Title</label>
+                        <input type="text" class="form-control" placeholder="Enter prayer title" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Notes</label>
+                        <input type="text" class="form-control" placeholder="Enter prayer notes" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Remarks</label>
+                        <textarea class="form-control" rows="3" placeholder="Enter remarks"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-dark">Create Event</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Event Modal -->
+<div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="editEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="editEventModalLabel">Edit Prayer Event</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <input type="hidden" id="editEventId" />
+                    <div class="mb-3">
+                        <label class="form-label">Title</label>
+                        <input type="text" class="form-control" id="editEventTitle" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Notes</label>
+                        <input type="text" class="form-control" id="editEventNotes" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Remarks</label>
+                        <textarea class="form-control" id="editEventRemarks" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Event Modal -->
+<div class="modal fade" id="deleteEventModal" tabindex="-1" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteEventModalLabel">Delete Prayer Event</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this prayer event?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Load event data into edit modal
+    function loadEventForEdit(id, title, notes, remarks) {
+        document.getElementById("editEventId").value = id;
+        document.getElementById("editEventTitle").value = title;
+        document.getElementById("editEventNotes").value = notes;
+        document.getElementById("editEventRemarks").value = remarks;
+    }
+</script>
