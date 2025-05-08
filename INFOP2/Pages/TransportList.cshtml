@@ -19,57 +19,58 @@
                 <h2 class="fw-bold">@ViewData["Title"]</h2>
                 <h4 class="h6">Hello, <strong>@User.Identity?.Name</strong></h4>
             </div>
+            <div class="col-12 d-flex justify-content-between align-items-center">
+                <p class="text-muted">Manage transportation details</p>
+            </div>
         </div>
 
-        <div class="col-md-12">
-            <!-- Toolbar -->
-            <div class="d-flex justify-content-end mb-3 gap-2">
-                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addDriverModal">
-                    <i class="fa fa-plus me-1"></i>Add Driver
-                </button>
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addEventModal">
-                    <i class="fa fa-calendar-plus me-1"></i>Create Event
+        <!-- Toolbar -->
+        <div class="d-flex justify-content-end mb-3 gap-2">
+            <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addDriverModal">
+                <i class="fa fa-plus me-1"></i>Add Driver
+            </button>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addEventModal">
+                <i class="fa fa-calendar-plus me-1"></i>Create Event
+            </button>
+        </div>
+
+        <!-- Example Transport Event Card -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4">
+            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>Subject:</strong> Sunday Worship<br />
+                    <strong>Note:</strong> Meet at 7:30 AM<br />
+                    <strong>Driver:</strong> John Doe<br />
+                    <strong>Passengers:</strong> Anna, Ben, Clara
+                </div>
+                <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editDriverModal"
+                        onclick="loadDriverForEdit('1', 'John Doe', '+966512345678')">
+                    <i class="fa fa-edit"></i>
                 </button>
             </div>
-
-            <!-- Example Transport Event Card -->
-            <div class="card border-0 shadow-sm rounded-4 mb-4">
-                <div class="card-header bg-light d-flex justify-content-between align-items-center">
-                    <div>
-                        <strong>Subject:</strong> Sunday Worship<br />
-                        <strong>Note:</strong> Meet at 7:30 AM<br />
-                        <strong>Driver:</strong> John Doe<br />
-                        <strong>Passengers:</strong> Anna, Ben, Clara
-                    </div>
-                    <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editDriverModal"
-                            onclick="loadDriverForEdit('1', 'John Doe', '+966512345678')">
-                        <i class="fa fa-edit"></i>
-                    </button>
-                </div>
-                <div class="card-body">
-                    <div class="mb-2"><strong>Remarks:</strong> Arrived on time</div>
-                    <div><strong>Closing Notes:</strong> Great service!</div>
-                </div>
+            <div class="card-body">
+                <div class="mb-2"><strong>Remarks:</strong> Arrived on time</div>
+                <div><strong>Closing Notes:</strong> Great service!</div>
             </div>
+        </div>
 
-             <!-- Example Transport Event Card -->
-            <div class="card border-0 shadow-sm rounded-4 mb-4">
-                <div class="card-header bg-light d-flex justify-content-between align-items-center">
-                    <div>
-                        <strong>Subject:</strong> Practice Worship<br />
-                        <strong>Note:</strong> Meet at 8:00 AM<br />
-                        <strong>Driver:</strong> John Doe<br />
-                        <strong>Passengers:</strong> Anna, Ben, Clara
-                    </div>
-                    <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editDriverModal"
-                            onclick="loadDriverForEdit('1', 'John Doe', '+966512345678')">
-                        <i class="fa fa-edit"></i>
-                    </button>
+         <!-- Example Transport Event Card -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4">
+            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>Subject:</strong> Practice Worship<br />
+                    <strong>Note:</strong> Meet at 8:00 AM<br />
+                    <strong>Driver:</strong> John Doe<br />
+                    <strong>Passengers:</strong> Anna, Ben, Clara
                 </div>
-                <div class="card-body">
-                    <div class="mb-2"><strong>Remarks:</strong> Arrived on time</div>
-                    <div><strong>Closing Notes:</strong> Great service!</div>
-                </div>
+                <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editDriverModal"
+                        onclick="loadDriverForEdit('1', 'John Doe', '+966512345678')">
+                    <i class="fa fa-edit"></i>
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="mb-2"><strong>Remarks:</strong> Arrived on time</div>
+                <div><strong>Closing Notes:</strong> Great service!</div>
             </div>
         </div>
     </div>
