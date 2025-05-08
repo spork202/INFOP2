@@ -146,11 +146,25 @@
                     </div>
                     <div class="mb-3">
                         <label for="add-bcfamily" class="form-label">BC Family</label>
-                        <input id="add-bcfamily" class="form-control" />
+                        <select id="add-bcfamily" class="form-select">
+                            <option value="" disabled selected>Select BC Family</option>
+                            <option value="Family A">Family A</option>
+                            <option value="Family B">Family B</option>
+                            <option value="Family C">Family C</option>
+                            <option value="None">None</option>
+                        </select>
+                        <span id="add-bcfamily-error" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
                         <label for="add-ministry" class="form-label">Ministry</label>
-                        <input id="add-ministry" class="form-control" />
+                        <select id="add-ministry" class="form-select">
+                            <option value="" disabled selected>Select Ministry</option>
+                            <option value="Worship">Worship</option>
+                            <option value="Youth">Youth</option>
+                            <option value="Outreach">Outreach</option>
+                            <option value="None">None</option>
+                        </select>
+                        <span id="add-ministry-error" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
                         <label for="add-contactnumber" class="form-label">Contact No.</label>
@@ -191,11 +205,26 @@
                     </div>
                     <div class="mb-3">
                         <label for="edit-bcfamily" class="form-label">BC Family</label>
-                        <input id="edit-bcfamily" class="form-control" />
+                        <select id="edit-bcfamily" class="form-select">
+                            <option value="" disabled>Select BC Family</option>
+                            <option value="Family A">Family A</option>
+                            <option value="Family B">Family B</option>
+                            <option value="Family C">Family C</option>
+                            <option value="None">None</option>
+                        </select>
+                        <span id="edit-bcfamily-error" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
                         <label for="edit-ministry" class="form-label">Ministry</label>
-                        <input id="edit-ministry" class="form-control" />
+                        <select id="edit-ministry" class="form-select">
+                            <option value="" disabled>Select Ministry</option>
+                            <option value="Worship">Worship</option>
+                            <option value="Youth">Youth</option>
+
+                            <option value="Outreach">Outreach</option>
+                            <option value="None">None</option>
+                        </select>
+                        <span id="edit-ministry-error" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
                         <label for="edit-contactnumber" class="form-label">Contact No.</label>
@@ -298,7 +327,7 @@
                     if (sortOrder === 'name_desc') {
                         people.sort((a, b) => b.Name.localeCompare(a.Name));
                     } else {
-                        people.sort((a, b) => a.Name.localeCompare(a.Name));
+                        people.sort((a, b) => a.Name.localeCompare(b.Name));
                     }
 
                     totalItems = people.length;
@@ -340,7 +369,6 @@
                         <td>${person.KSAAddress || 'N/A'}</td>
                         <td>${person.Birthdate ? person.Birthdate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : 'N/A'}</td>
                         <td>
-                        
                             <button class="btn btn-sm btn-warning me-1 rounded-pill" onclick="openEdit('${person.Id}')"><i class="fas fa-edit"></i></button>
                             <button class="btn btn-sm btn-danger rounded-pill" onclick="deletePerson('${person.Id}')"><i class="fas fa-trash"></i></button>
                         </td>
@@ -352,8 +380,8 @@
 
         function updateSummary() {
             const totalPeople = people.length;
-            const bcFamilies = [...new Set(people.map(p => p.BCFamily).filter(f => f))].length;
-            const ministries = [...new Set(people.map(p => p.Ministry).filter(m => m))].length;
+            const bcFamilies = [...new Set(people.map(p => p.BCFamily).filter(f => f && f !== 'None'))].length;
+            const ministries = [...new Set(people.map(p => p.Ministry).filter(m => m && m !== 'None'))].length;
 
             document.getElementById('total-people').innerText = totalPeople;
             document.getElementById('bc-families').innerText = bcFamilies;
@@ -477,6 +505,14 @@
                 document.getElementById('add-contactnumber-error').innerText = 'Invalid phone number';
                 return;
             }
+            if (!bcFamily) {
+                document.getElementById('add-bcfamily-error').innerText = 'BC Family is required';
+                return;
+            }
+            if (!ministry) {
+                document.getElementById('add-ministry-error').innerText = 'Ministry is required';
+                return;
+            }
 
             const person = {
                 Name: name.toLowerCase(),
@@ -496,6 +532,10 @@
                 document.getElementById('add-contactnumber').value = '';
                 document.getElementById('add-ksaaddress').value = '';
                 document.getElementById('add-birthdate').value = '';
+                document.getElementById('add-name-error').innerText = '';
+                document.getElementById('add-bcfamily-error').innerText = '';
+                document.getElementById('add-ministry-error').innerText = '';
+                document.getElementById('add-contactnumber-error').innerText = '';
                 loadPeople();
             }).catch(error => {
                 console.error("Error adding person:", error);
@@ -507,10 +547,10 @@
             if (person) {
                 document.getElementById('edit-id').value = person.Id;
                 document.getElementById('edit-name').value = person.Name;
-                document.getElementById('edit-bcfamily').value = person.BCFamily;
-                document.getElementById('edit-ministry').value = person.Ministry;
-                document.getElementById('edit-contactnumber').value = person.ContactNumber;
-                document.getElementById('edit-ksaaddress').value = person.KSAAddress;
+                document.getElementById('edit-bcfamily').value = person.BCFamily || '';
+                document.getElementById('edit-ministry').value = person.Ministry || '';
+                document.getElementById('edit-contactnumber').value = person.ContactNumber || '';
+                document.getElementById('edit-ksaaddress').value = person.KSAAddress || '';
                 document.getElementById('edit-birthdate').value = person.Birthdate ? person.Birthdate.toISOString().split('T')[0] : '';
                 $('#editModal').modal('show');
             }
@@ -537,6 +577,14 @@
                 document.getElementById('edit-contactnumber-error').innerText = 'Invalid phone number';
                 return;
             }
+            if (!bcFamily) {
+                document.getElementById('edit-bcfamily-error').innerText = 'BC Family is required';
+                return;
+            }
+            if (!ministry) {
+                document.getElementById('edit-ministry-error').innerText = 'Ministry is required';
+                return;
+            }
 
             const person = {
                 Name: name.toLowerCase(),
@@ -550,6 +598,10 @@
 
             db.collection('people').doc(id).update(person).then(() => {
                 $('#editModal').modal('hide');
+                document.getElementById('edit-name-error').innerText = '';
+                document.getElementById('edit-bcfamily-error').innerText = '';
+                document.getElementById('edit-ministry-error').innerText = '';
+                document.getElementById('edit-contactnumber-error').innerText = '';
                 loadPeople();
             }).catch(error => {
                 console.error("Error updating person:", error);
