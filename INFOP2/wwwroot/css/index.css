@@ -11,3 +11,7 @@
     border: none;
 }
 
+.bd-unset {
+    border: unset;
+}
+
