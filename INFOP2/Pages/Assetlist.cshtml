@@ -12,7 +12,7 @@
             <h4 class="h6">Hello, <strong>@User.Identity?.Name</strong></h4>
         </div>
         <div class="col-12 d-flex justify-content-between align-items-center">
-            <p class="text-muted">Manage and track your physical and digital assets efficiently</p>
+            <p class="text-muted">Manage and track your assets and equipment efficiently</p>
         </div>
     </div>
 
@@ -34,8 +34,8 @@
                 <div class="card-body d-flex align-items-center">
                     <i class="fas fa-check-circle text-success fa-2x me-3"></i>
                     <div>
-                        <small class="text-muted">Active Assets</small>
-                        <h4 class="mb-0" id="active-assets">0</h4>
+                        <small class="text-muted">Total Consumables</small>
+                        <h4 class="mb-0" id="consumable-assets">0</h4>
                     </div>
                 </div>
             </div>
@@ -45,19 +45,11 @@
                 <div class="card-body d-flex align-items-center">
                     <i class="fas fa-tools text-warning fa-2x me-3"></i>
                     <div>
-                        <small class="text-muted">Under Maintenance</small>
-                        <h4 class="mb-0" id="maintenance-assets">0</h4>
+                        <small class="text-muted">Total Non-Consumables</small>
+                        <h4 class="mb-0" id="non-consumable-assets">0</h4>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Chart -->
-    <div class="card shadow-sm border-0 mb-5">
-        <div class="card-body">
-            <h5 class="card-title">Asset Status Distribution</h5>
-            <canvas id="assetChart" height="100"></canvas>
         </div>
     </div>
 
@@ -87,14 +79,13 @@
                 <tr class="text-uppercase small text-muted">
                     <th>
                         <a asp-page="./Assetlist" asp-all-route-data="@(new Dictionary<string, string> { { "SortOrder", Model.SortOrder == "name_asc" ? "name_desc" : "name_asc" }, { "SearchTerm", Model.SearchTerm } })" class="text-decoration-none text-dark">
-                            Name <span>@(Model.SortOrder == "name_asc" ? "▲" : Model.SortOrder == "name_desc" ? "▼" : "")</span>
+                            Assets & Equipment <span>@(Model.SortOrder == "name_asc" ? "▲" : Model.SortOrder == "name_desc" ? "▼" : "")</span>
                         </a>
                     </th>
-                    <th>Category</th>
-                    <th>Serial #</th>
-                    <th>Location</th>
-                    <th>Purchase Date</th>
-                    <th>Status</th>
+                    <th>Date In</th>
+                    <th>Date Out</th>
+                    <th>Consumable/Non</th>
+                    <th>Remarks</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -106,16 +97,18 @@
 
     <!-- Pagination -->
     <div class="d-flex justify-content-end align-items-center">
-        <small class="text-muted me-3">1 - 10 of 25</small>
+        <small class="text-muted me-3" id="pagination-info">1 - 10 of 25</small>
         <ul class="pagination pagination-sm mb-0 gap-1">
-            <li class="page-item disabled">
-                <span class="page-link"><i class="fas fa-angle-left"></i></span>
+            <li class="page-item" id="prev-page">
+                <a class="page-link" href="#"><i class="fas fa-angle-left"></i></a>
             </li>
             <li class="page-item active">
                 <span class="page-link">1</span>
             </li>
             <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+            <li class="page-item" id="next-page">
+                <a class="page-link" href="#"><i class="fas fa-angle-right"></i></a>
+            </li>
         </ul>
     </div>
 
@@ -134,21 +127,31 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="add-name" class="form-label">Name</label>
+                        <label for="add-name" class="form-label">Assets & Equipment</label>
                         <input id="add-name" class="form-control" required />
                         <span id="add-name-error" class="text-danger small"></span>
                     </div>
-                    <div class="mb-3"><label for="add-category" class="form-label">Category</label><input id="add-category" class="form-control" /></div>
-                    <div class="mb-3"><label for="add-serialnumber" class="form-label">Serial Number</label><input id="add-serialnumber" class="form-control" /></div>
-                    <div class="mb-3"><label for="add-location" class="form-label">Location</label><input id="add-location" class="form-control" /></div>
-                    <div class="mb-3"><label for="add-purchasedate" class="form-label">Purchase Date</label><input id="add-purchasedate" class="form-control" type="date" /></div>
                     <div class="mb-3">
-                        <label for="add-status" class="form-label">Status</label>
-                        <select id="add-status" class="form-select">
-                            <option value="Active">Active</option>
-                            <option value="Inactive">Inactive</option>
-                            <option value="Under Maintenance">Under Maintenance</option>
+                        <label for="add-datein" class="form-label">Date In</label>
+                        <input id="add-datein" class="form-control" type="date" required />
+                        <span id="add-datein-error" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="add-dateout" class="form-label">Date Out</label>
+                        <input id="add-dateout" class="form-control" type="date" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="add-consumable" class="form-label">Consumable/Non</label>
+                        <select id="add-consumable" class="form-select" required>
+                            <option value="" disabled selected>Select type</option>
+                            <option value="Consumable">Consumable</option>
+                            <option value="Non-Consumable">Non-Consumable</option>
                         </select>
+                        <span id="add-consumable-error" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="add-remarks" class="form-label">Remarks</label>
+                        <textarea id="add-remarks" class="form-control" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -169,18 +172,32 @@
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="edit-id" />
-                    <div class="mb-3"><label for="edit-name" class="form-label">Name</label><input id="edit-name" class="form-control" required /><span id="edit-name-error" class="text-danger small"></span></div>
-                    <div class="mb-3"><label for="edit-category" class="form-label">Category</label><input id="edit-category" class="form-control" /></div>
-                    <div class="mb-3"><label for="edit-serialnumber" class="form-label">Serial Number</label><input id="edit-serialnumber" class="form-control" /></div>
-                    <div class="mb-3"><label for="edit-location" class="form-label">Location</label><input id="edit-location" class="form-control" /></div>
-                    <div class="mb-3"><label for="edit-purchasedate" class="form-label">Purchase Date</label><input id="edit-purchasedate" class="form-control" type="date" /></div>
                     <div class="mb-3">
-                        <label for="edit-status" class="form-label">Status</label>
-                        <select id="edit-status" class="form-select">
-                            <option value="Active">Active</option>
-                            <option value="Inactive">Inactive</option>
-                            <option value="Under Maintenance">Under Maintenance</option>
+                        <label for="edit-name" class="form-label">Assets & Equipment</label>
+                        <input id="edit-name" class="form-control" required />
+                        <span id="edit-name-error" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-datein" class="form-label">Date In</label>
+                        <input id="edit-datein" class="form-control" type="date" required />
+                        <span id="edit-datein-error" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-dateout" class="form-label">Date Out</label>
+                        <input id="edit-dateout" class="form-control" type="date" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-consumable" class="form-label">Consumable/Non</label>
+                        <select id="edit-consumable" class="form-select" required>
+                            <option value="" disabled>Select type</option>
+                            <option value="Consumable">Consumable</option>
+                            <option value="Non-Consumable">Non-Consumable</option>
                         </select>
+                        <span id="edit-consumable-error" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-remarks" class="form-label">Remarks</label>
+                        <textarea id="edit-remarks" class="form-control" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -192,11 +209,7 @@
     </div>
 </div>
 
-
-
 @section Scripts {
-    <!-- Include Chart.js for the pie chart -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script>
@@ -207,9 +220,6 @@
         let totalPages = 0;
         let sortOrder = '@Model.SortOrder' || 'name_asc';
         let searchTerm = '@Model.SearchTerm' || '';
-
-        // Chart instance
-        let assetChart;
 
         // Load Assets from Firestore on page load
         window.onload = function () {
@@ -232,11 +242,10 @@
                     assets.push({
                         Id: doc.id,
                         Name: data.DisplayName,
-                        Category: data.Category || '',
-                        SerialNumber: data.SerialNumber || '',
-                        Location: data.Location || '',
-                        PurchaseDate: data.PurchaseDate ? new Date(data.PurchaseDate.seconds * 1000) : null,
-                        Status: data.Status || ''
+                        DateIn: data.DateIn ? new Date(data.DateIn.seconds * 1000) : null,
+                        DateOut: data.DateOut ? new Date(data.DateOut.seconds * 1000) : null,
+                        Consumable: data.Consumable || '',
+                        Remarks: data.Remarks || ''
                     });
                 });
 
@@ -251,15 +260,12 @@
                 totalPages = Math.ceil(totalItems / pageSize);
                 currentPage = Math.max(1, Math.min(currentPage, totalPages));
                 renderTable();
-                updatePagination();
                 updateSummary();
-                updateChart();
+                updatePagination();
 
                 if (assets.length === 0) {
-                    document.getElementById('table-container').style.display = 'none';
                     document.getElementById('no-data').style.display = 'block';
                 } else {
-                    document.getElementById('table-container').style.display = 'block';
                     document.getElementById('no-data').style.display = 'none';
                 }
             }).catch(error => {
@@ -277,15 +283,13 @@
 
             for (let i = start; i < end; i++) {
                 const asset = assets[i];
-                const badgeClass = asset.Status === 'Active' ? 'bg-success' : asset.Status === 'Inactive' ? 'bg-danger' : 'bg-warning';
                 const row = `
                     <tr>
                         <td>${asset.Name}</td>
-                        <td>${asset.Category}</td>
-                        <td>${asset.SerialNumber}</td>
-                        <td>${asset.Location}</td>
-                        <td>${asset.PurchaseDate ? asset.PurchaseDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : ''}</td>
-                        <td><span class="badge ${badgeClass}">${asset.Status}</span></td>
+                        <td>${asset.DateIn ? asset.DateIn.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : ''}</td>
+                        <td>${asset.DateOut ? asset.DateOut.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : ''}</td>
+                        <td>${asset.Consumable}</td>
+                        <td>${asset.Remarks}</td>
                         <td>
                             <a href="#" class="btn btn-sm btn-primary me-1 rounded-pill" onclick="openDetail('${asset.Id}')"><i class="fas fa-eye"></i></a>
                             <button class="btn btn-sm btn-warning me-1 rounded-pill" onclick="openEdit('${asset.Id}')"><i class="fas fa-edit"></i></button>
@@ -297,64 +301,22 @@
             }
         }
 
-        // Update Summary (Total Assets, Active Assets, Under Maintenance)
+        // Update Summary (Total Assets, Consumables, Non-Consumables)
         function updateSummary() {
             let totalAssets = assets.length;
-            let activeAssets = assets.filter(asset => asset.Status === 'Active').length;
-            let maintenanceAssets = assets.filter(asset => asset.Status === 'Under Maintenance').length;
+            let consumableAssets = assets.filter(asset => asset.Consumable === 'Consumable').length;
+            let nonConsumableAssets = assets.filter(asset => asset.Consumable === 'Non-Consumable').length;
 
             document.getElementById('total-assets').innerText = totalAssets;
-            document.getElementById('active-assets').innerText = activeAssets;
-            document.getElementById('maintenance-assets').innerText = maintenanceAssets;
-        }
-
-        // Update Chart (Asset Status Distribution)
-        function updateChart() {
-            const statusCounts = {
-                Active: assets.filter(asset => asset.Status === 'Active').length,
-                Inactive: assets.filter(asset => asset.Status === 'Inactive').length,
-                'Under Maintenance': assets.filter(asset => asset.Status === 'Under Maintenance').length
-            };
-
-            const labels = Object.keys(statusCounts);
-            const data = Object.values(statusCounts);
-            const backgroundColors = ['rgba(40, 167, 69, 0.6)', 'rgba(220, 53, 69, 0.6)', 'rgba(255, 193, 7, 0.6)'];
-            const borderColors = ['rgba(40, 167, 69, 1)', 'rgba(220, 53, 69, 1)', 'rgba(255, 193, 7, 1)'];
-
-            // Destroy existing chart if it exists
-            if (assetChart) {
-                assetChart.destroy();
-            }
-
-            // Create new chart
-            const ctx = document.getElementById('assetChart').getContext('2d');
-            assetChart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        data: data,
-                        backgroundColor: backgroundColors,
-                        borderColor: borderColors,
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top'
-                        }
-                    }
-                }
-            });
+            document.getElementById('consumable-assets').innerText = consumableAssets;
+            document.getElementById('non-consumable-assets').innerText = nonConsumableAssets;
         }
 
         // Update Pagination
         function updatePagination() {
             const start = currentPage === 1 ? 1 : (currentPage - 1) * pageSize + 1;
             const end = Math.min(currentPage * pageSize, totalItems);
-            document.getElementById('pagination-info').innerText = `${start}-${end} of ${totalItems} This page you're on ${currentPage}`;
+            document.getElementById('pagination-info').innerText = `${start}-${end} of ${totalItems} (Page ${currentPage})`;
 
             const prevBtn = document.getElementById('prev-page');
             const nextBtn = document.getElementById('next-page');
@@ -363,37 +325,45 @@
                 prevBtn.classList.add('disabled');
             } else {
                 prevBtn.classList.remove('disabled');
+                prevBtn.querySelector('a').href = `/Assetlist?CurrentPage=${currentPage - 1}&SearchTerm=${searchTerm}&SortOrder=${sortOrder}`;
             }
 
             if (currentPage === totalPages || totalPages === 0) {
                 nextBtn.classList.add('disabled');
             } else {
                 nextBtn.classList.remove('disabled');
+                nextBtn.querySelector('a').href = `/Assetlist?CurrentPage=${currentPage + 1}&SearchTerm=${searchTerm}&SortOrder=${sortOrder}`;
             }
         }
 
         // Add Asset
         function addAsset() {
             const name = document.getElementById('add-name').value;
-            const category = document.getElementById('add-category').value;
-            const serialNumber = document.getElementById('add-serialnumber').value;
-            const location = document.getElementById('add-location').value;
-            const purchaseDate = document.getElementById('add-purchasedate').value;
-            const status = document.getElementById('add-status').value;
+            const dateIn = document.getElementById('add-datein').value;
+            const dateOut = document.getElementById('add-dateout').value;
+            const consumable = document.getElementById('add-consumable').value;
+            const remarks = document.getElementById('add-remarks').value;
 
             if (!name) {
-                document.getElementById('add-name-error').innerText = 'Name is required';
+                document.getElementById('add-name-error').innerText = 'Assets & Equipment is required';
+                return;
+            }
+            if (!dateIn) {
+                document.getElementById('add-datein-error').innerText = 'Date In is required';
+                return;
+            }
+            if (!consumable) {
+                document.getElementById('add-consumable-error').innerText = 'Consumable/Non is required';
                 return;
             }
 
             const asset = {
                 Name: name.toLowerCase(),
                 DisplayName: name,
-                Category: category,
-                SerialNumber: serialNumber,
-                Location: location,
-                PurchaseDate: purchaseDate ? new Date(purchaseDate) : null,
-                Status: status
+                DateIn: dateIn ? new Date(dateIn) : null,
+                DateOut: dateOut ? new Date(dateOut) : null,
+                Consumable: consumable,
+                Remarks: remarks
             };
 
             db.collection('assets').add(asset).then(() => {
@@ -410,11 +380,10 @@
             if (asset) {
                 document.getElementById('edit-id').value = asset.Id;
                 document.getElementById('edit-name').value = asset.Name;
-                document.getElementById('edit-category').value = asset.Category;
-                document.getElementById('edit-serialnumber').value = asset.SerialNumber;
-                document.getElementById('edit-location').value = asset.Location;
-                document.getElementById('edit-purchasedate').value = asset.PurchaseDate ? asset.PurchaseDate.toISOString().split('T')[0] : '';
-                document.getElementById('edit-status').value = asset.Status;
+                document.getElementById('edit-datein').value = asset.DateIn ? asset.DateIn.toISOString().split('T')[0] : '';
+                document.getElementById('edit-dateout').value = asset.DateOut ? asset.DateOut.toISOString().split('T')[0] : '';
+                document.getElementById('edit-consumable').value = asset.Consumable;
+                document.getElementById('edit-remarks').value = asset.Remarks;
                 $('#editModal').modal('show');
             }
         }
@@ -423,25 +392,31 @@
         function updateAsset() {
             const id = document.getElementById('edit-id').value;
             const name = document.getElementById('edit-name').value;
-            const category = document.getElementById('edit-category').value;
-            const serialNumber = document.getElementById('edit-serialnumber').value;
-            const location = document.getElementById('edit-location').value;
-            const purchaseDate = document.getElementById('edit-purchasedate').value;
-            const status = document.getElementById('edit-status').value;
+            const dateIn = document.getElementById('edit-datein').value;
+            const dateOut = document.getElementById('edit-dateout').value;
+            const consumable = document.getElementById('edit-consumable').value;
+            const remarks = document.getElementById('edit-remarks').value;
 
             if (!name) {
-                document.getElementById('edit-name-error').innerText = 'Name is required';
+                document.getElementById('edit-name-error').innerText = 'Assets & Equipment is required';
+                return;
+            }
+            if (!dateIn) {
+                document.getElementById('edit-datein-error').innerText = 'Date In is required';
+                return;
+            }
+            if (!consumable) {
+                document.getElementById('edit-consumable-error').innerText = 'Consumable/Non is required';
                 return;
             }
 
             const asset = {
                 Name: name.toLowerCase(),
                 DisplayName: name,
-                Category: category,
-                SerialNumber: serialNumber,
-                Location: location,
-                PurchaseDate: purchaseDate ? new Date(purchaseDate) : null,
-                Status: status
+                DateIn: dateIn ? new Date(dateIn) : null,
+                DateOut: dateOut ? new Date(dateOut) : null,
+                Consumable: consumable,
+                Remarks: remarks
             };
 
             db.collection('assets').doc(id).update(asset).then(() => {
