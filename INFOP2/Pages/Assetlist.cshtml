@@ -55,8 +55,8 @@
 
     <!-- Search & Add Button -->
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 mb-4">
-        <form class="d-flex flex-fill" method="get">
-            <input type="text" class="form-control me-2 rounded-pill" placeholder="Search assets..." asp-for="SearchTerm" />
+        <form id="search-form" class="d-flex flex-fill" method="get">
+            <input type="text" class="form-control me-2 rounded-pill" placeholder="Search assets..." asp-for="SearchTerm" id="search-term" />
             <button class="btn btn-outline-primary rounded-pill" type="submit">Search</button>
         </form>
         <button class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#addModal">
@@ -78,7 +78,7 @@
             <thead class="table-light">
                 <tr class="text-uppercase small text-muted">
                     <th>
-                        <a asp-page="./Assetlist" asp-all-route-data="@(new Dictionary<string, string> { { "SortOrder", Model.SortOrder == "name_asc" ? "name_desc" : "name_asc" }, { "SearchTerm", Model.SearchTerm } })" class="text-decoration-none text-dark">
+                        <a id="sort-name" asp-page="./Assetlist" asp-all-route-data="@(new Dictionary<string, string> { { "SortOrder", Model.SortOrder == "name_asc" ? "name_desc" : "name_asc" }, { "SearchTerm", Model.SearchTerm } })" class="text-decoration-none text-dark">
                             Assets & Equipment <span>@(Model.SortOrder == "name_asc" ? "▲" : Model.SortOrder == "name_desc" ? "▼" : "")</span>
                         </a>
                     </th>
@@ -210,9 +210,40 @@
 </div>
 
 @section Scripts {
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+     <!-- Firebase Compatibility SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+    <!-- Bootstrap JS (for modals) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Validation Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js"></script>
+
     <script>
+        // Declare db globally
+        let db = null;
+
+        // Initialize Firebase
+        try {
+            const firebaseConfig = @Html.Raw(Model.FirebaseConfigJson);
+            console.log("Firebase Config:", firebaseConfig);
+            if (!firebaseConfig || Object.keys(firebaseConfig).length === 0) {
+                throw new Error("Firebase configuration is empty or invalid");
+            }
+            const app = firebase.initializeApp(firebaseConfig);
+            db = firebase.firestore();
+            console.log("Firebase initialized successfully, db:", !!db);
+        } catch (error) {
+            console.error("Firebase initialization error:", error);
+        }
+
         let assets = [];
         let currentPage = @Model.CurrentPage;
         const pageSize = @Model.PageSize;
@@ -221,8 +252,14 @@
         let sortOrder = '@Model.SortOrder' || 'name_asc';
         let searchTerm = '@Model.SearchTerm' || '';
 
-        // Load Assets from Firestore on page load
+        // Load Assets on page load
         window.onload = function () {
+            if (!db) {
+                console.error("Firestore db is not initialized. Check Firebase configuration and script loading.");
+                document.getElementById('no-data').innerText = 'Failed to load data. Please check Firebase configuration.';
+                document.getElementById('no-data').style.display = 'block';
+                return;
+            }
             loadAssets();
         };
 
@@ -290,8 +327,7 @@
                         <td>${asset.DateOut ? asset.DateOut.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : ''}</td>
                         <td>${asset.Consumable}</td>
                         <td>${asset.Remarks}</td>
-                        <td>
-                            <a href="#" class="btn btn-sm btn-primary me-1 rounded-pill" onclick="openDetail('${asset.Id}')"><i class="fas fa-eye"></i></a>
+                        <td>                       
                             <button class="btn btn-sm btn-warning me-1 rounded-pill" onclick="openEdit('${asset.Id}')"><i class="fas fa-edit"></i></button>
                             <button class="btn btn-sm btn-danger rounded-pill" onclick="deleteAsset('${asset.Id}')"><i class="fas fa-trash"></i></button>
                         </td>
@@ -301,7 +337,7 @@
             }
         }
 
-        // Update Summary (Total Assets, Consumables, Non-Consumables)
+        // Update Summary
         function updateSummary() {
             let totalAssets = assets.length;
             let consumableAssets = assets.filter(asset => asset.Consumable === 'Consumable').length;
@@ -338,6 +374,10 @@
 
         // Add Asset
         function addAsset() {
+            if (!db) {
+                console.error("Cannot add asset: Firestore db is not initialized");
+                return;
+            }
             const name = document.getElementById('add-name').value;
             const dateIn = document.getElementById('add-datein').value;
             const dateOut = document.getElementById('add-dateout').value;
@@ -368,6 +408,11 @@
 
             db.collection('assets').add(asset).then(() => {
                 $('#addModal').modal('hide');
+                document.getElementById('add-name').value = '';
+                document.getElementById('add-datein').value = '';
+                document.getElementById('add-dateout').value = '';
+                document.getElementById('add-consumable').value = '';
+                document.getElementById('add-remarks').value = '';
                 loadAssets();
             }).catch(error => {
                 console.error("Error adding asset:", error);
@@ -390,6 +435,10 @@
 
         // Update Asset
         function updateAsset() {
+            if (!db) {
+                console.error("Cannot update asset: Firestore db is not initialized");
+                return;
+            }
             const id = document.getElementById('edit-id').value;
             const name = document.getElementById('edit-name').value;
             const dateIn = document.getElementById('edit-datein').value;
@@ -429,6 +478,10 @@
 
         // Delete Asset
         function deleteAsset(id) {
+            if (!db) {
+                console.error("Cannot delete asset: Firestore db is not initialized");
+                return;
+            }
             if (confirm('Are you sure you want to delete this asset?')) {
                 db.collection('assets').doc(id).delete().then(() => {
                     loadAssets();
@@ -441,22 +494,32 @@
         // Open Detail (Placeholder)
         function openDetail(id) {
             alert('Detail view for ID: ' + id);
-            // Implement detail view as needed
         }
 
         // Search Handler
-        document.getElementById('search-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            searchTerm = document.getElementById('search-term').value;
-            currentPage = 1;
-            window.location.href = `/Assetlist?CurrentPage=${currentPage}&SearchTerm=${searchTerm}&SortOrder=${sortOrder}`;
-        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchForm = document.getElementById('search-form');
+            if (searchForm) {
+                searchForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    searchTerm = document.getElementById('search-term').value;
+                    currentPage = 1;
+                    window.location.href = `/Assetlist?CurrentPage=${currentPage}&SearchTerm=${searchTerm}&SortOrder=${sortOrder}`;
+                });
+            } else {
+                console.error('Search form not found');
+            }
 
-        // Sort Handler
-        document.getElementById('sort-name').addEventListener('click', (e) => {
-            e.preventDefault();
-            sortOrder = sortOrder === 'name_asc' ? 'name_desc' : 'name_asc';
-            window.location.href = `/Assetlist?CurrentPage=${currentPage}&SearchTerm=${searchTerm}&SortOrder=${sortOrder}`;
+            const sortLink = document.getElementById('sort-name');
+            if (sortLink) {
+                sortLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    sortOrder = sortOrder === 'name_asc' ? 'name_desc' : 'name_asc';
+                    window.location.href = `/Assetlist?CurrentPage=${currentPage}&SearchTerm=${searchTerm}&SortOrder=${sortOrder}`;
+                });
+            } else {
+                console.error('Sort link not found');
+            }
         });
     </script>
 }
