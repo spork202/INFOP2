@@ -1,0 +1,73 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "User Settings";
+    Layout = "_Layout";
+}
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Settings</title>
+    <link rel="stylesheet" href="css/user-settings.css"/>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h2 class="fw-bold">@ViewData["Title"]</h2>
+            <h4 class="h6">Hello, <strong>@User.Identity?.Name</strong></h4>
+        </div>
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <p class="text-muted">Edit your user settings</p>
+        </div>
+    </div>
+    
+    <!-- User Settings Card -->
+    <div class="col-md-12">
+        <div class="card border-0 shadow-sm rounded-4 mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center bd-unset">
+                <strong>About</strong>
+            </div>
+            <div class="card-body">
+                <form id="userSettingsForm">
+                    <div class="mb-3">
+                        <label for="userEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="userEmail" placeholder="@User.Identity?.Name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="newPassword" class="form-label">New Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control br-lr" id="newPassword" placeholder="Enter new password">
+                            <span class="input-group-text" onclick="togglePasswordVisibility('newPassword', 'togglePasswordIcon1')" style="cursor: pointer;">
+                                <i class="fas fa-eye icon-muted" id="togglePasswordIcon1"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Retype New Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control br-lr" id="confirmPassword" placeholder="Retype new password">
+                            <span class="input-group-text " onclick="togglePasswordVisibility('confirmPassword', 'togglePasswordIcon2')" style="cursor: pointer;">
+                                <i class="fas fa-eye icon-muted" id="togglePasswordIcon2"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary me-2">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+
+<script src="js/user-settings.js" asp-append-version="true"></script>

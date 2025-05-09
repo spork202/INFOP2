@@ -1,0 +1,34 @@
+﻿.bd-unset {
+    border: unset;
+}
+
+.icon-muted {
+    color: #B1B1B1;
+}
+
+.input-group-text {
+    background: transparent;
+}
+
+/* Button Borders */
+
+.br-l {
+    border-left: white;
+}
+
+.br-lr {
+    border-left: white;
+    border-right: white;
+}
+
+
+/* Override */
+
+h1 {
+    color: #394C74;
+    letter-spacing: 6px;
+}
+
+p {
+    color: #575757;
+}
