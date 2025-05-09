@@ -12,11 +12,15 @@ namespace INFOP2.Pages
     public class Assetlist : PageModel
     {
         private readonly ILogger<Assetlist> _logger;
+        private readonly IConfiguration _configuration;
 
-        public Assetlist(ILogger<Assetlist> logger)
+        public Assetlist(ILogger<Assetlist> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _configuration = configuration;
         }
+
+            public string FirebaseConfigJson { get; set; }
 
         public List<Asset> AssetList { get; set; } = new List<Asset>();
 
@@ -39,7 +43,7 @@ namespace INFOP2.Pages
         public void OnGet()
         {
             _logger.LogInformation("Assetlist page accessed by {User}", User.Identity.Name);
-            // Data will be loaded client-side via Firestore
+            FirebaseConfigJson = System.Text.Json.JsonSerializer.Serialize(_configuration.GetSection("Firebase").Get<Dictionary<string, string>>());
         }
     }
 
