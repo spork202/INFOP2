@@ -114,15 +114,15 @@
             </div>
         </div>
 
-         <!-- Pagination -->
+        <!-- Pagination -->
         <div class="d-flex justify-content-end align-items-center mt-3">
-            <small class="me-3 text-muted">1 - 10 of 25</small>
+            <small id="pagination-info" class="me-3 text-muted">1 - 10 of 25</small>
             <small class="me-3">|</small>
             <small class="me-3">This page you're on</small>
             <nav>
                 <ul class="pagination pagination-sm mb-0">
                     <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                        <a id="prev-page" class="page-link" href="#" tabindex="-1" aria-disabled="true">
                             <i class="fas fa-angle-left"></i>
                         </a>
                     </li>
@@ -133,7 +133,7 @@
                         <a class="page-link" href="#">2</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="#">
+                        <a id="next-page" class="page-link" href="#">
                             <i class="fas fa-angle-right"></i>
                         </a>
                     </li>
@@ -235,6 +235,29 @@
 </div>
 
 @section Scripts {
+    <!-- Firebase Compatibility SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <!-- Initialize Firebase -->
+    <script>
+        // Declare db globally
+        let db = null;
+
+        try {
+            const firebaseConfig = @Html.Raw(Model.FirebaseConfigJson);
+            console.log("Firebase Config:", firebaseConfig);
+            if (!firebaseConfig || Object.keys(firebaseConfig).length === 0) {
+                throw new Error("Firebase configuration is empty or invalid");
+            }
+            const app = firebase.initializeApp(firebaseConfig);
+            db = firebase.firestore();
+            console.log("Firebase initialized successfully, db:", !!db);
+        } catch (error) {
+            console.error("Firebase initialization error:", error);
+        }
+    </script>
+
     <!-- Include Chart.js for the bar chart -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
@@ -251,7 +274,7 @@
         // Chart instance
         let financeChart;
 
-        // Load Transactions from Firestore on page load
+        // Load Transactions on page load
         window.onload = function () {
             loadTransactions();
         };
@@ -259,12 +282,10 @@
         // Load Transactions from Firestore
         function loadTransactions() {
             let query = db.collection('transactions');
-
             if (searchTerm) {
                 query = query.where('Description', '>=', searchTerm.toLowerCase())
                              .where('Description', '<=', searchTerm.toLowerCase() + '\uf8ff');
             }
-
             query.get().then(snapshot => {
                 transactions = [];
                 snapshot.forEach(doc => {
@@ -278,14 +299,12 @@
                         Notes: data.Notes || ''
                     });
                 });
-
                 // Sort
                 if (sortOrder === 'description_desc') {
                     transactions.sort((a, b) => b.Description.localeCompare(a.Description));
                 } else {
                     transactions.sort((a, b) => a.Description.localeCompare(b.Description));
                 }
-
                 totalItems = transactions.length;
                 totalPages = Math.ceil(totalItems / pageSize);
                 currentPage = Math.max(1, Math.min(currentPage, totalPages));
@@ -293,7 +312,6 @@
                 updatePagination();
                 updateSummary();
                 updateChart();
-
                 if (transactions.length === 0) {
                     document.getElementById('table-container').style.display = 'none';
                     document.getElementById('no-data').style.display = 'block';
@@ -303,6 +321,9 @@
                 }
             }).catch(error => {
                 console.error("Error loading transactions:", error);
+                document.getElementById('table-container').style.display = 'none';
+                document.getElementById('no-data').innerHTML = '<p class="text-danger">Failed to load transactions. Please try again later.</p>';
+                document.getElementById('no-data').style.display = 'block';
             });
         }
 
@@ -310,10 +331,8 @@
         function renderTable() {
             const tbody = document.getElementById('transaction-table-body');
             tbody.innerHTML = '';
-
             const start = (currentPage - 1) * pageSize;
             const end = Math.min(start + pageSize, transactions.length);
-
             for (let i = start; i < end; i++) {
                 const transaction = transactions[i];
                 const row = `
@@ -324,7 +343,6 @@
                         <td>${transaction.Date ? transaction.Date.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : ''}</td>
                         <td>${transaction.Notes}</td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-primary me-1 rounded-pill" onclick="openDetail('${transaction.Id}')"><i class="fas fa-eye"></i></a>
                             <button class="btn btn-sm btn-warning me-1 rounded-pill" onclick="openEdit('${transaction.Id}')"><i class="fas fa-edit"></i></button>
                             <button class="btn btn-sm btn-danger rounded-pill" onclick="deleteTransaction('${transaction.Id}')"><i class="fas fa-trash"></i></button>
                         </td>
@@ -334,11 +352,10 @@
             }
         }
 
-        // Update Summary (Total Income, Expenses, and Net Balance)
+        // Update Summary
         function updateSummary() {
             let totalIncome = 0;
             let totalExpenses = 0;
-
             transactions.forEach(transaction => {
                 if (transaction.Category === 'Income') {
                     totalIncome += transaction.Amount;
@@ -346,27 +363,21 @@
                     totalExpenses += transaction.Amount;
                 }
             });
-
             const netBalance = totalIncome - totalExpenses;
-
             document.getElementById('total-income').innerText = totalIncome.toFixed(2);
             document.getElementById('total-expenses').innerText = totalExpenses.toFixed(2);
             document.getElementById('net-balance').innerText = netBalance.toFixed(2);
             document.getElementById('net-balance').parentElement.className = netBalance >= 0 ? 'text-success' : 'text-danger';
         }
 
-        // Update Chart (Monthly Income vs Expenses)
+        // Update Chart
         function updateChart() {
             const monthlyData = {};
             const currentYear = new Date().getFullYear();
-
-            // Initialize months for the current year
             for (let month = 0; month < 12; month++) {
                 const monthKey = `${currentYear}-${month + 1}`;
                 monthlyData[monthKey] = { income: 0, expenses: 0 };
             }
-
-            // Aggregate data by month
             transactions.forEach(transaction => {
                 if (transaction.Date) {
                     const year = transaction.Date.getFullYear();
@@ -381,20 +392,15 @@
                     }
                 }
             });
-
             const labels = Object.keys(monthlyData).map(key => {
                 const [year, month] = key.split('-');
                 return new Date(year, month - 1).toLocaleString('default', { month: 'short' });
             });
             const incomeData = Object.values(monthlyData).map(data => data.income);
             const expensesData = Object.values(monthlyData).map(data => data.expenses);
-
-            // Destroy existing chart if it exists
             if (financeChart) {
                 financeChart.destroy();
             }
-
-            // Create new chart
             const ctx = document.getElementById('financeChart').getContext('2d');
             financeChart = new Chart(ctx, {
                 type: 'bar',
@@ -420,48 +426,39 @@
                 options: {
                     responsive: true,
                     scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Amount'
-                            }
-                        },
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Month'
-                            }
-                        }
+                        y: { beginAtZero: true, title: { display: true, text: 'Amount' } },
+                        x: { title: { display: true, text: 'Month' } }
                     },
-                    plugins: {
-                        legend: {
-                            position: 'top'
-                        }
-                    }
+                    plugins: { legend: { position: 'top' } }
                 }
             });
         }
 
         // Update Pagination
         function updatePagination() {
+            const paginationInfo = document.getElementById('pagination-info');
+            if (!paginationInfo) {
+                console.error("Element with ID 'pagination-info' not found");
+                return;
+            }
             const start = currentPage === 1 ? 1 : (currentPage - 1) * pageSize + 1;
             const end = Math.min(currentPage * pageSize, totalItems);
-            document.getElementById('pagination-info').innerText = `${start}-${end} of ${totalItems} This page you're on ${currentPage}`;
-
+            paginationInfo.innerText = `${start}-${end} of ${totalItems} This page you're on ${currentPage}`;
             const prevBtn = document.getElementById('prev-page');
             const nextBtn = document.getElementById('next-page');
-
-            if (currentPage === 1) {
-                prevBtn.classList.add('disabled');
-            } else {
-                prevBtn.classList.remove('disabled');
+            if (prevBtn) {
+                if (currentPage === 1) {
+                    prevBtn.classList.add('disabled');
+                } else {
+                    prevBtn.classList.remove('disabled');
+                }
             }
-
-            if (currentPage === totalPages || totalPages === 0) {
-                nextBtn.classList.add('disabled');
-            } else {
-                nextBtn.classList.remove('disabled');
+            if (nextBtn) {
+                if (currentPage === totalPages || totalPages === 0) {
+                    nextBtn.classList.add('disabled');
+                } else {
+                    nextBtn.classList.remove('disabled');
+                }
             }
         }
 
@@ -472,7 +469,6 @@
             const category = document.getElementById('add-category').value;
             const date = document.getElementById('add-date').value;
             const notes = document.getElementById('add-notes').value;
-
             if (!description) {
                 document.getElementById('add-description-error').innerText = 'Description is required';
                 return;
@@ -481,21 +477,21 @@
                 document.getElementById('add-amount-error').innerText = 'Amount must be greater than 0';
                 return;
             }
-
             const transaction = {
                 Description: description.toLowerCase(),
                 DisplayDescription: description,
                 Amount: amount,
                 Category: category,
                 Date: date ? new Date(date) : null,
-                Notes: notes
+                Notes: notes,
+                userId: null // Placeholder for no authentication
             };
-
             db.collection('transactions').add(transaction).then(() => {
                 $('#addModal').modal('hide');
                 loadTransactions();
             }).catch(error => {
                 console.error("Error adding transaction:", error);
+                alert("Failed to add transaction. Please try again.");
             });
         }
 
@@ -521,7 +517,6 @@
             const category = document.getElementById('edit-category').value;
             const date = document.getElementById('edit-date').value;
             const notes = document.getElementById('edit-notes').value;
-
             if (!description) {
                 document.getElementById('edit-description-error').innerText = 'Description is required';
                 return;
@@ -530,21 +525,21 @@
                 document.getElementById('edit-amount-error').innerText = 'Amount must be greater than 0';
                 return;
             }
-
             const transaction = {
                 Description: description.toLowerCase(),
                 DisplayDescription: description,
                 Amount: amount,
                 Category: category,
                 Date: date ? new Date(date) : null,
-                Notes: notes
+                Notes: notes,
+                userId: null // Placeholder for no authentication
             };
-
             db.collection('transactions').doc(id).update(transaction).then(() => {
                 $('#editModal').modal('hide');
                 loadTransactions();
             }).catch(error => {
                 console.error("Error updating transaction:", error);
+                alert("Failed to update transaction. Please try again.");
             });
         }
 
@@ -555,14 +550,9 @@
                     loadTransactions();
                 }).catch(error => {
                     console.error("Error deleting transaction:", error);
+                    alert("Failed to delete transaction. Please try again.");
                 });
             }
-        }
-
-        // Open Detail (Placeholder)
-        function openDetail(id) {
-            alert('Detail view for ID: ' + id);
-            // Implement detail view as needed
         }
 
         // Search Handler
