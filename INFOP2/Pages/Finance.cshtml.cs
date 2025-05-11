@@ -12,12 +12,14 @@ namespace INFOP2.Pages
     public class Finance : PageModel
     {
         private readonly ILogger<Finance> _logger;
+        private readonly IConfiguration _configuration;
 
-        public Finance(ILogger<Finance> logger)
+        public Finance(ILogger<Finance> logger,IConfiguration configuration)
         {
             _logger = logger;
+            _configuration = configuration;
         }
-
+        public string FirebaseConfigJson { get; set; }
         public List<Transaction> TransactionList { get; set; } = new List<Transaction>();
 
         [BindProperty]
@@ -39,7 +41,8 @@ namespace INFOP2.Pages
         public void OnGet()
         {
             _logger.LogInformation("Finance page accessed by {User}", User.Identity.Name);
-            // Data will be loaded client-side via Firestore
+            FirebaseConfigJson = System.Text.Json.JsonSerializer.Serialize(_configuration.GetSection("Firebase").Get<Dictionary<string, string>>());
+        
         }
     }
 
@@ -62,4 +65,5 @@ namespace INFOP2.Pages
 
         public string Notes { get; set; } = string.Empty;
     }
+    
 }
