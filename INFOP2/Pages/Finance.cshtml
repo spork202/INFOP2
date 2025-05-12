@@ -80,7 +80,7 @@
             <button id="add-btn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">
                 <i class="fas fa-plus me-1"></i> Add Transaction
             </button>
-            <button class="btn btn-outline-secondary">
+            <button class="btn btn-outline-secondary" data-bs-tooltip="tooltip" title="Export to Excel">
                 <i class="fa fa-download"></i>
             </button>
         </div>
@@ -344,12 +344,12 @@
                     <tr>
                         <td>${transaction.Description}</td>
                         <td>${transaction.Amount.toFixed(2)}</td>
-                        <td><span class="badge ${transaction.Category === 'Income' ? 'bg-success' : 'bg-danger'}">${transaction.Category}</span></td>
+                        <td><span class="badge px-3 py-2 ${transaction.Category === 'Income' ? 'bg-success' : 'bg-danger'}">${transaction.Category}</span></td>
                         <td>${transaction.Date ? transaction.Date.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : ''}</td>
                         <td>${transaction.Notes}</td>
                         <td>
-                            <button class="btn btn-sm btn-warning me-1" onclick="openEdit('${transaction.Id}')"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger" onclick="deleteTransaction('${transaction.Id}')"><i class="fas fa-trash"></i></button>
+                            <button class="btn btn-sm btn-warning me-1" data-bs-tooltop="tooltip" title="Edit" onclick="openEdit('${transaction.Id}')"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-danger" data-bs-tooltop="tooltip" title="Delete" onclick="deleteTransaction('${transaction.Id}')"><i class="fas fa-trash"></i></button>
                         </td>
                     </tr>
                 `;

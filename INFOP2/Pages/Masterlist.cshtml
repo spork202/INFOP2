@@ -78,7 +78,7 @@
             <button id="add-btn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">
                 <i class="fas fa-plus me-1"></i> Add Person
             </button>
-            <button class="btn btn-outline-secondary">
+            <button class="btn btn-outline-secondary" data-bs-tooltip="tooltip" title="Export to Excel">
                 <i class="fa fa-download"></i>
             </button>
         </div>
@@ -372,8 +372,8 @@
                         <td>${person.KSAAddress || 'N/A'}</td>
                         <td>${person.Birthdate ? person.Birthdate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : 'N/A'}</td>
                         <td>
-                            <button class="btn btn-sm btn-warning me-1" onclick="openEdit('${person.Id}')"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger" onclick="deletePerson('${person.Id}')"><i class="fas fa-trash"></i></button>
+                            <button class="btn btn-sm btn-warning me-1" data-bs-tooltop="tooltip" title="Edit" onclick="openEdit('${person.Id}')"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-danger" data-bs-tooltop="tooltip" title="Delete" onclick="deletePerson('${person.Id}')"><i class="fas fa-trash"></i></button>
                         </td>
                     </tr>
                 `;
