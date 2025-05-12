@@ -8,6 +8,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace INFOP2.Pages
 {
+    using Microsoft.Extensions.Configuration;
+
     [Authorize]
     public class Assetlist : PageModel
     {

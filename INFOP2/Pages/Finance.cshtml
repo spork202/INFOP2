@@ -59,7 +59,9 @@
         <div class="col-12">
             <div class="card shadow-sm border-0">
                 <div class="card-body">
-                    <h5 class="card-title">Income vs Expenses (Monthly)</h5>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title mb-0">Income vs Expenses (Monthly)</h5>
+                    </div>
                     <canvas id="financeChart" height="100"></canvas>
                 </div>
             </div>
@@ -70,13 +72,16 @@
     <div class="row mb-3 align-items-center">
         <div class="col-md-6 mb-3 mb-md-0">
             <form id="search-form" method="get" class="d-flex">
-                <input type="text" class="form-control me-2 rounded-pill" placeholder="Search by description..." asp-for="SearchTerm" id="search-term" />
-                <button type="submit" class="btn btn-outline-primary rounded-pill">Search</button>
+                <input type="text" class="form-control me-2" placeholder="Search by description..." asp-for="SearchTerm" id="search-term" />
+                <button type="submit" class="btn btn-outline-primary">Search</button>
             </form>
         </div>
         <div class="col-md-6 text-md-end">
-            <button id="add-btn" class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#addModal">
+            <button id="add-btn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">
                 <i class="fas fa-plus me-1"></i> Add Transaction
+            </button>
+            <button class="btn btn-outline-secondary" id="exportBtnFinance" data-bs-tooltip="tooltip" title="Export to Excel">
+                <i class="fa fa-download"></i>
             </button>
         </div>
     </div>
@@ -85,7 +90,7 @@
     <div class="row mb-3">
         <div class="col-12 d-flex justify-content-between align-items-center">
             <h5>Transaction List</h5>
-            <a href="#" class="text-primary">View All</a>
+            <a href="#" class="text-primary small">View More</a>
         </div>
     </div>
 
@@ -93,10 +98,10 @@
         <div class="table-container">
             <div class="table-responsive">
                 <table class="table table-striped table-hover align-middle">
-                    <thead class="table-dark">
+                    <thead class="table-light">
                         <tr>
                             <th>
-                                <a id="sort-description" asp-page="./Finance" asp-all-route-data="@(new Dictionary<string, string> { { "SortOrder", Model.SortOrder == "description_asc" ? "description_desc" : "description_asc" }, { "SearchTerm", Model.SearchTerm } })" class="text-white text-decoration-none">
+                                <a id="sort-description" class="table-light" asp-page="./Finance" asp-all-route-data="@(new Dictionary<string, string> { { "SortOrder", Model.SortOrder == "description_asc" ? "description_desc" : "description_asc" }, { "SearchTerm", Model.SearchTerm } })" class="text-white text-decoration-none">
                                     Description <span id="sort-icon">@(Model.SortOrder == "description_asc" ? "▲" : Model.SortOrder == "description_desc" ? "▼" : "")</span>
                                 </a>
                             </th>
@@ -339,12 +344,12 @@
                     <tr>
                         <td>${transaction.Description}</td>
                         <td>${transaction.Amount.toFixed(2)}</td>
-                        <td><span class="badge ${transaction.Category === 'Income' ? 'bg-success' : 'bg-danger'}">${transaction.Category}</span></td>
+                        <td><span class="badge px-3 py-2 ${transaction.Category === 'Income' ? 'bg-success' : 'bg-danger'}">${transaction.Category}</span></td>
                         <td>${transaction.Date ? transaction.Date.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : ''}</td>
                         <td>${transaction.Notes}</td>
                         <td>
-                            <button class="btn btn-sm btn-warning me-1 rounded-pill" onclick="openEdit('${transaction.Id}')"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger rounded-pill" onclick="deleteTransaction('${transaction.Id}')"><i class="fas fa-trash"></i></button>
+                            <button class="btn btn-sm btn-warning me-1" data-bs-tooltop="tooltip" title="Edit" onclick="openEdit('${transaction.Id}')"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-danger" data-bs-tooltop="tooltip" title="Delete" onclick="deleteTransaction('${transaction.Id}')"><i class="fas fa-trash"></i></button>
                         </td>
                     </tr>
                 `;
