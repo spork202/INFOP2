@@ -4,11 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - INFOP2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/INFOP2.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/sidebar.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/border-styles.css" asp-append-version="true"/>
+   
 </head>
 <body>
 <div class="d-flex" id="wrapper">
@@ -23,16 +24,16 @@
                     <i class="fas fa-home me-2"></i> <span class="sidebar-text sb-txt-overflow">Dashboard</span>
                 </a>
                 <a asp-page="/Masterlist" class="list-group-item">
-                    <i class="fas fa-address-book me-2"></i> <span class="sidebar-text sb-txt-overflow">Masterlist</span>
+                    <i class="fas fa-address-book me-2"></i> <span class="sidebar-text sb-txt-overflow">Master List</span>
                 </a>
                 <a asp-page="/Assetlist" class="list-group-item">
-                    <i class="fas fa-clipboard me-2"></i> <span class="sidebar-text sb-txt-overflow">Assetlist</span>
+                    <i class="fas fa-clipboard me-2"></i> <span class="sidebar-text sb-txt-overflow">Asset List</span>
                 </a>
                 <a asp-page="/Finance" class="list-group-item">
                     <i class="fas fa-chart-line me-2"></i> <span class="sidebar-text sb-txt-overflow">Finance</span>
                 </a>
-                <a asp-page="/TransportList" class="list-group-item"> 
-                    <i class="fas fa-van-shuttle me-2"></i> <span class="sidebar-text sb-txt-overflow">Transport List</span>
+                <a asp-page="/Schedule" class="list-group-item"> 
+                    <i class="fas fa-calendar me-2"></i> <span class="sidebar-text sb-txt-overflow">Schedule</span>
                 </a>
                 <a asp-page="/PrayerMinistry" class="list-group-item">
                     <i class="fas fa-place-of-worship me-2"></i> <span class="sidebar-text sb-txt-overflow">Prayer Ministry</span>
@@ -53,8 +54,8 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-        <div class="container txt-align-end">
-            <p>v1.3.6-alpha</p>
+        <div class="container d-flex justify-content-end">
+            <p>v1.5.11-alpha</p>
         </div>
     </div>
 </div>
