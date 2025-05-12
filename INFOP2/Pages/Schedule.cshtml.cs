@@ -7,15 +7,16 @@ using System.Collections.Generic;
 
 namespace INFOP2.Pages
 {
-    public class TransportList : PageModel
+    public class Schedule : PageModel
     {
       
         private readonly IConfiguration _configuration;
-        private readonly ILogger<TransportList> _logger;
+        private readonly ILogger<Schedule> _logger;
 
         public string FirebaseConfigJson { get; set; }
+      
 
-        public TransportList(IConfiguration configuration, ILogger<TransportList> logger)
+        public Schedule(ILogger<Schedule> logger,IConfiguration configuration)
         {
             _logger = logger;
             _configuration = configuration;

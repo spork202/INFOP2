@@ -54,21 +54,28 @@
     </div>
 
     <!-- Search & Add Button -->
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 mb-4">
-        <form id="search-form" class="d-flex flex-fill" method="get">
-            <input type="text" class="form-control me-2 rounded-pill" placeholder="Search assets..." asp-for="SearchTerm" id="search-term" />
-            <button class="btn btn-outline-primary rounded-pill" type="submit">Search</button>
-        </form>
-        <button class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#addModal">
-            <i class="fas fa-plus me-1"></i> Add Asset
-        </button>
+    <div class="row mb-3 align-items-center">
+        <div class="col-md-6 mb-3 mb-md-0">
+            <form id="search-form" method="get" class="d-flex">
+                <input type="text" class="form-control me-2" placeholder="Search assets..." asp-for="SearchTerm" id="search-term" />
+                <button type="submit" class="btn btn-outline-primary">Search</button>
+            </form>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <button id="add-btn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">
+                <i class="fas fa-plus me-1"></i> Add Asset
+            </button>
+            <button class="btn btn-outline-secondary" id="exportBtnAsset" data-bs-tooltip="tooltip" title="Export to Excel">
+                <i class="fa fa-download"></i>
+            </button>
+        </div>
     </div>
 
     <!-- Table Header -->
     <div class="row mb-2">
         <div class="col-12 d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Asset List</h5>
-            <a href="#" class="text-primary small">View All</a>
+            <a href="#" class="text-primary small">View More</a>
         </div>
     </div>
 
@@ -328,8 +335,8 @@
                         <td>${asset.Consumable}</td>
                         <td>${asset.Remarks}</td>
                         <td>                       
-                            <button class="btn btn-sm btn-warning me-1 rounded-pill" onclick="openEdit('${asset.Id}')"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger rounded-pill" onclick="deleteAsset('${asset.Id}')"><i class="fas fa-trash"></i></button>
+                            <button class="btn btn-sm btn-warning me-1" data-bs-tooltop="tooltip" title="Edit" onclick="openEdit('${asset.Id}')"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-danger" data-bs-tooltop="tooltip" title="Delete" onclick="deleteAsset('${asset.Id}')"><i class="fas fa-trash"></i></button>
                         </td>
                     </tr>
                 `;

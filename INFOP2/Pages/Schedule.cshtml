@@ -1,7 +1,7 @@
 @page
-@model INFOP2.Pages.TransportList
+@model INFOP2.Pages.Schedule
 @{
-    ViewData["Title"] = "Transport List";
+    ViewData["Title"] = "Schedule";
     Layout = "_Layout";
 }
 
@@ -116,26 +116,38 @@
                 <div class="modal-body">
                     <div class="row g-3">
                         <div class="col-md-6">
+                            <label class="form-label">Event</label>
+                            <input type="text" class="form-control" id="add-event-event" required />
+                            <span class="text-danger" id="add-event-event-error"></span>
+                        </div>
+                        <div class="col-md-6">
                             <label class="form-label">Subject</label>
                             <input type="text" class="form-control" id="add-event-subject" required />
                             <span class="text-danger" id="add-event-subject-error"></span>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Date</label>
-                            <input type="date" class="form-control" id="add-event-date" required />
-                            <span class="text-danger" id="add-event-date-error"></span>
+                            <label class="form-label">Date and Time</label>
+                            <input type="datetime-local" class="form-control" id="add-event-datetime" required />
+                            <span class="text-danger" id="add-event-datetime-error"></span>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Note</label>
-                            <input type="text" class="form-control" id="add-event-note" />
+                            <label class="form-label">Status</label>
+                            <select class="form-select" id="add-event-status" required>
+                                <option value="" selected disabled>Select status</option>
+                                <option value="Scheduled">Scheduled</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                            <span class="text-danger" id="add-event-status-error"></span>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Driver</label>
-                            <select class="form-select" id="add-event-driver" required>
-                                <option value="" selected disabled>Select driver</option>
+                            <label class="form-label">Drivers</label>
+                            <select class="form-select" id="add-event-drivers" multiple required>
                                 <!-- Populated dynamically -->
                             </select>
-                            <span class="text-danger" id="add-event-driver-error"></span>
+                            <small class="text-muted">Hold Ctrl (Cmd on Mac) to select multiple</small>
+                            <span class="text-danger" id="add-event-drivers-error"></span>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Passengers</label>
@@ -143,6 +155,20 @@
                                 <!-- Populated dynamically from people collection -->
                             </select>
                             <small class="text-muted">Hold Ctrl (Cmd on Mac) to select multiple</small>
+                        </div>
+                        <!-- Programs Section -->
+                        <div class="col-12">
+                            <label class="form-label">Programs</label>
+                            <div id="add-event-programs" class="border p-3 rounded">
+                                <!-- Dynamically added program fields -->
+                            </div>
+                            <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="addProgram('add')">
+                                <i class="fa fa-plus me-1"></i>Add Program
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Note</label>
+                            <input type="text" class="form-control" id="add-event-note" />
                         </div>
                         <div class="col-md-12">
                             <label class="form-label">Remarks</label>
@@ -181,26 +207,38 @@
                     <input type="hidden" id="edit-event-id" />
                     <div class="row g-3">
                         <div class="col-md-6">
+                            <label class="form-label">Event</label>
+                            <input type="text" class="form-control" id="edit-event-event" required />
+                            <span class="text-danger" id="edit-event-event-error"></span>
+                        </div>
+                        <div class="col-md-6">
                             <label class="form-label">Subject</label>
                             <input type="text" class="form-control" id="edit-event-subject" required />
                             <span class="text-danger" id="edit-event-subject-error"></span>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Date</label>
-                            <input type="date" class="form-control" id="edit-event-date" required />
-                            <span class="text-danger" id="edit-event-date-error"></span>
+                            <label class="form-label">Date and Time</label>
+                            <input type="datetime-local" class="form-control" id="edit-event-datetime" required />
+                            <span class="text-danger" id="edit-event-datetime-error"></span>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Note</label>
-                            <input type="text" class="form-control" id="edit-event-note" />
+                            <label class="form-label">Status</label>
+                            <select class="form-select" id="edit-event-status" required>
+                                <option value="" selected disabled>Select status</option>
+                                <option value="Scheduled">Scheduled</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                            <span class="text-danger" id="edit-event-status-error"></span>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Driver</label>
-                            <select class="form-select" id="edit-event-driver" required>
-                                <option value="" selected disabled>Select driver</option>
+                            <label class="form-label">Drivers</label>
+                            <select class="form-select" id="edit-event-drivers" multiple required>
                                 <!-- Populated dynamically -->
                             </select>
-                            <span class="text-danger" id="edit-event-driver-error"></span>
+                            <small class="text-muted">Hold Ctrl (Cmd on Mac) to select multiple</small>
+                            <span class="text-danger" id="edit-event-drivers-error"></span>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Passengers</label>
@@ -208,6 +246,20 @@
                                 <!-- Populated dynamically from people collection -->
                             </select>
                             <small class="text-muted">Hold Ctrl (Cmd on Mac) to select multiple</small>
+                        </div>
+                        <!-- Programs Section -->
+                        <div class="col-12">
+                            <label class="form-label">Programs</label>
+                            <div id="edit-event-programs" class="border p-3 rounded">
+                                <!-- Dynamically added program fields -->
+                            </div>
+                            <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="addProgram('edit')">
+                                <i class="fa fa-plus me-1"></i>Add Program
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Note</label>
+                            <input type="text" class="form-control" id="edit-event-note" />
                         </div>
                         <div class="col-md-12">
                             <label class="form-label">Remarks</label>
@@ -319,11 +371,14 @@
                     const data = doc.data();
                     events.push({
                         Id: doc.id,
+                        Event: data.Event || '',
                         Subject: data.Subject,
-                        Date: data.Date || '',
+                        DateTime: data.DateTime || '',
+                        Status: data.Status || 'Scheduled',
                         Note: data.Note || '',
-                        DriverId: data.DriverId,
+                        DriverIds: data.DriverIds || [], // Changed from DriverId to DriverIds
                         Passengers: data.Passengers || [],
+                        Programs: data.Programs || [],
                         Remarks: data.Remarks || '',
                         ClosingNotes: data.ClosingNotes || '',
                         Verse: data.Verse || '',
@@ -342,8 +397,8 @@
 
         // Populate driver and passenger selects in event modals
         function populateSelects() {
-            const addDriverSelect = document.getElementById('add-event-driver');
-            const editDriverSelect = document.getElementById('edit-event-driver');
+            const addDriverSelect = document.getElementById('add-event-drivers');
+            const editDriverSelect = document.getElementById('edit-event-drivers');
             const addPassengerSelect = document.getElementById('add-event-passengers');
             const editPassengerSelect = document.getElementById('edit-event-passengers');
 
@@ -353,8 +408,8 @@
             }
 
             // Clear existing options
-            addDriverSelect.innerHTML = '<option value="" selected disabled>Select driver</option>';
-            editDriverSelect.innerHTML = '<option value="" selected disabled>Select driver</option>';
+            addDriverSelect.innerHTML = '';
+            editDriverSelect.innerHTML = '';
             addPassengerSelect.innerHTML = '';
             editPassengerSelect.innerHTML = '';
 
@@ -373,6 +428,41 @@
             });
         }
 
+        // Add Program Field Dynamically
+        function addProgram(modalType, program = { Name: '', AssignedPeople: [] }) {
+            const container = document.getElementById(`${modalType}-event-programs`);
+            const programId = `program-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+            const programHtml = `
+                <div class="program-entry mb-3 border p-3 rounded" id="${programId}">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <label class="form-label mb-0">Program Name</label>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="removeProgram('${programId}')">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                    <input type="text" class="form-control mb-2 program-name" value="${program.Name}" required />
+                    <label class="form-label">Assigned People</label>
+                    <select class="form-select program-people" multiple>
+                        ${people.map(person => `
+                            <option value="${person.Name}" ${program.AssignedPeople.includes(person.Name) ? 'selected' : ''}>
+                                ${person.Name}
+                            </option>
+                        `).join('')}
+                    </select>
+                    <small class="text-muted">Hold Ctrl (Cmd on Mac) to select multiple</small>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', programHtml);
+        }
+
+        // Remove Program Field
+        function removeProgram(programId) {
+            const programElement = document.getElementById(programId);
+            if (programElement) {
+                programElement.remove();
+            }
+        }
+
         // Render Transport Events
         function renderEvents() {
             const container = document.getElementById('events-container');
@@ -382,17 +472,24 @@
             }
             container.innerHTML = '';
             events.forEach(event => {
-                const driver = drivers.find(d => d.Id === event.DriverId);
-                const driverName = driver ? driver.Name : 'Unknown';
+                const driverNames = event.DriverIds.map(id => {
+                    const driver = drivers.find(d => d.Id === id);
+                    return driver ? driver.Name : 'Unknown';
+                }).join(', ') || 'None';
+                const programsList = event.Programs.length > 0
+                    ? event.Programs.map(p => `${p.Name}: ${p.AssignedPeople.join(', ') || 'None'}`).join('; ')
+                    : 'None';
                 const card = `
                     <div class="card border-0 shadow-sm rounded-4 mb-4" data-id="${event.Id}">
                         <div class="card-header bg-light d-flex justify-content-between align-items-center bd-unset">
                             <div>
+                                <strong>Event:</strong> ${event.Event || 'N/A'}<br />
                                 <strong>Subject:</strong> ${event.Subject}<br />
-                                <strong>Date:</strong> ${event.Date || 'N/A'}<br />
-                                <strong>Note:</strong> ${event.Note || 'N/A'}<br />
-                                <strong>Driver:</strong> ${driverName}<br />
-                                <strong>Passengers:</strong> ${event.Passengers.length > 0 ? event.Passengers.join(', ') : 'None'}
+                                <strong>Date & Time:</strong> ${event.DateTime ? new Date(event.DateTime).toLocaleString() : 'N/A'}<br />
+                                <strong>Status:</strong> ${event.Status}<br />
+                                <strong>Drivers:</strong> ${driverNames}<br />
+                                <strong>Passengers:</strong> ${event.Passengers.length > 0 ? event.Passengers.join(', ') : 'None'}<br />
+                                <strong>Programs:</strong> ${programsList}
                             </div>
                             <div>
                                 <button class="btn btn-sm btn-outline-primary me-1" onclick="openEditEvent('${event.Id}')">
@@ -404,6 +501,7 @@
                             </div>
                         </div>
                         <div class="card-body">
+                            <div class="mb-2"><strong>Note:</strong> ${event.Note || 'N/A'}</div>
                             <div class="mb-2"><strong>Remarks:</strong> ${event.Remarks || 'N/A'}</div>
                             <div class="mb-2"><strong>Closing Notes:</strong> ${event.ClosingNotes || 'N/A'}</div>
                             <div><strong>Bible Verse:</strong> <em>${event.Verse || 'N/A'}</em></div>
@@ -432,7 +530,7 @@
             const driver = {
                 Name: name,
                 Contact: contact,
-                userId: null // Placeholder for no authentication
+                userId: null
             };
 
             db.collection('drivers').add(driver).then(() => {
@@ -475,7 +573,7 @@
             const driver = {
                 Name: name,
                 Contact: contact,
-                userId: null // Placeholder for no authentication
+                userId: null
             };
 
             db.collection('drivers').doc(id).update(driver).then(() => {
@@ -491,49 +589,69 @@
         // Add Transport Event
         document.getElementById('add-event-form').addEventListener('submit', function (e) {
             e.preventDefault();
+            const eventName = document.getElementById('add-event-event').value.trim();
             const subject = document.getElementById('add-event-subject').value.trim();
-            const date = document.getElementById('add-event-date').value;
+            const dateTime = document.getElementById('add-event-datetime').value;
+            const status = document.getElementById('add-event-status').value;
             const note = document.getElementById('add-event-note').value.trim();
-            const driverId = document.getElementById('add-event-driver').value;
+            const driverIds = Array.from(document.getElementById('add-event-drivers').selectedOptions).map(option => option.value);
             const passengers = Array.from(document.getElementById('add-event-passengers').selectedOptions).map(option => option.value);
+            const programs = Array.from(document.querySelectorAll('#add-event-programs .program-entry')).map(entry => ({
+                Name: entry.querySelector('.program-name').value.trim(),
+                AssignedPeople: Array.from(entry.querySelector('.program-people').selectedOptions).map(option => option.value)
+            })).filter(program => program.Name);
             const remarks = document.getElementById('add-event-remarks').value.trim();
             const closingNotes = document.getElementById('add-event-closing-notes').value.trim();
             const verse = document.getElementById('add-event-verse').value.trim();
 
             // Reset errors
+            document.getElementById('add-event-event-error').innerText = '';
             document.getElementById('add-event-subject-error').innerText = '';
-            document.getElementById('add-event-date-error').innerText = '';
-            document.getElementById('add-event-driver-error').innerText = '';
+            document.getElementById('add-event-datetime-error').innerText = '';
+            document.getElementById('add-event-status-error').innerText = '';
+            document.getElementById('add-event-drivers-error').innerText = '';
             document.getElementById('add-event-verse-error').innerText = '';
 
+            if (!eventName) {
+                document.getElementById('add-event-event-error').innerText = 'Event name is required';
+                return;
+            }
             if (!subject) {
                 document.getElementById('add-event-subject-error').innerText = 'Subject is required';
                 return;
             }
-            if (!date) {
-                document.getElementById('add-event-date-error').innerText = 'Date is required';
+            if (!dateTime) {
+                document.getElementById('add-event-datetime-error').innerText = 'Date and time are required';
                 return;
             }
-            if (!driverId) {
-                document.getElementById('add-event-driver-error').innerText = 'Driver is required';
+            if (!status) {
+                document.getElementById('add-event-status-error').innerText = 'Status is required';
+                return;
+            }
+            if (driverIds.length === 0) {
+                document.getElementById('add-event-drivers-error').innerText = 'At least one driver is required';
                 return;
             }
 
             const event = {
+                Event: eventName,
                 Subject: subject,
-                Date: date,
+                DateTime: dateTime,
+                Status: status,
                 Note: note,
-                DriverId: driverId,
+                DriverIds: driverIds,
                 Passengers: passengers,
+                Programs: programs,
                 Remarks: remarks,
                 ClosingNotes: closingNotes,
                 Verse: verse,
-                userId: null // Placeholder for no authentication
+                userId: null
             };
 
             db.collection('transport_events').add(event).then(() => {
                 $('#addEventModal').modal('hide');
                 document.getElementById('add-event-form').reset();
+                document.getElementById('add-event-programs').innerHTML = '';
                 loadEvents();
                 showSuccess("Transport event added successfully!");
             }).catch(error => {
@@ -547,14 +665,22 @@
             const event = events.find(e => e.Id === id);
             if (event) {
                 document.getElementById('edit-event-id').value = event.Id;
+                document.getElementById('edit-event-event').value = event.Event;
                 document.getElementById('edit-event-subject').value = event.Subject;
-                document.getElementById('edit-event-date').value = event.Date;
+                document.getElementById('edit-event-datetime').value = event.DateTime;
+                document.getElementById('edit-event-status').value = event.Status;
                 document.getElementById('edit-event-note').value = event.Note;
-                document.getElementById('edit-event-driver').value = event.DriverId;
+                const driverSelect = document.getElementById('edit-event-drivers');
+                Array.from(driverSelect.options).forEach(option => {
+                    option.selected = event.DriverIds.includes(option.value);
+                });
                 const passengerSelect = document.getElementById('edit-event-passengers');
                 Array.from(passengerSelect.options).forEach(option => {
                     option.selected = event.Passengers.includes(option.value);
                 });
+                const programsContainer = document.getElementById('edit-event-programs');
+                programsContainer.innerHTML = '';
+                event.Programs.forEach(program => addProgram('edit', program));
                 document.getElementById('edit-event-remarks').value = event.Remarks;
                 document.getElementById('edit-event-closing-notes').value = event.ClosingNotes;
                 document.getElementById('edit-event-verse').value = event.Verse;
@@ -565,44 +691,63 @@
         document.getElementById('edit-event-form').addEventListener('submit', function (e) {
             e.preventDefault();
             const id = document.getElementById('edit-event-id').value;
+            const eventName = document.getElementById('edit-event-event').value.trim();
             const subject = document.getElementById('edit-event-subject').value.trim();
-            const date = document.getElementById('edit-event-date').value;
+            const dateTime = document.getElementById('edit-event-datetime').value;
+            const status = document.getElementById('edit-event-status').value;
             const note = document.getElementById('edit-event-note').value.trim();
-            const driverId = document.getElementById('edit-event-driver').value;
+            const driverIds = Array.from(document.getElementById('edit-event-drivers').selectedOptions).map(option => option.value);
             const passengers = Array.from(document.getElementById('edit-event-passengers').selectedOptions).map(option => option.value);
+            const programs = Array.from(document.querySelectorAll('#edit-event-programs .program-entry')).map(entry => ({
+                Name: entry.querySelector('.program-name').value.trim(),
+                AssignedPeople: Array.from(entry.querySelector('.program-people').selectedOptions).map(option => option.value)
+            })).filter(program => program.Name);
             const remarks = document.getElementById('edit-event-remarks').value.trim();
             const closingNotes = document.getElementById('edit-event-closing-notes').value.trim();
             const verse = document.getElementById('edit-event-verse').value.trim();
 
             // Reset errors
+            document.getElementById('edit-event-event-error').innerText = '';
             document.getElementById('edit-event-subject-error').innerText = '';
-            document.getElementById('edit-event-date-error').innerText = '';
-            document.getElementById('edit-event-driver-error').innerText = '';
+            document.getElementById('edit-event-datetime-error').innerText = '';
+            document.getElementById('edit-event-status-error').innerText = '';
+            document.getElementById('edit-event-drivers-error').innerText = '';
             document.getElementById('edit-event-verse-error').innerText = '';
 
+            if (!eventName) {
+                document.getElementById('edit-event-event-error').innerText = 'Event name is required';
+                return;
+            }
             if (!subject) {
                 document.getElementById('edit-event-subject-error').innerText = 'Subject is required';
                 return;
             }
-            if (!date) {
-                document.getElementById('edit-event-date-error').innerText = 'Date is required';
+            if (!dateTime) {
+                document.getElementById('edit-event-datetime-error').innerText = 'Date and time are required';
                 return;
             }
-            if (!driverId) {
-                document.getElementById('edit-event-driver-error').innerText = 'Driver is required';
+            if (!status) {
+                document.getElementById('edit-event-status-error').innerText = 'Status is required';
+                return;
+            }
+            if (driverIds.length === 0) {
+                document.getElementById('edit-event-drivers-error').innerText = 'At least one driver is required';
                 return;
             }
 
             const event = {
+                Event: eventName,
                 Subject: subject,
-                Date: date,
+                DateTime: dateTime,
+                Status: status,
                 Note: note,
-                DriverId: driverId,
+                DriverIds: driverIds,
                 Passengers: passengers,
+                Programs: programs,
                 Remarks: remarks,
                 ClosingNotes: closingNotes,
                 Verse: verse,
-                userId: null // Placeholder for no authentication
+                userId: null
             };
 
             db.collection('transport_events').doc(id).update(event).then(() => {
