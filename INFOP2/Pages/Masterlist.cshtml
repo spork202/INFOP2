@@ -372,8 +372,8 @@
                         <td>${person.KSAAddress || 'N/A'}</td>
                         <td>${person.Birthdate ? person.Birthdate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : 'N/A'}</td>
                         <td>
-                            <button class="btn btn-sm btn-warning me-1 rounded-pill" onclick="openEdit('${person.Id}')"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger rounded-pill" onclick="deletePerson('${person.Id}')"><i class="fas fa-trash"></i></button>
+                            <button class="btn btn-sm btn-warning me-1" onclick="openEdit('${person.Id}')"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-danger" onclick="deletePerson('${person.Id}')"><i class="fas fa-trash"></i></button>
                         </td>
                     </tr>
                 `;
