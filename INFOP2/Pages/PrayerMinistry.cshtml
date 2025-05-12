@@ -3,15 +3,6 @@
 @{
     ViewData["Title"] = "Prayer Ministry";
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Prayer Ministry</title>
-    <link rel="stylesheet" href="css/prayer-ministry.css"/>
-</head>
-<body>
     <div class="container mt-5">
         <div class="row mb-4 align-items-center">
             <div class="col-12 d-flex justify-content-between align-items-center">
@@ -26,7 +17,7 @@
         
         <!-- Add Event Button -->
         <div class="d-flex justify-content-end mb-3">
-            <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addEventModal">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addEventModal">
                 <i class="fa fa-plus me-1"></i> Add Prayer Event
             </button>
         </div>
@@ -38,11 +29,11 @@
                 <div class="card-header d-flex justify-content-between align-items-center bd-unset">
                     <strong>PRAYER OF THANKSGIVING</strong>
                     <div>
-                        <button class="btn btn-outline-primary btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#editEventModal" onclick="loadEventForEdit('1', 'PRAYER OF THANKSGIVING', 'Lorem Ipsum', 'Lorem Ipsum')">
-                            <i class="fa fa-edit"></i> Edit
+                        <button class="btn btn-warning btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#editEventModal" onclick="loadEventForEdit('1', 'PRAYER OF THANKSGIVING', 'Lorem Ipsum', 'Lorem Ipsum')">
+                            <i class="fa fa-edit"></i>
                         </button>
-                        <button class="btn btn-outline-danger btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#deleteEventModal">
-                            <i class="fa fa-trash"></i> Delete
+                        <button class="btn btn-danger btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#deleteEventModal">
+                            <i class="fa fa-trash"></i>
                         </button>
                     </div>
                 </div>
@@ -69,11 +60,11 @@
                 <div class="card-header d-flex justify-content-between align-items-center bd-unset">
                     <strong>PRAY FOR THE WORLD</strong>
                     <div>
-                        <button class="btn btn-outline-primary btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#editEventModal" onclick="loadEventForEdit('2', 'PRAY FOR THE WORLD', 'Lorem Ipsum', 'Lorem Ipsum')">
-                            <i class="fa fa-edit"></i> Edit
+                        <button class="btn btn-warning btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#editEventModal" onclick="loadEventForEdit('2', 'PRAY FOR THE WORLD', 'Lorem Ipsum', 'Lorem Ipsum')">
+                            <i class="fa fa-edit"></i>
                         </button>
-                        <button class="btn btn-outline-danger btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#deleteEventModal">
-                            <i class="fa fa-trash"></i> Delete
+                        <button class="btn btn-danger btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#deleteEventModal">
+                            <i class="fa fa-trash"></i>
                         </button>
                     </div>
                 </div>
@@ -180,6 +171,5 @@
             </div>
         </div>
     </div>
-</body>
     <!-- Scripts -->
     <script src="js/prayer-ministry.js" asp-append-version="true"></script>

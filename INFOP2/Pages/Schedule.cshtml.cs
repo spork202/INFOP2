@@ -8,11 +8,11 @@ using Microsoft.Extensions.Logging;
 
 namespace INFOP2.Pages
 {
-    public class TransportList : PageModel
+    public class Schedule : PageModel
     {
-        private readonly ILogger<TransportList> _logger;
+        private readonly ILogger<Schedule> _logger;
 
-        public TransportList(ILogger<TransportList> logger)
+        public Schedule(ILogger<Schedule> logger)
         {
             _logger = logger;
         }
