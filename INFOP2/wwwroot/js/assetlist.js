@@ -1,16 +1,7 @@
-﻿// Load event data into edit modal
-function loadEventForEdit(id, title, notes, remarks) {
-    document.getElementById("editEventId").value = id;
-    document.getElementById("editEventTitle").value = title;
-    document.getElementById("editEventNotes").value = notes;
-    document.getElementById("editEventRemarks").value = remarks;
-}
-
-// Export Excel
-document.getElementById("exportBtnMinistry").addEventListener("click", async () => {
+﻿// Export Excel
+document.getElementById("exportBtnAsset").addEventListener("click", async () => {
     const db = firebase.firestore(); // Assuming firebase is already initialized
-    const snapshot = await db.collection("prayer_events").get();
-
+    const snapshot = await db.collection("assets").get();
 
     const data = [];
 
@@ -34,5 +25,5 @@ document.getElementById("exportBtnMinistry").addEventListener("click", async () 
     XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
 
     // Export to file
-    XLSX.writeFile(workbook, "prayer-ministry.xlsx");
+    XLSX.writeFile(workbook, "assetlist.xlsx");
 });

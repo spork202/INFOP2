@@ -1,23 +1,10 @@
 ﻿@page
 @model INFOP2.Pages.CategoryManagement
-
 @{
-
-    ViewData["Title"] = " Category Management";
-    Layout ="_Layout";
-
+    ViewData["Title"] = "Category Management";
+    Layout = "_Layout";
 }
 
-<!DOCTYPE html>
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Transport List</title>
-    <link rel="stylesheet" href="css/category-management.css"/>
-</head>
-<body>
 <div class="container mt-5">
     <div class="row mb-4 align-items-center">
         <div class="col-12 d-flex justify-content-between align-items-center">
@@ -29,129 +16,544 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-end mb-3">
-        <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addEventModal">
+    <!-- Success Card -->
+    <div id="success-card" class="card border-success shadow-sm mb-4 d-none">
+        <div class="card-body d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="card-title text-success mb-1">Success!</h5>
+                <p class="card-text" id="success-message">Action completed successfully!</p>
+            </div>
+            <button type="button" class="btn-close" aria-label="Close" onclick="$('#success-card').addClass('d-none');"></button>
+        </div>
+    </div>
+
+    <!-- Add Category Button -->
+    <div class="d-flex justify-content-end mb-3 gap-2">
+        <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
             <i class="fa fa-plus me-1"></i> Add New Category
+        </button>
+        <button class="btn btn-outline-secondary" id="exportBtnCategories" data-bs-tooltip="tooltip" title="Export to Excel">
+            <i class="fa fa-download"></i>
         </button>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content rounded-4 shadow">
-                <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="addEventModalLabel">Add New Category</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label">Title</label>
-                            <input type="text" class="form-control" placeholder="Enter category title" required />
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-dark">Create Category</button>
-                    </div>
-                </form>
+    <!-- Categories Container -->
+    <div id="categories-container" class="row">
+        <!-- Dynamically populated by JavaScript -->
+    </div>
+</div>
+
+<!-- Add Category Modal -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="addCategoryModalLabel">Add New Category</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form id="add-category-form">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Title</label>
+                        <input type="text" class="form-control" id="add-category-title" placeholder="Enter category title" required />
+                        <span class="text-danger" id="add-category-title-error"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Date</label>
+                        <input type="date" class="form-control" id="add-category-date" required />
+                        <span class="text-danger" id="add-category-date-error"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-dark">Create Category</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
-    <!-- Responsive Cards -->
-    <div class="row">
-        <!-- Category Card -->
-        <div class="col-md-6 mb-4">
-            <div class="card border-0 shadow-sm rounded-4 h-100">
-                <div class="card-header d-flex justify-content-between align-items-center bd-unset">
-                    <strong>BS Family</strong>
-                    <button class="btn btn-outline-success btn-sm ms-2">
-                        <i class="fa fa-plus"></i> Add
-                    </button>
-                </div>
-                <div class="card-body">
-                    <table class="table table-borderless mb-0">
-                        <thead class="table-light">
-                            <tr>
-                                <th>ID</th>
-                                <th class="text-end">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Jude</td>
-                                <td class="text-end">
-                                    <button class="btn btn-sm btn-outline-primary me-1"><i class="fa fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Peter</td>
-                                <td class="text-end">
-                                    <button class="btn btn-sm btn-outline-primary me-1"><i class="fa fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Nehemiah</td>
-                                <td class="text-end">
-                                    <button class="btn btn-sm btn-outline-primary me-1"><i class="fa fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+<!-- Edit Category Modal -->
+<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form id="edit-category-form">
+                <div class="modal-body">
+                    <input type="hidden" id="edit-category-id" />
+                    <div class="mb-3">
+                        <label class="form-label">Title</label>
+                        <input type="text" class="form-control" id="edit-category-title" required />
+                        <span class="text-danger" id="edit-category-title-error"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Date</label>
+                        <input type="date" class="form-control" id="edit-category-date" required />
+                        <span class="text-danger" id="edit-category-date-error"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
         </div>
+    </div>
+</div>
 
-        <!-- Category Card -->
-        <div class="col-md-6 mb-4">
-            <div class="card border-0 shadow-sm rounded-4 h-100">
-                <div class="card-header d-flex justify-content-between align-items-center bd-unset">
-                    <strong>Ministry</strong>
-                    <button class=" btn btn-outline-success btn-sm ms-2">
-                        <i class="fa fa-plus"></i> Add
-                    </button>
-                </div>
-                <div class="card-body">
-                    <table class="table table-borderless mb-0">
-                        <thead class="table-light">
-                            <tr>
-                                <th>ID</th>
-                                <th class="text-end">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Music</td>
-                                <td class="text-end">
-                                    <button class="btn btn-sm btn-outline-primary me-1"><i class="fa fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Technical</td>
-                                <td class="text-end">
-                                    <button class="btn btn-sm btn-outline-primary me-1"><i class="fa fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Transport</td>
-                                <td class="text-end">
-                                    <button class="btn btn-sm btn-outline-primary me-1"><i class="fa fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+<!-- Delete Category Modal -->
+<div class="modal fade" id="deleteCategoryModal" tabindex="-1" aria-labelledby="deleteCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteCategoryModalLabel">Delete Category</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this category and all its items?</p>
+                <input type="hidden" id="delete-category-id" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirm-delete-category">Delete</button>
             </div>
         </div>
     </div>
 </div>
 
-</body>
-</html>
+<!-- Add Item Modal -->
+<div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title" id="addItemModalLabel">Add Item to Category</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="add-item-form">
+                <div class="modal-body">
+                    <input type="hidden" id="add-item-category-id" />
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" id="add-item-name" placeholder="Enter item name" required />
+                        <span class="text-danger" id="add-item-name-error"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Add Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Item Modal -->
+<div class="modal fade" id="editItemModal" tabindex="-1" aria-labelledby="editItemModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="editItemModalLabel">Edit Item</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="edit-item-form">
+                <div class="modal-body">
+                    <input type="hidden" id="edit-item-category-id" />
+                    <input type="hidden" id="edit-item-id" />
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" id="edit-item-name" required />
+                        <span class="text-danger" id="edit-item-name-error"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Item Modal -->
+<div class="modal fade" id="deleteItemModal" tabindex="-1" aria-labelledby="deleteItemModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteItemModalLabel">Delete Item</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this item?</p>
+                <input type="hidden" id="delete-item-category-id" />
+                <input type="hidden" id="delete-item-id" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirm-delete-item">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Font Awesome (for icons) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <!-- Firebase Config and JavaScript Logic -->
+    <script>
+        // Pass FirebaseConfigJson to JavaScript
+        const firebaseConfig = @Html.Raw(Model.FirebaseConfigJson);
+
+        // Initialize Firebase
+        let db = null;
+        try {
+            console.log("Firebase Config:", firebaseConfig);
+            if (!firebaseConfig || Object.keys(firebaseConfig).length === 0) {
+                throw new Error("Firebase configuration is empty or invalid");
+            }
+            const app = firebase.initializeApp(firebaseConfig);
+            db = firebase.firestore();
+            console.log("Firebase initialized successfully, db:", !!db);
+        } catch (error) {
+            console.error("Firebase initialization error:", error);
+        }
+
+        // Global array to store categories and their items
+        let categories = [];
+
+        // Load data on page load
+        window.onload = function () {
+            loadCategories();
+        };
+
+        // Load Categories and Items from Firestore
+        async function loadCategories() {
+            try {
+                categories = [];
+                const snapshot = await db.collection('categories').get();
+                for (const doc of snapshot.docs) {
+                    const data = doc.data();
+                    const itemsSnapshot = await db.collection('categories').doc(doc.id).collection('items').get();
+                    const items = itemsSnapshot.docs.map(itemDoc => ({
+                        Id: itemDoc.id,
+                        Name: itemDoc.data().Name,
+                        userId: itemDoc.data().userId || null
+                    }));
+                    categories.push({
+                        Id: doc.id,
+                        Title: data.Title,
+                        Date: data.Date || '',
+                        userId: data.userId || null,
+                        Items: items
+                    });
+                }
+                renderCategories();
+                if (categories.length === 0) {
+                    document.getElementById('categories-container').innerHTML = '<p class="text-muted text-center">No categories found. Create one to start.</p>';
+                }
+            } catch (error) {
+                console.error("Error loading categories:", error);
+                showError("Failed to load categories. Please try again.");
+            }
+        }
+
+        // Render Categories
+        function renderCategories() {
+            const container = document.getElementById('categories-container');
+            if (!container) {
+                console.error("Element with ID 'categories-container' not found");
+                return;
+            }
+            container.innerHTML = '';
+            categories.forEach(category => {
+                const card = `
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-0 shadow-sm rounded-4 h-100" data-id="${category.Id}">
+                            <div class="card-header d-flex justify-content-between align-items-center bd-unset">
+                                <div>
+                                    <strong>${category.Title}</strong><br />
+                                    <strong>Date:</strong> ${category.Date || 'N/A'}
+                                </div>
+                                <div>
+                                    <button class="btn btn-success btn-sm ms-2" onclick="openAddItemModal('${category.Id}')">
+                                        <i class="fa fa-plus"></i> Add
+                                    </button>
+                                    <button class="btn btn-warning btn-sm ms-2" data-bs-tooltip="tooltip" title="Edit" onclick="openEditCategory('${category.Id}')">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-danger btn-sm ms-2" data-bs-tooltip="tooltip" title="Delete" onclick="openDeleteCategory('${category.Id}')">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-borderless mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th class="text-end">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${category.Items.length > 0 ? category.Items.map(item => `
+                                            <tr>
+                                                <td>${item.Name}</td>
+                                                <td class="text-end">
+                                                    <button class="btn btn-sm btn-warning me-1" data-bs-tooltip="tooltip" title="Edit" onclick="openEditItemModal('${category.Id}', '${item.Id}', '${item.Name}')">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-danger" data-bs-tooltip="tooltip" title="Delete" onclick="openDeleteItemModal('${category.Id}', '${item.Id}')">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        `).join('') : '<tr><td colspan="2" class="text-center">No items found</td></tr>'}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+
+        // Add Category
+        document.getElementById('add-category-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const title = document.getElementById('add-category-title').value.trim();
+            const date = document.getElementById('add-category-date').value;
+
+            // Reset errors
+            document.getElementById('add-category-title-error').innerText = '';
+            document.getElementById('add-category-date-error').innerText = '';
+
+            if (!title) {
+                document.getElementById('add-category-title-error').innerText = 'Title is required';
+                return;
+            }
+            if (!date) {
+                document.getElementById('add-category-date-error').innerText = 'Date is required';
+                return;
+            }
+
+            const category = {
+                Title: title,
+                Date: date,
+                userId: null // Placeholder for no authentication
+            };
+
+            db.collection('categories').add(category).then(() => {
+                $('#addCategoryModal').modal('hide');
+                document.getElementById('add-category-form').reset();
+                loadCategories();
+                showSuccess("Category added successfully!");
+            }).catch(error => {
+                console.error("Error adding category:", error);
+                showError("Failed to add category. Please try again.");
+            });
+        });
+
+        // Open Edit Category Modal
+        function openEditCategory(id) {
+            const category = categories.find(c => c.Id === id);
+            if (category) {
+                document.getElementById('edit-category-id').value = category.Id;
+                document.getElementById('edit-category-title').value = category.Title;
+                document.getElementById('edit-category-date').value = category.Date;
+                $('#editCategoryModal').modal('show');
+            }
+        }
+
+        // Edit Category
+        document.getElementById('edit-category-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const id = document.getElementById('edit-category-id').value;
+            const title = document.getElementById('edit-category-title').value.trim();
+            const date = document.getElementById('edit-category-date').value;
+
+            // Reset errors
+            document.getElementById('edit-category-title-error').innerText = '';
+            document.getElementById('edit-category-date-error').innerText = '';
+
+            if (!title) {
+                document.getElementById('edit-category-title-error').innerText = 'Title is required';
+                return;
+            }
+            if (!date) {
+                document.getElementById('edit-category-date-error').innerText = 'Date is required';
+                return;
+            }
+
+            const category = {
+                Title: title,
+                Date: date,
+                userId: null // Placeholder for no authentication
+            };
+
+            db.collection('categories').doc(id).update(category).then(() => {
+                $('#editCategoryModal').modal('hide');
+                loadCategories();
+                showSuccess("Category updated successfully!");
+            }).catch(error => {
+                console.error("Error updating category:", error);
+                showError("Failed to update category. Please try again.");
+            });
+        });
+
+        // Open Delete Category Modal
+        function openDeleteCategory(id) {
+            document.getElementById('delete-category-id').value = id;
+            $('#deleteCategoryModal').modal('show');
+        }
+
+        // Delete Category
+        document.getElementById('confirm-delete-category').addEventListener('click', async function () {
+            const id = document.getElementById('delete-category-id').value;
+            try {
+                // Delete all items in the subcollection
+                const itemsSnapshot = await db.collection('categories').doc(id).collection('items').get();
+                const batch = db.batch();
+                itemsSnapshot.docs.forEach(doc => {
+                    batch.delete(doc.ref);
+                });
+                await batch.commit();
+                // Delete the category
+                await db.collection('categories').doc(id).delete();
+                $('#deleteCategoryModal').modal('hide');
+                loadCategories();
+                showSuccess("Category deleted successfully!");
+            } catch (error) {
+                console.error("Error deleting category:", error);
+                showError("Failed to delete category. Please try again.");
+            }
+        });
+
+        // Open Add Item Modal
+        function openAddItemModal(categoryId) {
+            document.getElementById('add-item-category-id').value = categoryId;
+            $('#addItemModal').modal('show');
+        }
+
+        // Add Item
+        document.getElementById('add-item-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const categoryId = document.getElementById('add-item-category-id').value;
+            const name = document.getElementById('add-item-name').value.trim();
+
+            // Reset errors
+            document.getElementById('add-item-name-error').innerText = '';
+
+            if (!name) {
+                document.getElementById('add-item-name-error').innerText = 'Name is required';
+                return;
+            }
+
+            const item = {
+                Name: name,
+                userId: null // Placeholder for no authentication
+            };
+
+            db.collection('categories').doc(categoryId).collection('items').add(item).then(() => {
+                $('#addItemModal').modal('hide');
+                document.getElementById('add-item-form').reset();
+                loadCategories();
+                showSuccess("Item added successfully!");
+            }).catch(error => {
+                console.error("Error adding item:", error);
+                showError("Failed to add item. Please try again.");
+            });
+        });
+
+        // Open Edit Item Modal
+        function openEditItemModal(categoryId, itemId, name) {
+            document.getElementById('edit-item-category-id').value = categoryId;
+            document.getElementById('edit-item-id').value = itemId;
+            document.getElementById('edit-item-name').value = name;
+            $('#editItemModal').modal('show');
+        }
+
+        // Edit Item
+        document.getElementById('edit-item-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const categoryId = document.getElementById('edit-item-category-id').value;
+            const itemId = document.getElementById('edit-item-id').value;
+            const name = document.getElementById('edit-item-name').value.trim();
+
+            // Reset errors
+            document.getElementById('edit-item-name-error').innerText = '';
+
+            if (!name) {
+                document.getElementById('edit-item-name-error').innerText = 'Name is required';
+                return;
+            }
+
+            const item = {
+                Name: name,
+                userId: null // Placeholder for no authentication
+            };
+
+            db.collection('categories').doc(categoryId).collection('items').doc(itemId).update(item).then(() => {
+                $('#editItemModal').modal('hide');
+                loadCategories();
+                showSuccess("Item updated successfully!");
+            }).catch(error => {
+                console.error("Error updating item:", error);
+                showError("Failed to update item. Please try again.");
+            });
+        });
+
+        // Open Delete Item Modal
+        function openDeleteItemModal(categoryId, itemId) {
+            document.getElementById('delete-item-category-id').value = categoryId;
+            document.getElementById('delete-item-id').value = itemId;
+            $('#deleteItemModal').modal('show');
+        }
+
+        // Delete Item
+        document.getElementById('confirm-delete-item').addEventListener('click', function () {
+            const categoryId = document.getElementById('delete-item-category-id').value;
+            const itemId = document.getElementById('delete-item-id').value;
+            db.collection('categories').doc(categoryId).collection('items').doc(itemId).delete().then(() => {
+                $('#deleteItemModal').modal('hide');
+                loadCategories();
+                showSuccess("Item deleted successfully!");
+            }).catch(error => {
+                console.error("Error deleting item:", error);
+                showError("Failed to delete item. Please try again.");
+            });
+        });
+
+        // Show Success Message
+        function showSuccess(message) {
+            const successCard = document.getElementById('success-card');
+            const successMessage = document.getElementById('success-message');
+            if (successCard && successMessage) {
+                successMessage.innerText = message;
+                successCard.classList.remove('d-none');
+                setTimeout(() => successCard.classList.add('d-none'), 5000);
+            } else {
+                console.error("Success card or message element not found");
+            }
+        }
+
+        // Show Error Message
+        function showError(message) {
+            const container = document.getElementById('categories-container');
+            if (container) {
+                container.innerHTML = `<p class="text-danger text-center">${message}</p>`;
+            } else {
+                console.error("Categories container not found");
+            }
+        }
+    </script>
+}
