@@ -28,9 +28,12 @@
     </div>
 
     <!-- Add Category Button -->
-    <div class="d-flex justify-content-end mb-3">
+    <div class="d-flex justify-content-end mb-3 gap-2">
         <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
             <i class="fa fa-plus me-1"></i> Add New Category
+        </button>
+        <button class="btn btn-outline-secondary" id="exportBtnCategories" data-bs-tooltip="tooltip" title="Export to Excel">
+            <i class="fa fa-download"></i>
         </button>
     </div>
 
@@ -281,13 +284,13 @@
                                     <strong>Date:</strong> ${category.Date || 'N/A'}
                                 </div>
                                 <div>
-                                    <button class="btn btn-outline-success btn-sm ms-2" onclick="openAddItemModal('${category.Id}')">
+                                    <button class="btn btn-success btn-sm ms-2" onclick="openAddItemModal('${category.Id}')">
                                         <i class="fa fa-plus"></i> Add
                                     </button>
-                                    <button class="btn btn-outline-primary btn-sm ms-2" onclick="openEditCategory('${category.Id}')">
+                                    <button class="btn btn-warning btn-sm ms-2" data-bs-tooltip="tooltip" title="Edit" onclick="openEditCategory('${category.Id}')">
                                         <i class="fa fa-edit"></i>
                                     </button>
-                                    <button class="btn btn-outline-danger btn-sm ms-2" onclick="openDeleteCategory('${category.Id}')">
+                                    <button class="btn btn-danger btn-sm ms-2" data-bs-tooltip="tooltip" title="Delete" onclick="openDeleteCategory('${category.Id}')">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </div>
@@ -305,10 +308,10 @@
                                             <tr>
                                                 <td>${item.Name}</td>
                                                 <td class="text-end">
-                                                    <button class="btn btn-sm btn-outline-primary me-1" onclick="openEditItemModal('${category.Id}', '${item.Id}', '${item.Name}')">
+                                                    <button class="btn btn-sm btn-warning me-1" data-bs-tooltip="tooltip" title="Edit" onclick="openEditItemModal('${category.Id}', '${item.Id}', '${item.Name}')">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
-                                                    <button class="btn btn-sm btn-outline-danger" onclick="openDeleteItemModal('${category.Id}', '${item.Id}')">
+                                                    <button class="btn btn-sm btn-danger" data-bs-tooltip="tooltip" title="Delete" onclick="openDeleteItemModal('${category.Id}', '${item.Id}')">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </td>
