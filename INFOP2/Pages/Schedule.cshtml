@@ -16,6 +16,25 @@
     .drivers-list .passengers, .programs-list .assigned-people {
         margin-left: 1.5rem;
     }
+    /* Copy all button styling */
+    .copy-all-btn {
+        font-size: 14px;
+    }
+    /* Feedback message styling */
+    .copy-feedback {
+        position: absolute;
+        background: #28a745;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    .copy-feedback.show {
+        opacity: 1;
+    }
 </style>
 
 <div class="container mt-5">
@@ -47,6 +66,9 @@
         </button>
         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addEventModal">
             <i class="fa fa-calendar-plus me-1"></i>Create Event
+        </button>
+        <button class="btn btn-sm btn-outline-secondary copy-all-btn" onclick="copyAllData(this)" title="Copy all event data" aria-label="Copy all event data">
+            <i class="fas fa-copy me-1"></i>Copy All Data
         </button>
     </div>
 
@@ -165,7 +187,6 @@
                             </button>
                             <span class="text-danger" id="add-event-drivers-error"></span>
                         </div>
-
                         <!-- Programs Section -->
                         <div class="col-12">
                             <label class="form-label">Programs</label>
@@ -834,6 +855,79 @@
                     showError("Failed to delete event. Please try again.");
                 });
             }
+        }
+
+        // Copy All Event Data
+        function copyAllData(button) {
+            if (events.length === 0) {
+                showError('No events to copy.');
+                return;
+            }
+
+            // Format event data in a messenger-friendly format
+            const rows = events.map(event => {
+                const dateTime = event.DateTime
+                    ? new Date(event.DateTime).toLocaleString()
+                    : 'N/A';
+                const driversList = event.Drivers.length > 0
+                    ? event.Drivers.map(d => {
+                        const driver = drivers.find(driver => driver.Id === d.DriverId);
+                        const passengers = d.AssignedPassengers.length > 0 ? d.AssignedPassengers.join(', ') : 'None';
+                        return `    - ${driver ? driver.Name : 'Unknown'}: ${passengers}`;
+                    }).join('\n')
+                    : 'None';
+                const passengersList = event.Passengers.length > 0
+                    ? event.Passengers.join(', ')
+                    : 'None';
+                const programsList = event.Programs.length > 0
+                    ? event.Programs.map(p => {
+                        const people = p.AssignedPeople.length > 0 ? p.AssignedPeople.join(', ') : 'None';
+                        return `    - ${p.Name}: ${people}`;
+                    }).join('\n')
+                    : 'None';
+                return [
+                    `• Event: ${event.Event || 'N/A'}`,
+                    `  - Subject: ${event.Subject || 'N/A'}`,
+                    `  - Date & Time: ${dateTime}`,
+                    `  - Status: ${event.Status || 'N/A'}`,
+                    `  - Drivers:\n${driversList}`,
+                    `  - Passengers: ${passengersList}`,
+                    `  - Programs:\n${programsList}`,
+                    `  - Note: ${event.Note || 'N/A'}`,
+                    `  - Remarks: ${event.Remarks || 'N/A'}`,
+                    `  - Closing Notes: ${event.ClosingNotes || 'N/A'}`,
+                    `  - Bible Verse: ${event.Verse || 'N/A'}`
+                ].join('\n');
+            });
+
+            // Join rows with double newlines for separation
+            const textToCopy = rows.join('\n\n');
+
+            // Use Clipboard API to copy text
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Create feedback element
+                const feedback = document.createElement('span');
+                feedback.className = 'copy-feedback';
+                feedback.innerText = 'Copied!';
+                button.parentElement.appendChild(feedback);
+
+                // Position feedback near the button
+                const rect = button.getBoundingClientRect();
+                feedback.style.top = `${rect.top - 30}px`;
+                feedback.style.left = `${rect.left + rect.width / 2}px`;
+
+                // Show feedback
+                feedback.classList.add('show');
+
+                // Remove feedback after 2 seconds
+                setTimeout(() => {
+                    feedback.classList.remove('show');
+                    setTimeout(() => feedback.remove(), 300); // Wait for fade-out transition
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy all data:', err);
+                showError('Failed to copy event data.');
+            });
         }
 
         // Show Success Message
