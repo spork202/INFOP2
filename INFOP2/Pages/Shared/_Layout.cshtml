@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - INFOP2</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="icon" type="image/png" href="maintenance.ico.png"/>
@@ -17,35 +18,35 @@
     <div id="sidebar-wrapper">
         <div>
             <div class="sidebar-heading">
-                <button class="btn-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+                <button class="btn-toggle" id="menu-toggle"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="list-group list-group-flush">
-                <a asp-page="/Index" class="list-group-item">
-                    <i class="fas fa-home me-2"></i> <span class="sidebar-text sb-txt-overflow">Dashboard</span>
+                <a asp-page="/Index" class="list-group-item" data-bs-toggle="tooltip" title="Dashboard">
+                    <i class="fa-solid fa-house me-2" ></i> <span class="sidebar-text sb-txt-overflow">Dashboard</span>
                 </a>
-                <a asp-page="/Masterlist" class="list-group-item">
-                    <i class="fas fa-address-book me-2"></i> <span class="sidebar-text sb-txt-overflow">Masterlist</span>
+                <a asp-page="/Masterlist" class="list-group-item" data-bs-toggle="tooltip" title="Master list">
+                    <i class="fa-solid fa-address-book me-2"></i> <span class="sidebar-text sb-txt-overflow">Master List</span>
                 </a>
-                <a asp-page="/Assetlist" class="list-group-item">
-                    <i class="fas fa-clipboard me-2"></i> <span class="sidebar-text sb-txt-overflow">Assetlist</span>
+                <a asp-page="/Assetlist" class="list-group-item" data-bs-toggle="tooltip" title="Asset list">
+                    <i class="fa-solid fa-clipboard-list me-2"></i> <span class="sidebar-text sb-txt-overflow">Asset List</span>
                 </a>
-                <a asp-page="/Finance" class="list-group-item">
-                    <i class="fas fa-chart-line me-2"></i> <span class="sidebar-text sb-txt-overflow">Finance</span>
+                <a asp-page="/Finance" class="list-group-item" data-bs-toggle="tooltip" title="Finance">
+                    <i class="fa-solid fa-coins me-2" ></i> <span class="sidebar-text sb-txt-overflow">Finance</span>
                 </a>
-                <a asp-page="/Schedule" class="list-group-item"> 
-                    <i class="fas fa-calendar me-2"></i> <span class="sidebar-text sb-txt-overflow">Schedules</span>
+                <a asp-page="/Schedule" class="list-group-item" data-bs-toggle="tooltip" title="Schedules"> 
+                    <i class="fa-solid fa-calendar-days me-2"></i> <span class="sidebar-text sb-txt-overflow">Schedules</span>
                 </a>
-                <a asp-page="/PrayerMinistry" class="list-group-item">
-                    <i class="fas fa-place-of-worship me-2"></i> <span class="sidebar-text sb-txt-overflow">Prayer Ministry</span>
+                <a asp-page="/PrayerMinistry" class="list-group-item" data-bs-toggle="tooltip" title="Prayer Ministry">
+                    <i class="fa-solid fa-place-of-worship me-2"></i> <span class="sidebar-text sb-txt-overflow">Prayer Ministry</span>
                 </a>
-                <a asp-page="/CategoryManagement" class="list-group-item">
-                    <i class="fas fa-layer-group me-2"></i> <span class="sidebar-text sb-txt-overflow">Category Management</span>
+                <a asp-page="/CategoryManagement" class="list-group-item" data-bs-toggle="tooltip" title="Category Management">
+                    <i class="fa-solid fa-list me-2"></i> <span class="sidebar-text sb-txt-overflow">Category Management</span>
                 </a>
             </div>
         </div>
         <div class="list-group list-group-flush list-group-bottom">
-            <a asp-page="/Login" class="list-group-item">
-                <i class="fas fa-sign-out-alt me-2"></i> <span class="sidebar-text sidebar-text sb-txt-overflow">Logout</span>
+            <a asp-page="/Login" class="list-group-item" data-bs-toggle="tooltip" title="Logout">
+                <i class="fa-solid fa-right-from-bracket me-2"></i> <span class="sidebar-text sidebar-text sb-txt-overflow">Logout</span>
             </a>
         </div>
     </div>

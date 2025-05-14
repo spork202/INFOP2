@@ -14,7 +14,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: sticky; /* Scroll Follow */
+    position: sticky;
     top: 0;
     height: 100vh;
     overflow-y: auto;
@@ -41,6 +41,7 @@ body {
     color: white;
     font-size: 1.2rem;
     margin-left: 10px;
+    padding-left: 10px;
 }
 
 .list-group-item {
@@ -51,11 +52,14 @@ body {
     align-items: center;
     transition: all 0.3s ease;
     height: 40px;
+    padding-left: 20px; /* Ensures consistent padding */
 }
 
 .list-group-item i {
     width: 20px;
     text-align: center;
+    flex-shrink: 0; /* Prevents icon from shrinking */
+    margin-right: 10px; /* Adds spacing between icon and text */
 }
 
 .list-group-item:hover {
@@ -64,15 +68,24 @@ body {
 
 .sidebar-text {
     margin-left: 10px;
+    white-space: nowrap; /* Prevents text from wrapping */
 }
 
 #wrapper.toggled .sidebar-text {
     display: none;
 }
 
+/* Updated: Keeps icons aligned properly when toggled */
 #wrapper.toggled .list-group-item {
-    justify-content: center;
+    justify-content: flex-start; /* Changed from 'center' to 'flex-start' */
+    padding-left: 20px; /* Adjust as needed for visual centering */
 }
+
+/* Alternative: If you want icons perfectly centered in collapsed mode */
+/* #wrapper.toggled .list-group-item {
+    justify-content: center;
+    padding-left: 0;
+} */
 
 .list-group-bottom {
     margin-top: auto;
