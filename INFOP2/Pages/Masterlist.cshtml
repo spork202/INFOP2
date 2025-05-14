@@ -5,6 +5,41 @@
     Layout = "_Layout";
 }
 
+<style>
+    /* Copy button styling, visible on all devices */
+    .copy-btn {
+        display: inline-block;
+        margin-left: 8px;
+        padding: 2px 8px;
+        font-size: 12px;
+        line-height: 1;
+        vertical-align: middle;
+    }
+
+    /* Copy all button styling */
+    .copy-all-btn {
+        margin-left: 10px;
+        font-size: 14px;
+    }
+
+    /* Feedback message styling for both individual and copy-all buttons */
+    .copy-feedback {
+        position: absolute;
+        background: #28a745;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .copy-feedback.show {
+        opacity: 1;
+    }
+</style>
+
 <div class="container mt-5">
     <!-- Header -->
     <div class="row mb-4 align-items-center">
@@ -99,7 +134,12 @@
     <div class="row mb-3">
         <div class="col-12 d-flex justify-content-between align-items-center">
             <h5>People List</h5>
-            <a href="#" class="text-primary small">View More</a>
+            <div>
+                <button class="btn btn-sm btn-outline-secondary copy-all-btn" onclick="copyAllData(this)" title="Copy all table data" aria-label="Copy all table data">
+                    <i class="fas fa-copy me-1"></i> Copy All Data
+                </button>
+                <a href="#" class="text-primary small ms-2">View More</a>
+            </div>
         </div>
     </div>
 
@@ -259,6 +299,9 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
+    <!-- Font Awesome for icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!-- Initialize Firebase -->
     <script>
         // Declare db globally
@@ -307,46 +350,46 @@
 
         // Load Categories (BS Family and Ministry)
         async function loadCategories() {
-    try {
-        console.log("Loading categories from Firestore...");
-        const snapshot = await db.collection('categories').get();
-        console.log("Categories snapshot size:", snapshot.size);
-        console.log("Category documents:", snapshot.docs.map(doc => ({ id: doc.id, data: doc.data() })));
-        bsFamilies = [];
-        ministries = [];
+            try {
+                console.log("Loading categories from Firestore...");
+                const snapshot = await db.collection('categories').get();
+                console.log("Categories snapshot size:", snapshot.size);
+                console.log("Category documents:", snapshot.docs.map(doc => ({ id: doc.id, data: doc.data() })));
+                bsFamilies = [];
+                ministries = [];
 
-        for (const doc of snapshot.docs) {
-            const data = doc.data();
-            console.log("Processing category:", doc.id, data);
-            if (data.Title && data.Title.toLowerCase() === "bs family") { // Case-insensitive match
-                console.log("Found BS Family category:", doc.id);
-                const itemsSnapshot = await db.collection('categories').doc(doc.id).collection('items').get();
-                console.log("BS Family items snapshot size:", itemsSnapshot.size);
-                console.log("BS Family items:", itemsSnapshot.docs.map(itemDoc => ({ id: itemDoc.id, data: itemDoc.data() })));
-                bsFamilies = itemsSnapshot.docs.map(itemDoc => ({
-                    Id: itemDoc.id,
-                    Name: itemDoc.data().Name || "Unknown"
-                }));
-            } else if (data.Title && data.Title.toLowerCase() === "ministry") { // Case-insensitive for Ministry too
-                console.log("Found Ministry category:", doc.id);
-                const itemsSnapshot = await db.collection('categories').doc(doc.id).collection('items').get();
-                console.log("Ministry items snapshot size:", itemsSnapshot.size);
-                console.log("Ministry items:", itemsSnapshot.docs.map(itemDoc => ({ id: itemDoc.id, data: itemDoc.data() })));
-                ministries = itemsSnapshot.docs.map(itemDoc => ({
-                    Id: itemDoc.id,
-                    Name: itemDoc.data().Name || "Unknown"
-                }));
+                for (const doc of snapshot.docs) {
+                    const data = doc.data();
+                    console.log("Processing category:", doc.id, data);
+                    if (data.Title && data.Title.toLowerCase() === "bs family") {
+                        console.log("Found BS Family category:", doc.id);
+                        const itemsSnapshot = await db.collection('categories').doc(doc.id).collection('items').get();
+                        console.log("BS Family items snapshot size:", itemsSnapshot.size);
+                        console.log("BS Family items:", itemsSnapshot.docs.map(itemDoc => ({ id: itemDoc.id, data: itemDoc.data() })));
+                        bsFamilies = itemsSnapshot.docs.map(itemDoc => ({
+                            Id: itemDoc.id,
+                            Name: itemDoc.data().Name || "Unknown"
+                        }));
+                    } else if (data.Title && data.Title.toLowerCase() === "ministry") {
+                        console.log("Found Ministry category:", doc.id);
+                        const itemsSnapshot = await db.collection('categories').doc(doc.id).collection('items').get();
+                        console.log("Ministry items snapshot size:", itemsSnapshot.size);
+                        console.log("Ministry items:", itemsSnapshot.docs.map(itemDoc => ({ id: itemDoc.id, data: itemDoc.data() })));
+                        ministries = itemsSnapshot.docs.map(itemDoc => ({
+                            Id: itemDoc.id,
+                            Name: itemDoc.data().Name || "Unknown"
+                        }));
+                    }
+                }
+
+                console.log("BS Families:", bsFamilies);
+                console.log("Ministries:", ministries);
+                populateDropdowns();
+            } catch (error) {
+                console.error("Error loading categories:", error);
+                showError(`Failed to load BS Families or Ministries: ${error.message}`);
             }
         }
-
-        console.log("BS Families:", bsFamilies);
-        console.log("Ministries:", ministries);
-        populateDropdowns();
-    } catch (error) {
-        console.error("Error loading categories:", error);
-        showError(`Failed to load BS Families or Ministries: ${error.message}`);
-    }
-}
 
         // Populate BS Family and Ministry Dropdowns
         function populateDropdowns() {
@@ -435,17 +478,21 @@
 
             for (let i = start; i < end; i++) {
                 const person = people[i];
+                const contactNumber = person.ContactNumber || 'N/A';
                 const row = `
                     <tr>
                         <td>${person.Name}</td>
                         <td>${person.BSFamily || 'N/A'}</td>
                         <td>${person.Ministry || 'N/A'}</td>
-                        <td>${person.ContactNumber || 'N/A'}</td>
+                        <td>
+                            ${contactNumber}
+                            ${contactNumber !== 'N/A' ? `<button class="btn btn-sm btn-outline-secondary copy-btn" data-contact="${contactNumber}" onclick="copyContactNumber(this)" title="Copy contact number" aria-label="Copy contact number"><i class="fas fa-copy"></i></button>` : ''}
+                        </td>
                         <td>${person.KSAAddress || 'N/A'}</td>
                         <td>${person.Birthdate ? person.Birthdate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : 'N/A'}</td>
                         <td>
-                            <button class="btn btn-sm btn-warning me-1" data-bs-tooltop="tooltip" title="Edit" onclick="openEdit('${person.Id}')"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger" data-bs-tooltop="tooltip" title="Delete" onclick="deletePerson('${person.Id}')"><i class="fas fa-trash"></i></button>
+                            <button class="btn btn-sm btn-warning me-1" data-bs-tooltip="tooltip" title="Edit" onclick="openEdit('${person.Id}')"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-danger" data-bs-tooltip="tooltip" title="Delete" onclick="deletePerson('${person.Id}')"><i class="fas fa-trash"></i></button>
                         </td>
                     </tr>
                 `;
@@ -745,6 +792,90 @@
             } else {
                 console.error("No-data element not found");
             }
+        }
+
+        // Copy Individual Contact Number
+        function copyContactNumber(button) {
+            const contactNumber = button.getAttribute('data-contact');
+            if (!contactNumber) return;
+
+            // Use Clipboard API to copy text
+            navigator.clipboard.writeText(contactNumber).then(() => {
+                // Create feedback element
+                const feedback = document.createElement('span');
+                feedback.className = 'copy-feedback';
+                feedback.innerText = 'Copied!';
+                button.parentElement.appendChild(feedback);
+
+                // Position feedback near the button
+                const rect = button.getBoundingClientRect();
+                feedback.style.top = `${rect.top - 30}px`;
+                feedback.style.left = `${rect.left + rect.width / 2}px`;
+
+                // Show feedback
+                feedback.classList.add('show');
+
+                // Remove feedback after 2 seconds
+                setTimeout(() => {
+                    feedback.classList.remove('show');
+                    setTimeout(() => feedback.remove(), 300); // Wait for fade-out transition
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                showError('Failed to copy contact number.');
+            });
+        }
+
+        // Copy All Table Data
+        function copyAllData(button) {
+            if (people.length === 0) {
+                showError('No data to copy.');
+                return;
+            }
+
+            // Format data rows in a messenger-friendly format
+            const rows = people.map(person => {
+                const birthdate = person.Birthdate
+                    ? person.Birthdate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' })
+                    : 'N/A';
+                return [
+                    `• ${person.Name || 'N/A'}`,
+                    `  - BS Family: ${person.BSFamily || 'N/A'}`,
+                    `  - Ministry: ${person.Ministry || 'N/A'}`,
+                    `  - Contact: ${person.ContactNumber || 'N/A'}`,
+                    `  - Address: ${person.KSAAddress || 'N/A'}`,
+                    `  - Birthdate: ${birthdate}`
+                ].join('\n');
+            });
+
+            // Join rows with double newlines for separation
+            const textToCopy = rows.join('\n\n');
+
+            // Use Clipboard API to copy text
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Create feedback element
+                const feedback = document.createElement('span');
+                feedback.className = 'copy-feedback';
+                feedback.innerText = 'Copied!';
+                button.parentElement.appendChild(feedback);
+
+                // Position feedback near the button
+                const rect = button.getBoundingClientRect();
+                feedback.style.top = `${rect.top - 30}px`;
+                feedback.style.left = `${rect.left + rect.width / 2}px`;
+
+                // Show feedback
+                feedback.classList.add('show');
+
+                // Remove feedback after 2 seconds
+                setTimeout(() => {
+                    feedback.classList.remove('show');
+                    setTimeout(() => feedback.remove(), 300); // Wait for fade-out transition
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy all data:', err);
+                showError('Failed to copy table data.');
+            });
         }
 
         document.getElementById('search-form').addEventListener('submit', (e) => {
