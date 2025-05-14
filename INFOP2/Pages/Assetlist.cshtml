@@ -82,9 +82,9 @@
     </div>
 
     <!-- Table Header -->
-    <div class="row mb-2">
+    <div class="row mb-3">
         <div class="col-12 d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Asset List</h5>
+            <h5>List of Assets</h5>
             <a href="#" class="text-primary small">View More</a>
         </div>
     </div>
@@ -96,7 +96,7 @@
                 <tr class="text-uppercase small text-muted">
                     <th>
                         <a id="sort-name" asp-page="./Assetlist" asp-all-route-data="@(new Dictionary<string, string> { { "SortOrder", Model.SortOrder == "name_asc" ? "name_desc" : "name_asc" }, { "SearchTerm", Model.SearchTerm } })" class="text-decoration-none text-dark">
-                            Assets & Equipment <span>@(Model.SortOrder == "name_asc" ? "▲" : Model.SortOrder == "name_desc" ? "▼" : "")</span>
+                            Item <span>@(Model.SortOrder == "name_asc" ? "▲" : Model.SortOrder == "name_desc" ? "▼" : "")</span>
                         </a>
                     </th>
                     <th>Date In</th>
