@@ -11,7 +11,7 @@ function toggleSidebar() {
     if (wrapper.classList.contains('toggled')) {
         menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>'; // "X" icon when expanded
     } else {
-        menuToggle.innerHTML = '<i class="fa-solid fa-xmark"></i>'; // Hamburger icon when collapsed
+        menuToggle.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>'; // Hamburger icon when collapsed
     }
 
     // Update tooltips (from previous solution)
@@ -24,6 +24,6 @@ document.getElementById('menu-toggle').addEventListener('click', toggleSidebar);
 // Set initial icon on page load
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
-    menuToggle.innerHTML = '<i class="fas fa-bars"></i>'; // Default: hamburger icon
+    menuToggle.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>'; // Default: hamburger icon
 });
 
