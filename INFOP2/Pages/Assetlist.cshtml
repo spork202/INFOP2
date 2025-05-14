@@ -15,44 +15,54 @@
             <p class="text-muted">Manage and track your assets and equipment efficiently</p>
         </div>
     </div>
-
-    <!-- Summary Cards -->
-    <div class="row mb-5">
-        <div class="col-md-4 mb-3">
-            <div class="card shadow-sm border-start border-4 border-primary hover-shadow-sm h-100">
-                <div class="card-body d-flex align-items-center">
-                    <i class="fas fa-boxes text-primary fa-2x me-3"></i>
-                    <div>
-                        <small class="text-muted">Total Assets</small>
-                        <h4 class="mb-0" id="total-assets">0</h4>
-                    </div>
+    
+<div class="row mb-5 g-3"> 
+    <!-- Total Assets Card -->
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100 border-start border-4 border-primary">
+            <div class="card-body d-flex align-items-center p-3"> 
+                <div class="icon-container me-3" style="width: 40px; height: 40px;">
+                    <i class="fa-solid fa-boxes text-primary fa-xl d-flex justify-content-center align-items-center h-100"></i>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-3">
-            <div class="card shadow-sm border-start border-4 border-success hover-shadow-sm h-100">
-                <div class="card-body d-flex align-items-center">
-                    <i class="fas fa-check-circle text-success fa-2x me-3"></i>
-                    <div>
-                        <small class="text-muted">Total Consumables</small>
-                        <h4 class="mb-0" id="consumable-assets">0</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-3">
-            <div class="card shadow-sm border-start border-4 border-warning hover-shadow-sm h-100">
-                <div class="card-body d-flex align-items-center">
-                    <i class="fas fa-tools text-warning fa-2x me-3"></i>
-                    <div>
-                        <small class="text-muted">Total Non-Consumables</small>
-                        <h4 class="mb-0" id="non-consumable-assets">0</h4>
-                    </div>
+                <div class="flex-grow-1">
+                    <h6 class="card-subtitle mb-1 text-muted small text-uppercase">Total Assets</h6>
+                    <h4 class="card-title mb-0 fw-bold" id="total-assets">0</h4>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Total Consumable Card -->
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100 border-start border-4 border-success">
+            <div class="card-body d-flex align-items-center p-3">
+                <div class="icon-container me-3" style="width: 40px; height: 40px;">
+                    <i class="fa-solid fa-check-circle text-success fa-xl d-flex justify-content-center align-items-center h-100"></i>
+                </div>
+                <div class="flex-grow-1">
+                    <h6 class="card-subtitle mb-1 text-muted small text-uppercase">Total Consumables</h6>
+                    <h4 class="card-title mb-0 fw-bold" id="consumable-assets">0</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Non-Consumable Card -->
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100 border-start border-4 border-warning">
+            <div class="card-body d-flex align-items-center p-3">
+                <div class="icon-container me-3" style="width: 40px; height: 40px;">
+                    <i class="fa-solid fa-tools text-warning fa-xl d-flex justify-content-center align-items-center h-100"></i>
+                </div>
+                <div class="flex-grow-1">
+                    <h6 class="card-subtitle mb-1 text-muted small text-uppercase">Total Non-Consumables</h6>
+                    <h4 class="card-title mb-0 fw-bold" id="non-consumable-assets">0</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
     <!-- Search & Add Button -->
     <div class="row mb-3 align-items-center">
         <div class="col-md-6 mb-3 mb-md-0">

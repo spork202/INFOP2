@@ -27,43 +27,53 @@
             <button type="button" class="btn-close" aria-label="Close" onclick="$('#success-card').addClass('d-none');"></button>
         </div>
     </div>
-
-    <!-- Summary Cards -->
-    <div class="row mb-5">
-        <div class="col-md-4 mb-4">
-            <div class="card shadow-sm border-start border-4 border-primary">
-                <div class="card-body d-flex align-items-center">
-                    <i class="fas fa-users text-primary fa-2x me-3"></i>
-                    <div>
-                        <h6 class="card-subtitle mb-1 text-muted">Total People</h6>
-                        <h4 class="card-title mb-0" id="total-people">0</h4>
-                    </div>
+    
+<div class="row mb-5 g-3">
+    <!-- Total People Card -->
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100 border-start border-4 border-primary">
+            <div class="card-body d-flex align-items-center p-3">
+                <div class="icon-container me-3" style="width: 40px; height: 40px;">
+                    <i class="fa-solid fa-users text-primary fa-xl d-flex justify-content-center align-items-center h-100"></i>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card shadow-sm border-start border-4 border-success">
-                <div class="card-body d-flex align-items-center">
-                    <i class="fas fa-home text-success fa-2x me-3"></i>
-                    <div>
-                        <h6 class="card-subtitle mb-1 text-muted">BS Families</h6>
-                        <h4 class="card-title mb-0" id="bs-families">0</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card shadow-sm border-start border-4 border-warning">
-                <div class="card-body d-flex align-items-center">
-                    <i class="fas fa-church text-warning fa-2x me-3"></i>
-                    <div>
-                        <h6 class="card-subtitle mb-1 text-muted">Ministries</h6>
-                        <h4 class="card-title mb-0" id="ministries">0</h4>
-                    </div>
+                <div class="flex-grow-1">
+                    <h6 class="card-subtitle mb-1 text-muted small text-uppercase">Total People</h6>
+                    <h4 class="card-title mb-0 fw-bold" id="total-people">0</h4>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- BS Families Card -->
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100 border-start border-4 border-success">
+            <div class="card-body d-flex align-items-center p-3">
+                <div class="icon-container me-3" style="width: 40px; height: 40px;">
+                    <i class="fa-solid fa-home text-success fa-xl d-flex justify-content-center align-items-center h-100"></i>
+                </div>
+                <div class="flex-grow-1">
+                    <h6 class="card-subtitle mb-1 text-muted small text-uppercase">BS Families</h6>
+                    <h4 class="card-title mb-0 fw-bold" id="bs-families">0</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ministries Card -->
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100 border-start border-4 border-warning">
+            <div class="card-body d-flex align-items-center p-3">
+                <div class="icon-container me-3" style="width: 40px; height: 40px;">
+                    <i class="fa-solid fa-church text-warning fa-xl d-flex justify-content-center align-items-center h-100"></i>
+                </div>
+                <div class="flex-grow-1">
+                    <h6 class="card-subtitle mb-1 text-muted small text-uppercase">Ministries</h6>
+                    <h4 class="card-title mb-0 fw-bold" id="ministries">0</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- Chart -->
     <div class="row mb-5">
