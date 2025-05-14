@@ -5,6 +5,19 @@
     Layout = "_Layout";
 }
 
+<style>
+    .drivers-list, .programs-list {
+        display: block;
+        line-height: 1.5;
+    }
+    .drivers-list .driver-entry, .programs-list .program-entry {
+        margin-bottom: 0.5rem;
+    }
+    .drivers-list .passengers, .programs-list .assigned-people {
+        margin-left: 1.5rem;
+    }
+</style>
+
 <div class="container mt-5">
     <div class="row mb-4">
         <div class="col-12 d-flex justify-content-between align-items-center">
@@ -144,20 +157,23 @@
                             </select>
                             <span class="text-danger" id="add-event-status-error"></span>
                         </div>
-                        <div class="col-md-6">
+                        <!-- Drivers Section -->
+                        <div class="col-12">
                             <label class="form-label">Drivers</label>
-                            <select class="form-select" id="add-event-drivers" multiple required>
-                                <!-- Populated dynamically -->
-                            </select>
-                            <small class="text-muted">Hold Ctrl (Cmd on Mac) to select multiple</small>
+                            <div id="add-event-drivers" class="border p-3 rounded">
+                                <!-- Dynamically added driver fields -->
+                            </div>
+                            <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="addDriver('add')">
+                                <i class="fa fa-plus me-1"></i>Add Driver
+                            </button>
                             <span class="text-danger" id="add-event-drivers-error"></span>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Passengers</label>
+                            <label class="form-label">Passengers (Optional)</label>
                             <select class="form-select" id="add-event-passengers" multiple>
                                 <!-- Populated dynamically from people collection -->
                             </select>
-                            <small class="text-muted">Hold Ctrl (Cmd on Mac) to select multiple</small>
+                            <small class="text-muted">Hold Ctrl (Cmd on Mac) to select multiple. Use for general event passengers.</small>
                         </div>
                         <!-- Programs Section -->
                         <div class="col-12">
@@ -235,20 +251,23 @@
                             </select>
                             <span class="text-danger" id="edit-event-status-error"></span>
                         </div>
-                        <div class="col-md-6">
+                        <!-- Drivers Section -->
+                        <div class="col-12">
                             <label class="form-label">Drivers</label>
-                            <select class="form-select" id="edit-event-drivers" multiple required>
-                                <!-- Populated dynamically -->
-                            </select>
-                            <small class="text-muted">Hold Ctrl (Cmd on Mac) to select multiple</small>
+                            <div id="edit-event-drivers" class="border p-3 rounded">
+                                <!-- Dynamically added driver fields -->
+                            </div>
+                            <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="addDriver('edit')">
+                                <i class="fa fa-plus me-1"></i>Add Driver
+                            </button>
                             <span class="text-danger" id="edit-event-drivers-error"></span>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Passengers</label>
+                            <label class="form-label">Passengers (Optional)</label>
                             <select class="form-select" id="edit-event-passengers" multiple>
                                 <!-- Populated dynamically from people collection -->
                             </select>
-                            <small class="text-muted">Hold Ctrl (Cmd on Mac) to select multiple</small>
+                            <small class="text-muted">Hold Ctrl (Cmd on Mac) to select multiple. Use for general event passengers.</small>
                         </div>
                         <!-- Programs Section -->
                         <div class="col-12">
@@ -379,7 +398,7 @@
                         DateTime: data.DateTime || '',
                         Status: data.Status || 'Scheduled',
                         Note: data.Note || '',
-                        DriverIds: data.DriverIds || [], // Changed from DriverId to DriverIds
+                        Drivers: data.Drivers || [],
                         Passengers: data.Passengers || [],
                         Programs: data.Programs || [],
                         Remarks: data.Remarks || '',
@@ -398,30 +417,19 @@
             });
         }
 
-        // Populate driver and passenger selects in event modals
+        // Populate passenger selects in event modals
         function populateSelects() {
-            const addDriverSelect = document.getElementById('add-event-drivers');
-            const editDriverSelect = document.getElementById('edit-event-drivers');
             const addPassengerSelect = document.getElementById('add-event-passengers');
             const editPassengerSelect = document.getElementById('edit-event-passengers');
 
-            if (!addDriverSelect || !editDriverSelect || !addPassengerSelect || !editPassengerSelect) {
-                console.error("One or more select elements not found");
+            if (!addPassengerSelect || !editPassengerSelect) {
+                console.error("Passenger select elements not found");
                 return;
             }
 
             // Clear existing options
-            addDriverSelect.innerHTML = '';
-            editDriverSelect.innerHTML = '';
             addPassengerSelect.innerHTML = '';
             editPassengerSelect.innerHTML = '';
-
-            // Populate driver options
-            drivers.forEach(driver => {
-                const option = `<option value="${driver.Id}">${driver.Name}</option>`;
-                addDriverSelect.innerHTML += option;
-                editDriverSelect.innerHTML += option;
-            });
 
             // Populate passenger options from people collection
             people.forEach(person => {
@@ -429,6 +437,48 @@
                 addPassengerSelect.innerHTML += passengerOption;
                 editPassengerSelect.innerHTML += passengerOption;
             });
+        }
+
+        // Add Driver Field Dynamically
+        function addDriver(modalType, driver = { DriverId: '', AssignedPassengers: [] }) {
+            const container = document.getElementById(`${modalType}-event-drivers`);
+            const driverId = `driver-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+            const driverHtml = `
+                <div class="driver-entry mb-3 border p-3 rounded" id="${driverId}">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <label class="form-label mb-0">Driver</label>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="removeDriver('${driverId}')">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                    <select class="form-select driver-id mb-2" required>
+                        <option value="" selected disabled>Select driver</option>
+                        ${drivers.map(d => `
+                            <option value="${d.Id}" ${d.Id === driver.DriverId ? 'selected' : ''}>
+                                ${d.Name}
+                            </option>
+                        `).join('')}
+                    </select>
+                    <label class="form-label">Assigned Passengers</label>
+                    <select class="form-select driver-passengers" multiple>
+                        ${people.map(person => `
+                            <option value="${person.Name}" ${driver.AssignedPassengers.includes(person.Name) ? 'selected' : ''}>
+                                ${person.Name}
+                            </option>
+                        `).join('')}
+                    </select>
+                    <small class="text-muted">Hold Ctrl (Cmd on Mac) to select multiple</small>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', driverHtml);
+        }
+
+        // Remove Driver Field
+        function removeDriver(driverId) {
+            const driverElement = document.getElementById(driverId);
+            if (driverElement) {
+                driverElement.remove();
+            }
         }
 
         // Add Program Field Dynamically
@@ -475,12 +525,25 @@
             }
             container.innerHTML = '';
             events.forEach(event => {
-                const driverNames = event.DriverIds.map(id => {
-                    const driver = drivers.find(d => d.Id === id);
-                    return driver ? driver.Name : 'Unknown';
-                }).join(', ') || 'None';
+                const driversList = event.Drivers.length > 0
+                    ? event.Drivers.map(d => {
+                        const driver = drivers.find(driver => driver.Id === d.DriverId);
+                        const passengers = d.AssignedPassengers.join(', ') || 'None';
+                        return `
+                            <div class="driver-entry">
+                                ${driver ? driver.Name : 'Unknown'}
+                                <div class="passengers">${passengers}</div>
+                            </div>
+                        `;
+                    }).join('')
+                    : 'None';
                 const programsList = event.Programs.length > 0
-                    ? event.Programs.map(p => `${p.Name}: ${p.AssignedPeople.join(', ') || 'None'}`).join('; ')
+                    ? event.Programs.map(p => `
+                        <div class="program-entry">
+                            ${p.Name}
+                            <div class="assigned-people">${p.AssignedPeople.join(', ') || 'None'}</div>
+                        </div>
+                    `).join('')
                     : 'None';
                 const card = `
                     <div class="card border-0 shadow-sm rounded-4 mb-4" data-id="${event.Id}">
@@ -490,9 +553,9 @@
                                 <strong>Subject:</strong> ${event.Subject}<br />
                                 <strong>Date & Time:</strong> ${event.DateTime ? new Date(event.DateTime).toLocaleString() : 'N/A'}<br />
                                 <strong>Status:</strong> ${event.Status}<br />
-                                <strong>Drivers:</strong> ${driverNames}<br />
+                                <strong>Drivers:</strong><div class="drivers-list">${driversList}</div>
                                 <strong>Passengers:</strong> ${event.Passengers.length > 0 ? event.Passengers.join(', ') : 'None'}<br />
-                                <strong>Programs:</strong> ${programsList}
+                                <strong>Programs:</strong><div class="programs-list">${programsList}</div>
                             </div>
                             <div>
                                 <button class="btn btn-sm btn-warning me-1" data-bs-tooltop="tooltip" title="Edit" onclick="openEditEvent('${event.Id}')">
@@ -597,7 +660,10 @@
             const dateTime = document.getElementById('add-event-datetime').value;
             const status = document.getElementById('add-event-status').value;
             const note = document.getElementById('add-event-note').value.trim();
-            const driverIds = Array.from(document.getElementById('add-event-drivers').selectedOptions).map(option => option.value);
+            const driversData = Array.from(document.querySelectorAll('#add-event-drivers .driver-entry')).map(entry => ({
+                DriverId: entry.querySelector('.driver-id').value,
+                AssignedPassengers: Array.from(entry.querySelector('.driver-passengers').selectedOptions).map(option => option.value)
+            })).filter(driver => driver.DriverId);
             const passengers = Array.from(document.getElementById('add-event-passengers').selectedOptions).map(option => option.value);
             const programs = Array.from(document.querySelectorAll('#add-event-programs .program-entry')).map(entry => ({
                 Name: entry.querySelector('.program-name').value.trim(),
@@ -631,7 +697,7 @@
                 document.getElementById('add-event-status-error').innerText = 'Status is required';
                 return;
             }
-            if (driverIds.length === 0) {
+            if (driversData.length === 0) {
                 document.getElementById('add-event-drivers-error').innerText = 'At least one driver is required';
                 return;
             }
@@ -642,7 +708,7 @@
                 DateTime: dateTime,
                 Status: status,
                 Note: note,
-                DriverIds: driverIds,
+                Drivers: driversData,
                 Passengers: passengers,
                 Programs: programs,
                 Remarks: remarks,
@@ -654,6 +720,7 @@
             db.collection('transport_events').add(event).then(() => {
                 $('#addEventModal').modal('hide');
                 document.getElementById('add-event-form').reset();
+                document.getElementById('add-event-drivers').innerHTML = '';
                 document.getElementById('add-event-programs').innerHTML = '';
                 loadEvents();
                 showSuccess("Transport event added successfully!");
@@ -673,10 +740,9 @@
                 document.getElementById('edit-event-datetime').value = event.DateTime;
                 document.getElementById('edit-event-status').value = event.Status;
                 document.getElementById('edit-event-note').value = event.Note;
-                const driverSelect = document.getElementById('edit-event-drivers');
-                Array.from(driverSelect.options).forEach(option => {
-                    option.selected = event.DriverIds.includes(option.value);
-                });
+                const driversContainer = document.getElementById('edit-event-drivers');
+                driversContainer.innerHTML = '';
+                event.Drivers.forEach(driver => addDriver('edit', driver));
                 const passengerSelect = document.getElementById('edit-event-passengers');
                 Array.from(passengerSelect.options).forEach(option => {
                     option.selected = event.Passengers.includes(option.value);
@@ -699,7 +765,10 @@
             const dateTime = document.getElementById('edit-event-datetime').value;
             const status = document.getElementById('edit-event-status').value;
             const note = document.getElementById('edit-event-note').value.trim();
-            const driverIds = Array.from(document.getElementById('edit-event-drivers').selectedOptions).map(option => option.value);
+            const driversData = Array.from(document.querySelectorAll('#edit-event-drivers .driver-entry')).map(entry => ({
+                DriverId: entry.querySelector('.driver-id').value,
+                AssignedPassengers: Array.from(entry.querySelector('.driver-passengers').selectedOptions).map(option => option.value)
+            })).filter(driver => driver.DriverId);
             const passengers = Array.from(document.getElementById('edit-event-passengers').selectedOptions).map(option => option.value);
             const programs = Array.from(document.querySelectorAll('#edit-event-programs .program-entry')).map(entry => ({
                 Name: entry.querySelector('.program-name').value.trim(),
@@ -733,7 +802,7 @@
                 document.getElementById('edit-event-status-error').innerText = 'Status is required';
                 return;
             }
-            if (driverIds.length === 0) {
+            if (driversData.length === 0) {
                 document.getElementById('edit-event-drivers-error').innerText = 'At least one driver is required';
                 return;
             }
@@ -744,7 +813,7 @@
                 DateTime: dateTime,
                 Status: status,
                 Note: note,
-                DriverIds: driverIds,
+                Drivers: driversData,
                 Passengers: passengers,
                 Programs: programs,
                 Remarks: remarks,
