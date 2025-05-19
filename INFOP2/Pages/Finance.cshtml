@@ -128,30 +128,13 @@
                 </table>
             </div>
         </div>
-
+        
         <!-- Pagination -->
-        <div class="d-flex justify-content-end align-items-center mt-3">
-            <small id="pagination-info" class="me-3 text-muted">1 - 10 of 25</small>
-            <small class="me-3">|</small>
-            <small class="me-3">This page you're on</small>
+        <div class="d-flex justify-content-end align-items-center mt-3" id="pagination-container">
+            <small class="me-3 text-muted" id="pagination-info"></small>
             <nav>
                 <ul class="pagination pagination-sm mb-0">
-                    <li class="page-item disabled">
-                        <a id="prev-page" class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                            <i class="fas fa-angle-left"></i>
-                        </a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a id="next-page" class="page-link" href="#">
-                            <i class="fas fa-angle-right"></i>
-                        </a>
-                    </li>
+                    <!-- Dynamically populated -->
                 </ul>
             </nav>
         </div>
@@ -449,32 +432,51 @@
             });
         }
 
-        // Update Pagination
         function updatePagination() {
-            const paginationInfo = document.getElementById('pagination-info');
-            if (!paginationInfo) {
-                console.error("Element with ID 'pagination-info' not found");
-                return;
-            }
             const start = currentPage === 1 ? 1 : (currentPage - 1) * pageSize + 1;
             const end = Math.min(currentPage * pageSize, totalItems);
-            paginationInfo.innerText = `${start}-${end} of ${totalItems} This page you're on ${currentPage}`;
-            const prevBtn = document.getElementById('prev-page');
-            const nextBtn = document.getElementById('next-page');
-            if (prevBtn) {
-                if (currentPage === 1) {
-                    prevBtn.classList.add('disabled');
-                } else {
-                    prevBtn.classList.remove('disabled');
-                }
+            document.getElementById('pagination-info').innerText = `${start}-${end} of ${totalItems} | Page ${currentPage}`;
+
+            const pagination = document.querySelector('.pagination');
+            pagination.innerHTML = `
+                <li class="page-item ${currentPage === 1 ? 'disabled' : ''}" id="prev-page">
+                    <a class="page-link" href="#" aria-label="Previous"><i class="fas fa-angle-left"></i></a>
+                </li>
+            `;
+
+            for (let i = 1; i <= totalPages; i++) {
+                pagination.innerHTML += `
+                    <li class="page-item ${i === currentPage ? 'active' : ''}">
+                        <a class="page-link" href="#" onclick="changePage(${i}); return false;">${i}</a>
+                    </li>
+                `;
             }
-            if (nextBtn) {
-                if (currentPage === totalPages || totalPages === 0) {
-                    nextBtn.classList.add('disabled');
-                } else {
-                    nextBtn.classList.remove('disabled');
-                }
-            }
+
+            pagination.innerHTML += `
+                <li class="page-item ${currentPage === totalPages || totalPages === 0 ? 'disabled' : ''}" id="next-page">
+                    <a class="page-link" href="#" aria-label="Next"><i class="fas fa-angle-right"></i></a>
+                </li>
+            `;
+
+            document.querySelectorAll('#prev-page a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (currentPage > 1) changePage(currentPage - 1);
+                });
+            });
+
+            document.querySelectorAll('#next-page a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (currentPage < totalPages) changePage(currentPage + 1);
+                });
+            });
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            renderTable();
+            updatePagination();
         }
 
         // Add Transaction
