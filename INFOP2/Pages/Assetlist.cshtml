@@ -111,22 +111,15 @@
             </tbody>
         </table>
     </div>
-
+    
     <!-- Pagination -->
-    <div class="d-flex justify-content-end align-items-center">
-        <small class="text-muted me-3" id="pagination-info">1 - 10 of 25</small>
-        <ul class="pagination pagination-sm mb-0 gap-1">
-            <li class="page-item" id="prev-page">
-                <a class="page-link" href="#"><i class="fas fa-angle-left"></i></a>
-            </li>
-            <li class="page-item active">
-                <span class="page-link">1</span>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item" id="next-page">
-                <a class="page-link" href="#"><i class="fas fa-angle-right"></i></a>
-            </li>
-        </ul>
+    <div class="d-flex justify-content-end align-items-center mt-3" id="pagination-container">
+        <small class="me-3 text-muted" id="pagination-info"></small>
+        <nav>
+            <ul class="pagination pagination-sm mb-0">
+                <!-- Dynamically populated -->
+            </ul>
+        </nav>
     </div>
 
     <!-- No Data -->
@@ -365,28 +358,51 @@
             document.getElementById('non-consumable-assets').innerText = nonConsumableAssets;
         }
 
-        // Update Pagination
         function updatePagination() {
             const start = currentPage === 1 ? 1 : (currentPage - 1) * pageSize + 1;
             const end = Math.min(currentPage * pageSize, totalItems);
-            document.getElementById('pagination-info').innerText = `${start}-${end} of ${totalItems} (Page ${currentPage})`;
+            document.getElementById('pagination-info').innerText = `${start}-${end} of ${totalItems} | Page ${currentPage}`;
 
-            const prevBtn = document.getElementById('prev-page');
-            const nextBtn = document.getElementById('next-page');
+            const pagination = document.querySelector('.pagination');
+            pagination.innerHTML = `
+                <li class="page-item ${currentPage === 1 ? 'disabled' : ''}" id="prev-page">
+                    <a class="page-link" href="#" aria-label="Previous"><i class="fas fa-angle-left"></i></a>
+                </li>
+            `;
 
-            if (currentPage === 1) {
-                prevBtn.classList.add('disabled');
-            } else {
-                prevBtn.classList.remove('disabled');
-                prevBtn.querySelector('a').href = `/Assetlist?CurrentPage=${currentPage - 1}&SearchTerm=${searchTerm}&SortOrder=${sortOrder}`;
+            for (let i = 1; i <= totalPages; i++) {
+                pagination.innerHTML += `
+                    <li class="page-item ${i === currentPage ? 'active' : ''}">
+                        <a class="page-link" href="#" onclick="changePage(${i}); return false;">${i}</a>
+                    </li>
+                `;
             }
 
-            if (currentPage === totalPages || totalPages === 0) {
-                nextBtn.classList.add('disabled');
-            } else {
-                nextBtn.classList.remove('disabled');
-                nextBtn.querySelector('a').href = `/Assetlist?CurrentPage=${currentPage + 1}&SearchTerm=${searchTerm}&SortOrder=${sortOrder}`;
-            }
+            pagination.innerHTML += `
+                <li class="page-item ${currentPage === totalPages || totalPages === 0 ? 'disabled' : ''}" id="next-page">
+                    <a class="page-link" href="#" aria-label="Next"><i class="fas fa-angle-right"></i></a>
+                </li>
+            `;
+
+            document.querySelectorAll('#prev-page a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (currentPage > 1) changePage(currentPage - 1);
+                });
+            });
+
+            document.querySelectorAll('#next-page a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (currentPage < totalPages) changePage(currentPage + 1);
+                });
+            });
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            renderTable();
+            updatePagination();
         }
 
         // Add Asset
