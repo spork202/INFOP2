@@ -97,10 +97,10 @@
         </div>
         <div class="col-md-6 d-flex justify-content-end mb-3 gap-2">
             <button id="add-btn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">
-                <i class="fas fa-plus me-1"></i> Add Person
+                <i class="fa-solid fa-plus me-1"></i> Add Person
             </button>
             <button class="btn btn-outline-secondary" id="exportBtnMaster" data-bs-tooltip="tooltip" title="Export to Excel">
-                <i class="fa fa-download"></i>
+                <i class="fa-solid fa-download"></i>
             </button>
         </div>
     </div>
@@ -454,8 +454,8 @@
                         <td>${person.KSAAddress || 'N/A'}</td>
                         <td>${person.Birthdate ? person.Birthdate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : 'N/A'}</td>
                         <td>
-                            <button class="btn btn-sm btn-warning me-1" data-bs-tooltop="tooltip" title="Edit" onclick="openEdit('${person.Id}')"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger" data-bs-tooltop="tooltip" title="Delete" onclick="deletePerson('${person.Id}')"><i class="fas fa-trash"></i></button>
+                            <button class="btn btn-sm btn-warning me-1" data-bs-tooltop="tooltip" title="Edit" onclick="openEdit('${person.Id}')"><i class="fa-solid fa-edit"></i></button>
+                            <button class="btn btn-sm btn-danger" data-bs-tooltop="tooltip" title="Delete" onclick="deletePerson('${person.Id}')"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
                 `;
@@ -531,7 +531,7 @@
             const pagination = document.querySelector('.pagination');
             pagination.innerHTML = `
                 <li class="page-item ${currentPage === 1 ? 'disabled' : ''}" id="prev-page">
-                    <a class="page-link" href="#" aria-label="Previous"><i class="fas fa-angle-left"></i></a>
+                    <a class="page-link" href="#" aria-label="Previous"><i class="fa-solid fa-angle-left"></i></a>
                 </li>
             `;
 
@@ -545,7 +545,7 @@
 
             pagination.innerHTML += `
                 <li class="page-item ${currentPage === totalPages || totalPages === 0 ? 'disabled' : ''}" id="next-page">
-                    <a class="page-link" href="#" aria-label="Next"><i class="fas fa-angle-right"></i></a>
+                    <a class="page-link" href="#" aria-label="Next"><i class="fa-solid fa-angle-right"></i></a>
                 </li>
             `;
 
