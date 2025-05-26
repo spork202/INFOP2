@@ -73,10 +73,10 @@
         </div>
         <div class="col-md-6 d-flex justify-content-end mb-3 gap-2">
             <button id="add-btn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">
-                <i class="fas fa-plus me-1"></i> Add Asset
+                <i class="fa-solid fa-plus me-1"></i> Add Asset
             </button>
             <button class="btn btn-outline-secondary" id="exportBtnAsset" data-bs-tooltip="tooltip" title="Export to Excel">
-                <i class="fa fa-download"></i>
+                <i class="fa-solid fa-download"></i>
             </button>
         </div>
     </div>
@@ -166,7 +166,7 @@
                 </div>
                 <div class="modal-footer bg-light">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button class="btn btn-success" onclick="addAsset()">Add Asset</button>
+                    <button class="btn btn-success" onclick="addAsset()">Save Asset</button>
                 </div>
             </div>
         </div>
@@ -358,8 +358,8 @@
                         <td>${asset.Consumable}</td>
                         <td>${asset.Remarks}</td>
                         <td>                       
-                            <button class="btn btn-sm btn-warning me-1" data-bs-tooltop="tooltip" title="Edit" onclick="openEdit('${asset.Id}')"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger" data-bs-tooltop="tooltip" title="Delete" onclick="openDeleteEvent('${asset.Id}')"><i class="fas fa-trash"></i></button>
+                            <button class="btn btn-sm btn-warning me-1" data-bs-tooltop="tooltip" title="Edit" onclick="openEdit('${asset.Id}')"><i class="fa-solid fa-edit"></i></button>
+                            <button class="btn btn-sm btn-danger" data-bs-tooltop="tooltip" title="Delete" onclick="openDeleteEvent('${asset.Id}')"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
                 `;
@@ -386,7 +386,7 @@
             const pagination = document.querySelector('.pagination');
             pagination.innerHTML = `
                 <li class="page-item ${currentPage === 1 ? 'disabled' : ''}" id="prev-page">
-                    <a class="page-link" href="#" aria-label="Previous"><i class="fas fa-angle-left"></i></a>
+                    <a class="page-link" href="#" aria-label="Previous"><i class="fa-solid fa-angle-left"></i></a>
                 </li>
             `;
 
@@ -400,7 +400,7 @@
 
             pagination.innerHTML += `
                 <li class="page-item ${currentPage === totalPages || totalPages === 0 ? 'disabled' : ''}" id="next-page">
-                    <a class="page-link" href="#" aria-label="Next"><i class="fas fa-angle-right"></i></a>
+                    <a class="page-link" href="#" aria-label="Next"><i class="fa-solid fa-angle-right"></i></a>
                 </li>
             `;
 
