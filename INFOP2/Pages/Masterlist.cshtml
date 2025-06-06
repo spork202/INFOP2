@@ -5,6 +5,28 @@
     Layout = "_Layout";
 }
 
+<style>
+    /* Copy all button styling */
+    .copy-all-btn {
+        font-size: 14px;
+    }
+    /* Feedback message styling */
+    .copy-feedback {
+        position: absolute;
+        background: #28a745;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    .copy-feedback.show {
+        opacity: 1;
+    }
+</style>
+
 <div class="container mt-5">
     <!-- Header -->
     <div class="row mb-4 align-items-center">
@@ -101,6 +123,9 @@
             </button>
             <button class="btn btn-outline-secondary" id="exportBtnMaster" data-bs-tooltip="tooltip" title="Export to Excel">
                 <i class="fa-solid fa-download"></i>
+            </button>
+            <button class="btn btn-outline-secondary copy-all-btn" onclick="copyAllData(this)" title="Copy all people data" aria-label="Copy all people data">
+                <i class="fa-solid fa-copy me-1"></i>Copy All Data
             </button>
         </div>
     </div>
@@ -337,46 +362,46 @@
 
         // Load Categories (BS Family and Ministry)
         async function loadCategories() {
-    try {
-        console.log("Loading categories from Firestore...");
-        const snapshot = await db.collection('categories').get();
-        console.log("Categories snapshot size:", snapshot.size);
-        console.log("Category documents:", snapshot.docs.map(doc => ({ id: doc.id, data: doc.data() })));
-        bsFamilies = [];
-        ministries = [];
+            try {
+                console.log("Loading categories from Firestore...");
+                const snapshot = await db.collection('categories').get();
+                console.log("Categories snapshot size:", snapshot.size);
+                console.log("Category documents:", snapshot.docs.map(doc => ({ id: doc.id, data: doc.data() })));
+                bsFamilies = [];
+                ministries = [];
 
-        for (const doc of snapshot.docs) {
-            const data = doc.data();
-            console.log("Processing category:", doc.id, data);
-            if (data.Title && data.Title.toLowerCase() === "bs family") { // Case-insensitive match
-                console.log("Found BS Family category:", doc.id);
-                const itemsSnapshot = await db.collection('categories').doc(doc.id).collection('items').get();
-                console.log("BS Family items snapshot size:", itemsSnapshot.size);
-                console.log("BS Family items:", itemsSnapshot.docs.map(itemDoc => ({ id: itemDoc.id, data: itemDoc.data() })));
-                bsFamilies = itemsSnapshot.docs.map(itemDoc => ({
-                    Id: itemDoc.id,
-                    Name: itemDoc.data().Name || "Unknown"
-                }));
-            } else if (data.Title && data.Title.toLowerCase() === "ministry") { // Case-insensitive for Ministry too
-                console.log("Found Ministry category:", doc.id);
-                const itemsSnapshot = await db.collection('categories').doc(doc.id).collection('items').get();
-                console.log("Ministry items snapshot size:", itemsSnapshot.size);
-                console.log("Ministry items:", itemsSnapshot.docs.map(itemDoc => ({ id: itemDoc.id, data: itemDoc.data() })));
-                ministries = itemsSnapshot.docs.map(itemDoc => ({
-                    Id: itemDoc.id,
-                    Name: itemDoc.data().Name || "Unknown"
-                }));
+                for (const doc of snapshot.docs) {
+                    const data = doc.data();
+                    console.log("Processing category:", doc.id, data);
+                    if (data.Title && data.Title.toLowerCase() === "bs family") {
+                        console.log("Found BS Family category:", doc.id);
+                        const itemsSnapshot = await db.collection('categories').doc(doc.id).collection('items').get();
+                        console.log("BS Family items snapshot size:", itemsSnapshot.size);
+                        console.log("BS Family items:", itemsSnapshot.docs.map(itemDoc => ({ id: itemDoc.id, data: itemDoc.data() })));
+                        bsFamilies = itemsSnapshot.docs.map(itemDoc => ({
+                            Id: itemDoc.id,
+                            Name: itemDoc.data().Name || "Unknown"
+                        }));
+                    } else if (data.Title && data.Title.toLowerCase() === "ministry") {
+                        console.log("Found Ministry category:", doc.id);
+                        const itemsSnapshot = await db.collection('categories').doc(doc.id).collection('items').get();
+                        console.log("Ministry items snapshot size:", itemsSnapshot.size);
+                        console.log("Ministry items:", itemsSnapshot.docs.map(itemDoc => ({ id: itemDoc.id, data: itemDoc.data() })));
+                        ministries = itemsSnapshot.docs.map(itemDoc => ({
+                            Id: itemDoc.id,
+                            Name: itemDoc.data().Name || "Unknown"
+                        }));
+                    }
+                }
+
+                console.log("BS Families:", bsFamilies);
+                console.log("Ministries:", ministries);
+                populateDropdowns();
+            } catch (error) {
+                console.error("Error loading categories:", error);
+                showError(`Failed to load BS Families or Ministries: ${error.message}`);
             }
         }
-
-        console.log("BS Families:", bsFamilies);
-        console.log("Ministries:", ministries);
-        populateDropdowns();
-    } catch (error) {
-        console.error("Error loading categories:", error);
-        showError(`Failed to load BS Families or Ministries: ${error.message}`);
-    }
-}
 
         // Populate BS Family and Ministry Dropdowns
         function populateDropdowns() {
@@ -434,7 +459,7 @@
                     if (sortOrder === 'name_desc') {
                         people.sort((a, b) => b.Name.localeCompare(a.Name));
                     } else {
-                        people.sort((a, b) => a.Name.localeCompare(b.Name));
+                        people.sort((a, b) => a.Name.localeCompare(a.Name));
                     }
 
                     totalItems = people.length;
@@ -474,8 +499,8 @@
                         <td>${person.KSAAddress || 'N/A'}</td>
                         <td>${person.Birthdate ? person.Birthdate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : 'N/A'}</td>
                         <td>
-                            <button class="btn btn-sm btn-warning me-1" data-bs-tooltop="tooltip" title="Edit" onclick="openEdit('${person.Id}')"><i class="fa-solid fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger" data-bs-tooltop="tooltip" title="Delete" onclick="openDeleteEvent('${person.Id}')"><i class="fa-solid fa-trash"></i></button>
+                            <button class="btn btn-sm btn-warning me-1" data-bs-tooltip="tooltip" title="Edit" onclick="openEdit('${person.Id}')"><i class="fa-solid fa-edit"></i></button>
+                            <button class="btn btn-sm btn-danger" data-bs-tooltip="tooltip" title="Delete" onclick="openDeleteEvent('${person.Id}')"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
                 `;
@@ -588,6 +613,58 @@
             currentPage = page;
             renderTable();
             updatePagination();
+        }
+
+        // Copy All People Data
+        function copyAllData(button) {
+            if (people.length === 0) {
+                showError('No people to copy.');
+                return;
+            }
+
+            // Format people data in a messenger-friendly format
+            const rows = people.map(person => {
+                const birthdate = person.Birthdate
+                    ? person.Birthdate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' })
+                    : 'N/A';
+                return [
+                    `• Name: ${person.Name || 'N/A'}`,
+                    `  - BS Family: ${person.BSFamily || 'N/A'}`,
+                    `  - Ministry: ${person.Ministry || 'N/A'}`,
+                    `  - Contact No.: ${person.ContactNumber || 'N/A'}`,
+                    `  - KSA Address: ${person.KSAAddress || 'N/A'}`,
+                    `  - Birthdate: ${birthdate}`
+                ].join('\n');
+            });
+
+            // Join rows with double newlines for separation
+            const textToCopy = rows.join('\n\n');
+
+            // Use Clipboard API to copy text
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Create feedback element
+                const feedback = document.createElement('span');
+                feedback.className = 'copy-feedback';
+                feedback.innerText = 'Copied!';
+                button.parentElement.appendChild(feedback);
+
+                // Position feedback near the button
+                const rect = button.getBoundingClientRect();
+                feedback.style.top = `${rect.top - 30}px`;
+                feedback.style.left = `${rect.left + rect.width / 2}px`;
+
+                // Show feedback
+                feedback.classList.add('show');
+
+                // Remove feedback after 2 seconds
+                setTimeout(() => {
+                    feedback.classList.remove('show');
+                    setTimeout(() => feedback.remove(), 300); // Wait for fade-out transition
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy all data:', err);
+                showError('Failed to copy people data.');
+            });
         }
 
         function addPerson() {
@@ -731,34 +808,11 @@
             });
         }
 
-        // function deletePerson(id) {
-        //     if (!db) {
-        //         console.error("Cannot delete person: Firestore db is not initialized");
-        //         showError("Failed to delete person. Database not initialized.");
-        //         return;
-        //     }
-        //     if (confirm('Are you sure you want to delete this person?')) {
-        //         db.collection('people').doc(id).delete().then(() => {
-        //             loadPeople();
-        //             showSuccess("Person deleted successfully!");
-        //         }).catch(error => {
-        //             console.error("Error deleting person:", error);
-        //             showError("Failed to delete person.");
-        //         });
-        //     }
-        // }
-
-        function openDetail(id) {
-            alert('Detail view for ID: ' + id);
-        }
-        
-        // Open Delete Event Modal
         function openDeleteEvent(id) {
             document.getElementById('delete-event-id').value = id;
             $('#deleteEventModal').modal('show');
         }
 
-        // Delete Records
         document.getElementById('confirm-delete').addEventListener('click', function () {
             const id = document.getElementById('delete-event-id').value;
             db.collection('people').doc(id).delete().then(() => {
@@ -771,7 +825,10 @@
             });
         });
         
-        
+        function openDetail(id) {
+            alert('Detail view for ID: ' + id);
+        }
+
         // Show Success Message
         function showSuccess(message) {
             const successCard = document.getElementById('success-card');
