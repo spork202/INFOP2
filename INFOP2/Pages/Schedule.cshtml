@@ -821,9 +821,7 @@
                 driversContainer.innerHTML = '';
                 event.Drivers.forEach(driver => addDriver('edit', driver));
                 const passengerSelect = document.getElementById('edit-event-passengers');
-                Array.from(passengerSelect.options).forEach(option => {
-                    option.selected = event.Passengers.includes(option.value);
-                });
+            
                 const programsContainer = document.getElementById('edit-event-programs');
                 programsContainer.innerHTML = '';
                 event.Programs.forEach(program => addProgram('edit', program));
@@ -846,7 +844,7 @@
                 DriverId: entry.querySelector('.driver-id').value,
                 AssignedPassengers: Array.from(entry.querySelector('.driver-passengers').selectedOptions).map(option => option.value)
             })).filter(driver => driver.DriverId);
-            const passengers = Array.from(document.getElementById('edit-event-passengers').selectedOptions).map(option => option.value);
+            
             const programs = Array.from(document.querySelectorAll('#edit-event-programs .program-entry')).map(entry => ({
                 Name: entry.querySelector('.program-name').value.trim(),
                 AssignedPeople: Array.from(entry.querySelector('.program-person').selectedOptions).map(option => option.value)
@@ -891,7 +889,6 @@
                 Status: status,
                 Note: note,
                 Drivers: driversData,
-                Passengers: passengers,
                 Programs: programs,
                 Remarks: remarks,
                 ClosingNotes: closingNotes,
