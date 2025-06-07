@@ -16,6 +16,25 @@
     .drivers-list .passengers, .programs-list .assigned-people {
         margin-left: 1.5rem;
     }
+    /* Copy button styling */
+    .copy-btn {
+        font-size: 14px;
+    }
+    /* Feedback message styling */
+    .copy-feedback {
+        position: absolute;
+        background: #28a745;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    .copy-feedback.show {
+        opacity: 1;
+    }
 </style>
 
 <div class="container mt-5">
@@ -168,13 +187,7 @@
                             </button>
                             <span class="text-danger" id="add-event-drivers-error"></span>
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Passengers (Optional)</label>
-                            <select class="form-select" id="add-event-passengers" multiple>
-                                <!-- Populated dynamically from people collection -->
-                            </select>
-                            <small class="text-muted">Hold Ctrl (Cmd on Mac) to select multiple. Use for general event passengers.</small>
-                        </div>
+                        
                         <!-- Programs Section -->
                         <div class="col-12">
                             <label class="form-label">Programs</label>
@@ -382,7 +395,7 @@
                 });
                 populateSelects();
             }).catch(error => {
-                console.error("Error loading drivers:", error);
+          
                 showError("Failed to load drivers. Please try again.");
             });
         }
@@ -400,7 +413,7 @@
                 });
                 populateSelects();
             }).catch(error => {
-                console.error("Error loading people:", error);
+            
                 showError("Failed to load passengers. Please try again.");
             });
         }
@@ -437,27 +450,7 @@
             });
         }
 
-        // Populate passenger selects in event modals
-        function populateSelects() {
-            const addPassengerSelect = document.getElementById('add-event-passengers');
-            const editPassengerSelect = document.getElementById('edit-event-passengers');
-
-            if (!addPassengerSelect || !editPassengerSelect) {
-                console.error("Passenger select elements not found");
-                return;
-            }
-
-            // Clear existing options
-            addPassengerSelect.innerHTML = '';
-            editPassengerSelect.innerHTML = '';
-
-            // Populate passenger options from people collection
-            people.forEach(person => {
-                const passengerOption = `<option value="${person.Name}">${person.Name}</option>`;
-                addPassengerSelect.innerHTML += passengerOption;
-                editPassengerSelect.innerHTML += passengerOption;
-            });
-        }
+        
 
         // Add Driver Field Dynamically
         function addDriver(modalType, driver = { DriverId: '', AssignedPassengers: [] }) {
@@ -515,7 +508,7 @@
                     </div>
                     <input type="text" class="form-control mb-2 program-name" value="${program.Name}" required />
                     <label class="form-label">Assigned People</label>
-                    <select class="form-select program-people" multiple>
+                    <select class="form-select program-person" multiple>
                         ${people.map(person => `
                             <option value="${person.Name}" ${program.AssignedPeople.includes(person.Name) ? 'selected' : ''}>
                                 ${person.Name}
@@ -578,10 +571,13 @@
                                 <strong>Programs:</strong><div class="programs-list">${programsList}</div>
                             </div>
                             <div>
-                                <button class="btn btn-sm btn-warning me-1" data-bs-tooltop="tooltip" title="Edit" onclick="openEditEvent('${event.Id}')">
+                                <button class="btn btn-sm btn-info me-1 copy-btn" data-bs-tooltip="tooltip" title="Copy this event" onclick="copyEvent('${event.Id}', this)">
+                                    <i class="fa-solid fa-copy"></i>
+                                </button>
+                                <button class="btn btn-sm btn-warning me-1" data-bs-tooltip="tooltip" title="Edit" onclick="openEditEvent('${event.Id}')">
                                     <i class="fa-solid fa-edit"></i>
                                 </button>
-                                <button class="btn btn-sm btn-danger" data-bs-tooltop="tooltip" title="Delete" onclick="openDeleteEvent('${event.Id}')">
+                                <button class="btn btn-sm btn-danger" data-bs-tooltip="tooltip" title="Delete" onclick="openDeleteEvent('${event.Id}')">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </div>
@@ -595,6 +591,74 @@
                     </div>
                 `;
                 container.innerHTML += card;
+            });
+        }
+
+        // Copy Single Event
+        function copyEvent(eventId, button) {
+            const event = events.find(e => e.Id === eventId);
+            if (!event) {
+                showError('Event not found.');
+                return;
+            }
+
+            // Format event data in a messenger-friendly format
+            const dateTime = event.DateTime ? new Date(event.DateTime).toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' }) : 'N/A';
+            const driversList = event.Drivers.length > 0
+                ? event.Drivers.map(d => {
+                    const driver = drivers.find(driver => driver.Id === d.DriverId);
+                    const passengers = d.AssignedPassengers.length > 0 ? d.AssignedPassengers.join(', ') : 'None';
+                    return [
+                        `      · ${driver ? driver.Name : 'Unknown'}`,
+                        `        - Passengers: ${passengers}`
+                    ].join('\n');
+                }).join('\n')
+                : 'None';
+            const passengers = event.Passengers.length > 0 ? event.Passengers.join(', ') : 'None';
+            const programsList = event.Programs.length > 0
+                ? event.Programs.map(p => [
+                    `      · ${p.Name || 'N/A'}`,
+                    `        - Assigned People: ${p.AssignedPeople.length > 0 ? p.AssignedPeople.join(', ') : 'None'}`
+                ].join('\n')).join('\n')
+                : 'None';
+
+            const textToCopy = [
+                `• Event: ${event.Event || 'N/A'}`,
+                `  - Subject: ${event.Subject || 'N/A'}`,
+                `  - Date & Time: ${dateTime}`,
+                `  - Status: ${event.Status || 'N/A'}`,
+                `  - Note: ${event.Note || 'N/A'}`,
+                `  - Drivers:\n${driversList}`,
+                `  - Programs:\n${programsList}`,
+                `  - Remarks: ${event.Remarks || 'N/A'}`,
+                `  - Closing Notes: ${event.ClosingNotes || 'N/A'}`,
+                `  - Bible Verse: ${event.Verse || 'N/A'}`
+            ].join('\n');
+
+            // Use Clipboard API to copy text
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Create feedback element
+                const feedback = document.createElement('span');
+                feedback.className = 'copy-feedback';
+                feedback.innerText = 'Copied!';
+                button.parentElement.appendChild(feedback);
+
+                // Position feedback near the button
+                const rect = button.getBoundingClientRect();
+                feedback.style.top = `${rect.top - 30}px`;
+                feedback.style.left = `${rect.left + rect.width / 2}px`;
+
+                // Show feedback
+                feedback.classList.add('show');
+
+                // Remove feedback after 2 seconds
+                setTimeout(() => {
+                    feedback.classList.remove('show');
+                    setTimeout(() => feedback.remove(), 300); // Wait for fade-out transition
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy event:', err);
+                showError('Failed to copy event data.');
             });
         }
 
@@ -684,10 +748,10 @@
                 DriverId: entry.querySelector('.driver-id').value,
                 AssignedPassengers: Array.from(entry.querySelector('.driver-passengers').selectedOptions).map(option => option.value)
             })).filter(driver => driver.DriverId);
-            const passengers = Array.from(document.getElementById('add-event-passengers').selectedOptions).map(option => option.value);
+          
             const programs = Array.from(document.querySelectorAll('#add-event-programs .program-entry')).map(entry => ({
                 Name: entry.querySelector('.program-name').value.trim(),
-                AssignedPeople: Array.from(entry.querySelector('.program-people').selectedOptions).map(option => option.value)
+                AssignedPeople: Array.from(entry.querySelector('.program-person').selectedOptions).map(option => option.value)
             })).filter(program => program.Name);
             const remarks = document.getElementById('add-event-remarks').value.trim();
             const closingNotes = document.getElementById('add-event-closing-notes').value.trim();
@@ -729,7 +793,6 @@
                 Status: status,
                 Note: note,
                 Drivers: driversData,
-                Passengers: passengers,
                 Programs: programs,
                 Remarks: remarks,
                 ClosingNotes: closingNotes,
@@ -792,7 +855,7 @@
             const passengers = Array.from(document.getElementById('edit-event-passengers').selectedOptions).map(option => option.value);
             const programs = Array.from(document.querySelectorAll('#edit-event-programs .program-entry')).map(entry => ({
                 Name: entry.querySelector('.program-name').value.trim(),
-                AssignedPeople: Array.from(entry.querySelector('.program-people').selectedOptions).map(option => option.value)
+                AssignedPeople: Array.from(entry.querySelector('.program-person').selectedOptions).map(option => option.value)
             })).filter(program => program.Name);
             const remarks = document.getElementById('edit-event-remarks').value.trim();
             const closingNotes = document.getElementById('edit-event-closing-notes').value.trim();
