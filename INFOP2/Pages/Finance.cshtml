@@ -5,72 +5,83 @@
     Layout = "_Layout";
 }
 
-<div class="container mt-5">
+<div class="container-fluid px-4 py-4">
     <!-- Header -->
-    <div class="row mb-4 align-items-center">
-        <div class="col-12 d-flex justify-content-between align-items-center">
-            <h2 class="fw-bold">@ViewData["Title"]</h2>
-            <h4 class="h6">Hello, <strong>@User.Identity?.Name</strong></h4>
-        </div>
-        <div class="col-12 d-flex justify-content-between align-items-center">
-            <p class="text-muted">Manage your financial transactions</p>
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div>
+                    <h2 class="fw-bold mb-1">@ViewData["Title"]</h2>
+                    <p class="text-muted mb-0">Manage your financial transactions</p>
+                </div>
+                <div class="text-end">
+                    <h4 class="h6 mb-1">Welcome back,</h4>
+                    <p class="text-primary mb-0 fw-bold">@User.Identity?.Name</p>
+                </div>
+            </div>
         </div>
     </div>
     
-    <div class="row mb-5 g-3">
-    <!-- Total People Card -->
-    <div class="col-md-4">
-        <div class="card shadow-sm h-100 border-start border-4 border-success">
-            <div class="card-body d-flex align-items-center p-3">
-                <div class="icon-container me-3" style="width: 40px; height: 40px;">
-                    <i class="fa-solid fa-arrow-up text-success fa-xl d-flex justify-content-center align-items-center h-100"></i>
-                </div>
-                <div class="flex-grow-1">
-                    <h6 class="card-subtitle mb-1 text-muted small text-uppercase">Total Income</h6>
-                    <h4 class="card-title mb-0 fw-bold" id="total-income">0.00</h4>
+    <div class="row mb-4 g-3">
+        <!-- Total Income Card -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 border-0 rounded-4 bg-gradient">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-container me-3 bg-success bg-opacity-10 rounded-3 p-3">
+                            <i class="fa-solid fa-arrow-up text-success fa-xl"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h6 class="card-subtitle mb-1 text-muted small text-uppercase fw-semibold">Total Income</h6>
+                            <h4 class="card-title mb-0 fw-bold" id="total-income">0.00</h4>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Total Expenses -->
-    <div class="col-md-4">
-        <div class="card shadow-sm h-100 border-start border-4 border-danger">
-            <div class="card-body d-flex align-items-center p-3">
-                <div class="icon-container me-3" style="width: 40px; height: 40px;">
-                    <i class="fa-solid fa-arrow-down text-danger fa-xl d-flex justify-content-center align-items-center h-100"></i>
-                </div>
-                <div class="flex-grow-1">
-                    <h6 class="card-subtitle mb-1 text-muted small text-uppercase">Total Expenses</h6>
-                    <h4 class="card-title mb-0 fw-bold" id="total-expenses">0.00</h4>
+        <!-- Total Expenses Card -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 border-0 rounded-4 bg-gradient">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-container me-3 bg-danger bg-opacity-10 rounded-3 p-3">
+                            <i class="fa-solid fa-arrow-down text-danger fa-xl"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h6 class="card-subtitle mb-1 text-muted small text-uppercase fw-semibold">Total Expenses</h6>
+                            <h4 class="card-title mb-0 fw-bold" id="total-expenses">0.00</h4>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Net Balance -->
-    <div class="col-md-4">
-        <div class="card shadow-sm h-100 border-start border-4 border-primary">
-            <div class="card-body d-flex align-items-center p-3">
-                <div class="icon-container me-3" style="width: 40px; height: 40px;">
-                    <i class="fa-solid fa-balance-scale text-primary fa-xl d-flex justify-content-center align-items-center h-100"></i>
-                </div>
-                <div class="flex-grow-1">
-                    <h6 class="card-subtitle mb-1 text-muted small text-uppercase">Net Balance</h6>
-                    <h4 class="card-title mb-0 fw-bold" id="net-balance">0.00</h4>
+        <!-- Net Balance Card -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 border-0 rounded-4 bg-gradient">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-container me-3 bg-primary bg-opacity-10 rounded-3 p-3">
+                            <i class="fa-solid fa-balance-scale text-primary fa-xl"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h6 class="card-subtitle mb-1 text-muted small text-uppercase fw-semibold">Net Balance</h6>
+                            <h4 class="card-title mb-0 fw-bold" id="net-balance">0.00</h4>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
     
     <!-- Chart -->
-    <div class="row mb-5">
+    <div class="row mb-4">
         <div class="col-12">
-            <div class="card shadow-sm border-0">
-                <div class="card-body">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5 class="card-title mb-0">Income vs Expenses (Monthly)</h5>
+                        <h5 class="card-title fw-semibold mb-0">Income vs Expenses (Monthly)</h5>
                     </div>
                     <canvas id="financeChart" height="100"></canvas>
                 </div>
@@ -79,47 +90,51 @@
     </div>
 
     <!-- Search and Add Button -->
-    <div class="row mb-3 align-items-center">
+    <div class="row mb-4 align-items-center">
         <div class="col-md-6 mb-3 mb-md-0">
             <form id="search-form" method="get" class="d-flex">
-                <input type="text" class="form-control me-2" placeholder="Search by description..." asp-for="SearchTerm" id="search-term" />
-                <button type="submit" class="btn btn-outline-primary">Search</button>
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0">
+                        <i class="fa-solid fa-search text-muted"></i>
+                    </span>
+                    <input type="text" class="form-control border-start-0" placeholder="Search by description..." asp-for="SearchTerm" id="search-term" />
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
             </form>
         </div>
         <div class="col-md-6 d-flex justify-content-end mb-3 gap-2">
-            <button id="add-btn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">
-                <i class="fa-solid fa-plus me-1"></i> Add Transaction
+            <button id="add-btn" class="btn btn-success d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addModal">
+                <i class="fa-solid fa-plus me-2"></i> Add Transaction
             </button>
-            <button class="btn btn-outline-secondary" id="exportBtnFinance" data-bs-tooltip="tooltip" title="Export to Excel">
-                <i class="fa-solid fa-download"></i>
+            <button class="btn btn-outline-secondary d-flex align-items-center" id="exportBtnFinance" data-bs-tooltip="tooltip" title="Export to Excel">
+                <i class="fa-solid fa-download me-2"></i> Export
             </button>
         </div>
     </div>
 
-    <!-- Transaction List -->
-    <div class="row mb-3">
-        <div class="col-12 d-flex justify-content-between align-items-center">
-            <h5>Transaction List</h5>
-            <a href="#" class="text-primary small">View More</a>
+    <!-- Table Section -->
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-header bg-white border-0 py-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-semibold">Transaction List</h5>
+                <a href="#" class="text-primary small text-decoration-none">View More <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
         </div>
-    </div>
-
-    <div id="table-container">
-        <div class="table-container">
+        <div class="card-body p-0">
             <div class="table-responsive">
-                <table class="table table-striped table-hover align-middle">
-                    <thead class="table-light">
-                        <tr>
-                            <th>
-                                <a id="sort-description" class="table-light" asp-page="./Finance" asp-all-route-data="@(new Dictionary<string, string> { { "SortOrder", Model.SortOrder == "description_asc" ? "description_desc" : "description_asc" }, { "SearchTerm", Model.SearchTerm } })" class="text-white text-decoration-none">
-                                    Description <span id="sort-icon">@(Model.SortOrder == "description_asc" ? "▲" : Model.SortOrder == "description_desc" ? "▼" : "")</span>
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light">
+                        <tr class="text-uppercase small text-muted">
+                            <th class="ps-4">
+                                <a id="sort-description" href="#" class="text-decoration-none text-dark d-flex align-items-center">
+                                    Description <i class="fa-solid fa-sort ms-2"></i>
                                 </a>
                             </th>
                             <th>Amount</th>
                             <th>Category</th>
                             <th>Date</th>
                             <th>Notes</th>
-                            <th>Actions</th>
+                            <th class="text-end pe-4">Actions</th>
                         </tr>
                     </thead>
                     <tbody id="transaction-table-body">
@@ -128,59 +143,63 @@
                 </table>
             </div>
         </div>
-        
-        <!-- Pagination -->
-        <div class="d-flex justify-content-end align-items-center mt-3" id="pagination-container">
-            <small class="me-3 text-muted" id="pagination-info"></small>
-            <nav>
-                <ul class="pagination pagination-sm mb-0">
-                    <!-- Dynamically populated -->
-                </ul>
-            </nav>
-        </div>
     </div>
 
-    <div id="no-data" class="text-center mt-4" style="display: none;">
-        <p class="text-muted">No transactions in the list. Click "Add Transaction" to start.</p>
+    <!-- Pagination -->
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <small class="text-muted" id="pagination-info"></small>
+        <nav>
+            <ul class="pagination pagination-sm mb-0">
+                <!-- Dynamically populated -->
+            </ul>
+        </nav>
+    </div>
+
+    <!-- No Data -->
+    <div id="no-data" class="text-center mt-5 d-none">
+        <div class="py-5">
+            <i class="fa-solid fa-money-bill-wave fa-3x text-muted mb-3"></i>
+            <p class="text-muted mb-0">No transactions in the list. Click "Add Transaction" to start.</p>
+        </div>
     </div>
 
     <!-- Add Modal -->
     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-success text-light">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-success text-light rounded-top">
                     <h5 class="modal-title" id="addModalLabel">Add Transaction</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label for="add-description" class="form-label">Description</label>
+                        <label for="add-description" class="form-label fw-semibold">Description</label>
                         <input id="add-description" class="form-control" required />
-                        <span id="add-description-error" class="text-danger"></span>
+                        <span id="add-description-error" class="text-danger small"></span>
                     </div>
                     <div class="mb-3">
-                        <label for="add-amount" class="form-label">Amount</label>
+                        <label for="add-amount" class="form-label fw-semibold">Amount</label>
                         <input id="add-amount" class="form-control" type="number" step="0.01" required />
-                        <span id="add-amount-error" class="text-danger"></span>
+                        <span id="add-amount-error" class="text-danger small"></span>
                     </div>
                     <div class="mb-3">
-                        <label for="add-category" class="form-label">Category</label>
-                        <select id="add-category" class="form-control" required>
+                        <label for="add-category" class="form-label fw-semibold">Category</label>
+                        <select id="add-category" class="form-select" required>
                             <option value="Income">Income</option>
                             <option value="Expense">Expense</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="add-date" class="form-label">Date</label>
+                        <label for="add-date" class="form-label fw-semibold">Date</label>
                         <input id="add-date" class="form-control" type="date" />
                     </div>
                     <div class="mb-3">
-                        <label for="add-notes" class="form-label">Notes</label>
+                        <label for="add-notes" class="form-label fw-semibold">Notes</label>
                         <textarea id="add-notes" class="form-control"></textarea>
                     </div>
                 </div>
-                <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <div class="modal-footer bg-light rounded-bottom">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-success" onclick="addTransaction()">Save Transaction</button>
                 </div>
             </div>
@@ -189,64 +208,66 @@
 
     <!-- Edit Modal -->
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-primary text-light">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-primary text-light rounded-top">
                     <h5 class="modal-title" id="editModalLabel">Edit Transaction</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body p-4">
                     <input type="hidden" id="edit-id" />
                     <div class="mb-3">
-                        <label for="edit-description" class="form-label">Description</label>
+                        <label for="edit-description" class="form-label fw-semibold">Description</label>
                         <input id="edit-description" class="form-control" required />
-                        <span id="edit-description-error" class="text-danger"></span>
+                        <span id="edit-description-error" class="text-danger small"></span>
                     </div>
                     <div class="mb-3">
-                        <label for="edit-amount" class="form-label">Amount</label>
+                        <label for="edit-amount" class="form-label fw-semibold">Amount</label>
                         <input id="edit-amount" class="form-control" type="number" step="0.01" required />
-                        <span id="edit-amount-error" class="text-danger"></span>
+                        <span id="edit-amount-error" class="text-danger small"></span>
                     </div>
                     <div class="mb-3">
-                        <label for="edit-category" class="form-label">Category</label>
-                        <select id="edit-category" class="form-control" required>
+                        <label for="edit-category" class="form-label fw-semibold">Category</label>
+                        <select id="edit-category" class="form-select" required>
                             <option value="Income">Income</option>
                             <option value="Expense">Expense</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="edit-date" class="form-label">Date</label>
+                        <label for="edit-date" class="form-label fw-semibold">Date</label>
                         <input id="edit-date" class="form-control" type="date" />
                     </div>
                     <div class="mb-3">
-                        <label for="edit-notes" class="form-label">Notes</label>
+                        <label for="edit-notes" class="form-label fw-semibold">Notes</label>
                         <textarea id="edit-notes" class="form-control"></textarea>
                     </div>
                 </div>
-                <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <div class="modal-footer bg-light rounded-bottom">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-primary" onclick="updateTransaction()">Save Changes</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Delete Event Modal -->
-<div class="modal fade" id="deleteEventModal" tabindex="-1" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content rounded-4 shadow">
-            <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title" id="deleteEventModalLabel">Delete Transaction</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to delete this transaction?</p>
-                <input type="hidden" id="delete-event-id" />
-            </div>
-            <div class="modal-footer bg-light">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger" id="confirm-delete">Delete</button>
+    <!-- Delete Event Modal -->
+    <div class="modal fade" id="deleteEventModal" tabindex="-1" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-danger text-white rounded-top">
+                    <h5 class="modal-title" id="deleteEventModalLabel">Delete Transaction</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 text-center">
+                    <i class="fa-solid fa-triangle-exclamation text-danger fa-3x mb-3"></i>
+                    <p class="mb-0">Are you sure you want to delete this transaction?</p>
+                    <p class="text-muted small">This action cannot be undone.</p>
+                    <input type="hidden" id="delete-event-id" />
+                </div>
+                <div class="modal-footer bg-light rounded-bottom">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirm-delete">Delete</button>
+                </div>
             </div>
         </div>
     </div>
@@ -319,9 +340,17 @@
                 });
                 // Sort
                 if (sortOrder === 'description_desc') {
-                    transactions.sort((a, b) => b.Description.localeCompare(a.Description));
+                    transactions.sort((a, b) => {
+                        const descA = a.Description || '';
+                        const descB = b.Description || '';
+                        return descB.localeCompare(descA);
+                    });
                 } else {
-                    transactions.sort((a, b) => a.Description.localeCompare(b.Description));
+                    transactions.sort((a, b) => {
+                        const descA = a.Description || '';
+                        const descB = b.Description || '';
+                        return descA.localeCompare(descB);
+                    });
                 }
                 totalItems = transactions.length;
                 totalPages = Math.ceil(totalItems / pageSize);
@@ -331,11 +360,9 @@
                 updateSummary();
                 updateChart();
                 if (transactions.length === 0) {
-                    document.getElementById('table-container').style.display = 'none';
-                    document.getElementById('no-data').style.display = 'block';
+                    document.getElementById('no-data').classList.remove('d-none');
                 } else {
-                    document.getElementById('table-container').style.display = 'block';
-                    document.getElementById('no-data').style.display = 'none';
+                    document.getElementById('no-data').classList.add('d-none');
                 }
             }).catch(error => {
                 console.error("Error loading transactions:", error);

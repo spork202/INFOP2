@@ -5,35 +5,41 @@
     Layout = "_Layout";
 }
 
-<div class="container mt-5">
-    <div class="row mb-4 align-items-center">
-        <div class="col-12 d-flex justify-content-between align-items-center">
-            <h2 class="fw-bold">@ViewData["Title"]</h2>
-            <h4 class="h6">Hello, <strong>@User.Identity?.Name</strong></h4>
-        </div>
-        <div class="col-12 d-flex justify-content-between align-items-center">
-            <p class="text-muted">Manage your prayer events</p>
+<div class="container-fluid px-4 py-4">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div>
+                    <h2 class="fw-bold mb-1">@ViewData["Title"]</h2>
+                    <p class="text-muted mb-0">Manage your prayer events</p>
+                </div>
+                <div class="text-end">
+                    <h4 class="h6 mb-1">Welcome back,</h4>
+                    <p class="text-primary mb-0 fw-bold">@User.Identity?.Name</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Success Card -->
-    <div id="success-card" class="card border-success shadow-sm mb-4 d-none">
-        <div class="card-body d-flex justify-content-between align-items-center">
+    <div id="success-card" class="card border-0 shadow-sm mb-4 d-none">
+        <div class="card-body d-flex justify-content-between align-items-center p-3">
             <div>
                 <h5 class="card-title text-success mb-1">Success!</h5>
-                <p class="card-text" id="success-message">Action completed successfully!</p>
+                <p class="card-text mb-0" id="success-message">Action completed successfully!</p>
             </div>
             <button type="button" class="btn-close" aria-label="Close" onclick="$('#success-card').addClass('d-none');"></button>
         </div>
     </div>
 
     <!-- Add Event Button -->
-    <div class="d-flex justify-content-end mb-3 gap-2">
-        <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addEventModal">
-            <i class="fa-solid fa-plus me-1"></i> Add Prayer Event
+    <div class="d-flex justify-content-end mb-4 gap-2">
+        <button class="btn btn-success d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addEventModal">
+            <i class="fa-solid fa-plus me-2"></i> Add Prayer Event
         </button>
-        <button class="btn btn-outline-secondary" id="exportBtnMinistry" data-bs-tooltip="tooltip" title="Export to Excel">
-            <i class="fa-solid fa-download"></i>
+        <button class="btn btn-outline-secondary d-flex align-items-center" id="exportBtnMinistry" data-bs-tooltip="tooltip" title="Export to Excel">
+            <i class="fa-solid fa-download me-2"></i> Export
         </button>
     </div>
 
@@ -46,34 +52,34 @@
 <!-- Add Event Modal -->
 <div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content rounded-4 shadow">
-            <div class="modal-header bg-success text-white">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-success text-white rounded-top">
                 <h5 class="modal-title" id="addEventModalLabel">Add Prayer Event</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="add-event-form">
-                <div class="modal-body">
+                <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label class="form-label">Title</label>
+                        <label class="form-label fw-semibold">Title</label>
                         <input type="text" class="form-control" id="add-event-title" placeholder="Enter prayer title" required />
-                        <span class="text-danger" id="add-event-title-error"></span>
+                        <span class="text-danger small" id="add-event-title-error"></span>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Date</label>
+                        <label class="form-label fw-semibold">Date</label>
                         <input type="date" class="form-control" id="add-event-date" required />
-                        <span class="text-danger" id="add-event-date-error"></span>
+                        <span class="text-danger small" id="add-event-date-error"></span>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Notes</label>
+                        <label class="form-label fw-semibold">Notes</label>
                         <input type="text" class="form-control" id="add-event-notes" placeholder="Enter prayer notes" />
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Remarks</label>
+                        <label class="form-label fw-semibold">Remarks</label>
                         <textarea class="form-control" id="add-event-remarks" rows="3" placeholder="Enter remarks"></textarea>
                     </div>
                 </div>
-                <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <div class="modal-footer bg-light rounded-bottom">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-success">Save Event</button>
                 </div>
             </form>
@@ -84,35 +90,35 @@
 <!-- Edit Event Modal -->
 <div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="editEventModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content rounded-4 shadow">
-            <div class="modal-header bg-primary text-white">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-primary text-white rounded-top">
                 <h5 class="modal-title" id="editEventModalLabel">Edit Prayer Event</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="edit-event-form">
-                <div class="modal-body">
+                <div class="modal-body p-4">
                     <input type="hidden" id="edit-event-id" />
                     <div class="mb-3">
-                        <label class="form-label">Title</label>
+                        <label class="form-label fw-semibold">Title</label>
                         <input type="text" class="form-control" id="edit-event-title" required />
-                        <span class="text-danger" id="edit-event-title-error"></span>
+                        <span class="text-danger small" id="edit-event-title-error"></span>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Date</label>
+                        <label class="form-label fw-semibold">Date</label>
                         <input type="date" class="form-control" id="edit-event-date" required />
-                        <span class="text-danger" id="edit-event-date-error"></span>
+                        <span class="text-danger small" id="edit-event-date-error"></span>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Notes</label>
+                        <label class="form-label fw-semibold">Notes</label>
                         <input type="text" class="form-control" id="edit-event-notes" />
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Remarks</label>
+                        <label class="form-label fw-semibold">Remarks</label>
                         <textarea class="form-control" id="edit-event-remarks" rows="3"></textarea>
                     </div>
                 </div>
-                <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <div class="modal-footer bg-light rounded-bottom">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                 </div>
             </form>
@@ -123,17 +129,19 @@
 <!-- Delete Event Modal -->
 <div class="modal fade" id="deleteEventModal" tabindex="-1" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content rounded-4 shadow">
-            <div class="modal-header bg-danger text-white">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-danger text-white rounded-top">
                 <h5 class="modal-title" id="deleteEventModalLabel">Delete Prayer Event</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <p>Are you sure you want to delete this prayer event?</p>
+            <div class="modal-body p-4 text-center">
+                <i class="fa-solid fa-triangle-exclamation text-danger fa-3x mb-3"></i>
+                <p class="mb-0">Are you sure you want to delete this prayer event?</p>
+                <p class="text-muted small">This action cannot be undone.</p>
                 <input type="hidden" id="delete-event-id" />
             </div>
-            <div class="modal-footer bg-light">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <div class="modal-footer bg-light rounded-bottom">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-danger" id="confirm-delete">Delete</button>
             </div>
         </div>
@@ -213,35 +221,31 @@
             events.forEach(event => {
                 const card = `
                     <div class="card border-0 shadow-sm rounded-4 mb-4" data-id="${event.Id}">
-                        <div class="card-header d-flex justify-content-between align-items-center bd-unset">
+                        <div class="card-header bg-light d-flex justify-content-between align-items-center bd-unset">
                             <div>
-                                <strong>${event.Title}</strong><br />
-                                <strong>Date:</strong> ${event.Date || 'N/A'}
+                                <h5 class="mb-1">${event.Title}</h5>
+                                <p class="text-muted mb-0">Date: ${event.Date || 'N/A'}</p>
                             </div>
                             <div>
-                                <button class="btn btn-warning btn-sm ms-2" data-bs-tooltop="tooltip" title="Edit" onclick="openEditEvent('${event.Id}')">
-                                    <i class="fa fa-edit"></i>
+                                <button class="btn btn-warning btn-sm ms-2 d-flex align-items-center" data-bs-tooltip="tooltip" title="Edit" onclick="openEditEvent('${event.Id}')">
+                                    <i class="fa fa-edit me-1"></i> Edit
                                 </button>
-                                <button class="btn btn-danger btn-sm ms-2" data-bs-tooltop="tooltip" title="Delete" onclick="openDeleteEvent('${event.Id}')">
-                                    <i class="fa fa-trash"></i>
+                                <button class="btn btn-danger btn-sm ms-2 d-flex align-items-center" data-bs-tooltip="tooltip" title="Delete" onclick="openDeleteEvent('${event.Id}')">
+                                    <i class="fa fa-trash me-1"></i> Delete
                                 </button>
                             </div>
                         </div>
                         <div class="card-body">
-                            <table class="table table-borderless">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Notes</th>
-                                        <th>Remarks</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>${event.Notes || 'N/A'}</td>
-                                        <td>${event.Remarks || 'N/A'}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="fw-semibold mb-2">Notes</h6>
+                                    <p class="mb-0">${event.Notes || 'N/A'}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="fw-semibold mb-2">Remarks</h6>
+                                    <p class="mb-0">${event.Remarks || 'N/A'}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 `;
