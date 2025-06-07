@@ -5,182 +5,104 @@
     Layout = "_Layout";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="css/index.css"/>
-    <style>
-        :root {
-            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-            --secondary-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            --danger-gradient: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-        }
-
-        .card {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: none;
-            background: white;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
-        }
-
-        .stat-card {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--primary-gradient);
-            opacity: 0.05;
-            z-index: 0;
-        }
-
-        .stat-card:nth-child(2)::before {
-            background: var(--secondary-gradient);
-        }
-
-        .stat-card:nth-child(3)::before {
-            background: var(--success-gradient);
-        }
-
-        .table {
-            border-collapse: separate;
-            border-spacing: 0;
-        }
-
-        .table th {
-            background: #f8fafc;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 0.05em;
-        }
-
-        .table td, .table th {
-            padding: 1rem;
-            border: none;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .badge {
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-        }
-
-        .badge.bg-success {
-            background: var(--success-gradient) !important;
-        }
-
-        .badge.bg-danger {
-            background: var(--danger-gradient) !important;
-        }
-
-        .list-unstyled li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .list-unstyled li:last-child {
-            border-bottom: none;
-        }
-
-        .text-muted {
-            color: #64748b !important;
-        }
-
-        .h6 {
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        .container {
-            max-width: 1400px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container py-5">
-        <div class="row mb-4 align-items-center">
-            <div class="col-12 d-flex justify-content-between align-items-center">
-                <h2 class="fw-bold">@ViewData["Title"]</h2>
-                <h4 class="h6">Hello, <strong>@User.Identity?.Name</strong></h4>
+<div class="container-fluid px-4 py-4">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div>
+                    <h2 class="fw-bold mb-1">@ViewData["Title"]</h2>
+                    <p class="text-muted mb-0">Welcome to your dashboard</p>
+                </div>
+                <div class="text-end">
+                    <h4 class="h6 mb-1">Welcome back,</h4>
+                    <p class="text-primary mb-0 fw-bold">@User.Identity?.Name</p>
+                </div>
             </div>
         </div>
-        <div class="row g-4">
-            <!-- Summary Cards -->
-            <div class="col-md-3">
-                <div class="card shadow-sm border-0 rounded-4 h-100 stat-card">
-                    <div class="card-body position-relative">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h6 class="text-uppercase text-muted mb-0">Masterlist</h6>
-                            <a href="/masterlist" class="text-decoration-none">
-                                <i class="fas fa-arrow-right text-secondary"></i>
-                            </a>
-                        </div>
-                        <h3 class="fw-bold mb-0" id="masterlist-count">Loading...</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card shadow-sm border-0 rounded-4 h-100">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h6 class="text-uppercase text-muted">Assetlist</h6>
-                            <a href="/assetlist" class="text-decoration-none">
-                                <i class="fas fa-arrow-right text-secondary"></i>
-                            </a>
-                        </div>
-                        <h3 class="fw-bold" id="assetlist-count">Loading...</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card shadow-sm border-0 rounded-4 h-100 stat-card">
-                    <div class="card-body position-relative">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h6 class="text-uppercase text-muted mb-0">Finance</h6>
-                            <a href="/finance" class="text-decoration-none">
-                                <i class="fas fa-arrow-right text-secondary"></i>
-                            </a>
-                        </div>
-                        <h3 class="fw-bold mb-0" id="finance-total">Loading...</h3>
-                    </div>
-                </div>
-            </div>
+    </div>
 
-            <!-- Transport List -->
-            <div class="col-md-6">
-                <div class="card shadow-sm border-0 rounded-4 h-100">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h6 class="text-uppercase text-muted">Transport List</h6>
-                            <a href="/transportlist" class="text-decoration-none">
-                                <i class="fas fa-arrow-right text-secondary"></i>
-                            </a>
+    <div class="row g-4">
+        <!-- Summary Cards -->
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-3 me-3">
+                                <i class="fas fa-users text-primary fa-lg"></i>
+                            </div>
+                            <h6 class="text-uppercase text-muted mb-0">Masterlist</h6>
                         </div>
-                        <div class="table-responsive mt-3">
-                            <table class="table align-middle bd-unset">
-                                <thead class="table-light">
+                        <a href="/masterlist" class="text-decoration-none">
+                            <i class="fas fa-arrow-right text-secondary"></i>
+                        </a>
+                    </div>
+                    <h3 class="fw-bold mb-0" id="masterlist-count">Loading...</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-success bg-opacity-10 p-3 rounded-3 me-3">
+                                <i class="fas fa-box text-success fa-lg"></i>
+                            </div>
+                            <h6 class="text-uppercase text-muted mb-0">Assetlist</h6>
+                        </div>
+                        <a href="/assetlist" class="text-decoration-none">
+                            <i class="fas fa-arrow-right text-secondary"></i>
+                        </a>
+                    </div>
+                    <h3 class="fw-bold mb-0" id="assetlist-count">Loading...</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-warning bg-opacity-10 p-3 rounded-3 me-3">
+                                <i class="fas fa-money-bill text-warning fa-lg"></i>
+                            </div>
+                            <h6 class="text-uppercase text-muted mb-0">Finance</h6>
+                        </div>
+                        <a href="/finance" class="text-decoration-none">
+                            <i class="fas fa-arrow-right text-secondary"></i>
+                        </a>
+                    </div>
+                    <h3 class="fw-bold mb-0" id="finance-total">Loading...</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transport List -->
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-info bg-opacity-10 p-3 rounded-3 me-3">
+                                <i class="fas fa-car text-info fa-lg"></i>
+                            </div>
+                            <h6 class="text-uppercase text-muted mb-0">Transport List</h6>
+                        </div>
+                        <a href="/transportlist" class="text-decoration-none">
+                            <i class="fas fa-arrow-right text-secondary"></i>
+                        </a>
+                    </div>
+                    <div class="table-responsive mt-3">
+                        <table class="table align-middle mb-0">
+                            <thead class="table-light">
                                 <tr>
-                                    <th>Driver</th>
-                                    <th>Members</th>
+                                    <th class="fw-semibold">Driver</th>
+                                    <th class="fw-semibold">Members</th>
                                 </tr>
-                                </thead>
-                                <tbody>
+                            </thead>
+                            <tbody>
                                 <tr>
                                     <td class="fw-medium">John Doe</td>
                                     <td>Jane Doe, Alex Smith, Maria Lopez</td>
@@ -189,75 +111,90 @@
                                     <td class="fw-medium">Chris Johnson</td>
                                     <td>Emma Brown, Bob McPlaceholder</td>
                                 </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Prayer Ministry -->
-            <div class="col-md-6">
-                <div class="card shadow-sm border-0 rounded-4 h-100">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h6 class="text-uppercase text-muted">Prayer Ministry</h6>
-                            <a href="/prayerministry" class="text-decoration-none">
-                                <i class="fas fa-arrow-right text-secondary"></i>
-                            </a>
+        <!-- Prayer Ministry -->
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-danger bg-opacity-10 p-3 rounded-3 me-3">
+                                <i class="fas fa-pray text-danger fa-lg"></i>
+                            </div>
+                            <h6 class="text-uppercase text-muted mb-0">Prayer Ministry</h6>
                         </div>
-                        <div class="table-responsive mt-3">
-                            <table class="table align-middle bd-unset">
-                                <thead class="table-light">
+                        <a href="/prayerministry" class="text-decoration-none">
+                            <i class="fas fa-arrow-right text-secondary"></i>
+                        </a>
+                    </div>
+                    <div class="table-responsive mt-3">
+                        <table class="table align-middle mb-0">
+                            <thead class="table-light">
                                 <tr>
-                                    <th>Title</th>
-                                    <th>Remarks</th>
+                                    <th class="fw-semibold">Title</th>
+                                    <th class="fw-semibold">Remarks</th>
                                 </tr>
-                                </thead>
-                                <tbody id="prayer-ministry-list">
-                                    <tr>
-                                        <td colspan="2" class="text-center">Loading...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                            </thead>
+                            <tbody id="prayer-ministry-list">
+                                <tr>
+                                    <td colspan="2" class="text-center text-muted">Loading...</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Schedule List -->
-            <div class="col-md-12">
-                <div class="card shadow-sm border-0 rounded-4">
-                    <div class="card-body">
-                        <h6 class="text-uppercase text-muted mb-3">Schedules</h6>
-                        <div class="table-responsive">
-                            <table class="table align-middle">
-                                <thead class="table-light">
+        <!-- Schedule List -->
+        <div class="col-md-12">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-success bg-opacity-10 p-3 rounded-3 me-3">
+                                <i class="fas fa-calendar text-success fa-lg"></i>
+                            </div>
+                            <h6 class="text-uppercase text-muted mb-0">Schedules</h6>
+                        </div>
+                        <a href="/schedule" class="text-decoration-none">
+                            <i class="fas fa-arrow-right text-secondary"></i>
+                        </a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0">
+                            <thead class="table-light">
                                 <tr>
-                                    <th>Event</th>
-                                    <th>Details</th>
-                                    <th>Date & Time</th>
-                                    <th>Status</th>
+                                    <th class="fw-semibold">Event</th>
+                                    <th class="fw-semibold">Details</th>
+                                    <th class="fw-semibold">Date & Time</th>
+                                    <th class="fw-semibold">Status</th>
                                 </tr>
-                                </thead>
-                                <tbody>
+                            </thead>
+                            <tbody>
                                 <tr>
                                     <td class="fw-medium">Sunday Worship</td>
                                     <td>
                                         <ul class="list-unstyled mb-0">
-                                            <li class="d-flex justify-content-between align-items-center">
+                                            <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
                                                 <span>Welcome & Opening Prayer</span>
                                                 <span class="text-muted small">Music Ministry</span>
                                             </li>
-                                            <li class="d-flex justify-content-between align-items-center">
+                                            <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
                                                 <span>Praise & Worship</span>
                                                 <span class="text-muted small">Pastor Mike Sample</span>
                                             </li>
-                                            <li class="d-flex justify-content-between align-items-center">
+                                            <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
                                                 <span>Offering/Giving</span>
                                                 <span class="text-muted small">Jane Random</span>
                                             </li>
-                                            <li class="d-flex justify-content-between align-items-center">
+                                            <li class="d-flex justify-content-between align-items-center py-2">
                                                 <span>Special Numbers</span>
                                                 <span class="text-muted small">John Random</span>
                                             </li>
@@ -268,26 +205,26 @@
                                         <div class="text-muted small">10:00 AM</div>
                                     </td>
                                     <td>
-                                        <span class="badge bg-success text-white">Upcoming</span>
+                                        <span class="badge bg-success bg-opacity-10 text-success px-3 py-2 rounded-pill">Upcoming</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="fw-medium">Sunday Worship</td>
                                     <td>
                                         <ul class="list-unstyled mb-0">
-                                            <li class="d-flex justify-content-between align-items-center">
+                                            <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
                                                 <span>Welcome & Opening Prayer</span>
                                                 <span class="text-muted small">Music Ministry</span>
                                             </li>
-                                            <li class="d-flex justify-content-between align-items-center">
+                                            <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
                                                 <span>Praise & Worship</span>
                                                 <span class="text-muted small">Pastor Whisker McNom</span>
                                             </li>
-                                            <li class="d-flex justify-content-between align-items-center">
+                                            <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
                                                 <span>Offering/Giving</span>
                                                 <span class="text-muted small">Chris Wilson</span>
                                             </li>
-                                            <li class="d-flex justify-content-between align-items-center">
+                                            <li class="d-flex justify-content-between align-items-center py-2">
                                                 <span>Special Numbers</span>
                                                 <span class="text-muted small">Anna Miller</span>
                                             </li>
@@ -298,100 +235,98 @@
                                         <div class="text-muted small">10:00 AM</div>
                                     </td>
                                     <td>
-                                        <span class="badge bg-danger text-white">Ended</span>
+                                        <span class="badge bg-danger bg-opacity-10 text-danger px-3 py-2 rounded-pill">Ended</span>
                                     </td>
                                 </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    @section Scripts {
-        <!-- Firebase SDK -->
-        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+@section Scripts {
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-        <script>
-            // Initialize Firebase
-            let db = null;
+    <script>
+        // Initialize Firebase
+        let db = null;
+        try {
+            const firebaseConfig = @Html.Raw(Model.FirebaseConfigJson);
+            console.log("Firebase Config:", firebaseConfig);
+            if (!firebaseConfig || Object.keys(firebaseConfig).length === 0) {
+                throw new Error("Firebase configuration is empty or invalid");
+            }
+            const app = firebase.initializeApp(firebaseConfig);
+            db = firebase.firestore();
+            console.log("Firebase initialized successfully");
+        } catch (error) {
+            console.error("Firebase initialization error:", error);
+        }
+
+        // Load dashboard data
+        async function loadDashboardData() {
+            if (!db) {
+                console.error("Firestore db is not initialized");
+                return;
+            }
+
             try {
-                const firebaseConfig = @Html.Raw(Model.FirebaseConfigJson);
-                console.log("Firebase Config:", firebaseConfig);
-                if (!firebaseConfig || Object.keys(firebaseConfig).length === 0) {
-                    throw new Error("Firebase configuration is empty or invalid");
-                }
-                const app = firebase.initializeApp(firebaseConfig);
-                db = firebase.firestore();
-                console.log("Firebase initialized successfully");
-            } catch (error) {
-                console.error("Firebase initialization error:", error);
-            }
+                // Load Masterlist count
+                const masterlistSnapshot = await db.collection('people').get();
+                document.getElementById('masterlist-count').textContent = masterlistSnapshot.size;
 
-            // Load dashboard data
-            async function loadDashboardData() {
-                if (!db) {
-                    console.error("Firestore db is not initialized");
-                    return;
-                }
+                // Load Assetlist count
+                const assetlistSnapshot = await db.collection('assets').get();
+                document.getElementById('assetlist-count').textContent = assetlistSnapshot.size;
 
-                try {
-                    // Load Masterlist count
-                    const masterlistSnapshot = await db.collection('people').get();
-                    document.getElementById('masterlist-count').textContent = masterlistSnapshot.size;
-
-                    // Load Assetlist count
-                    const assetlistSnapshot = await db.collection('assets').get();
-                    document.getElementById('assetlist-count').textContent = assetlistSnapshot.size;
-
-                    // Load Finance total
-                    const transactionsSnapshot = await db.collection('transactions').get();
-                    let totalAmount = 0;
-                    transactionsSnapshot.forEach(doc => {
-                        const data = doc.data();
-                        if (data.Category === 'Income') {
-                            totalAmount += data.Amount;
-                        } else if (data.Category === 'Expense') {
-                            totalAmount -= data.Amount;
-                        }
-                    });
-                    document.getElementById('finance-total').textContent = `$${totalAmount.toLocaleString()}`;
-
-                    // Load Prayer Ministry titles
-                    const prayerSnapshot = await db.collection('prayer_events').get();
-                    const prayerList = document.getElementById('prayer-ministry-list');
-                    
-                    if (prayerSnapshot.empty) {
-                        prayerList.innerHTML = '<tr><td colspan="2" class="text-center">No prayer events found</td></tr>';
-                    } else {
-                        prayerList.innerHTML = '';
-                        prayerSnapshot.forEach(doc => {
-                            const data = doc.data();
-                            const row = document.createElement('tr');
-                            row.innerHTML = `
-                                <td>${data.Title || ''}</td>
-                                <td>${data.Remarks || ''}</td>
-                            `;
-                            prayerList.appendChild(row);
-                        });
+                // Load Finance total
+                const transactionsSnapshot = await db.collection('transactions').get();
+                let totalAmount = 0;
+                transactionsSnapshot.forEach(doc => {
+                    const data = doc.data();
+                    if (data.Category === 'Income') {
+                        totalAmount += data.Amount;
+                    } else if (data.Category === 'Expense') {
+                        totalAmount -= data.Amount;
                     }
-                } catch (error) {
-                    console.error("Error loading dashboard data:", error);
-                    document.getElementById('masterlist-count').textContent = 'Error';
-                    document.getElementById('assetlist-count').textContent = 'Error';
-                    document.getElementById('finance-total').textContent = 'Error';
-                    document.getElementById('prayer-ministry-list').innerHTML = '<tr><td colspan="2" class="text-center text-danger">Error loading prayer events</td></tr>';
-                }
-            }
+                });
+                document.getElementById('finance-total').textContent = `$${totalAmount.toLocaleString()}`;
 
-            // Load data when page loads
-            window.onload = function() {
-                loadDashboardData();
-            };
-        </script>
-    }
-</body>
-</html>
+                // Load Prayer Ministry titles
+                const prayerSnapshot = await db.collection('prayer_events').get();
+                const prayerList = document.getElementById('prayer-ministry-list');
+                
+                if (prayerSnapshot.empty) {
+                    prayerList.innerHTML = '<tr><td colspan="2" class="text-center text-muted">No prayer events found</td></tr>';
+                } else {
+                    prayerList.innerHTML = '';
+                    prayerSnapshot.forEach(doc => {
+                        const data = doc.data();
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${data.Title || ''}</td>
+                            <td>${data.Remarks || ''}</td>
+                        `;
+                        prayerList.appendChild(row);
+                    });
+                }
+            } catch (error) {
+                console.error("Error loading dashboard data:", error);
+                document.getElementById('masterlist-count').textContent = 'Error';
+                document.getElementById('assetlist-count').textContent = 'Error';
+                document.getElementById('finance-total').textContent = 'Error';
+                document.getElementById('prayer-ministry-list').innerHTML = '<tr><td colspan="2" class="text-center text-danger">Error loading prayer events</td></tr>';
+            }
+        }
+
+        // Load data when page loads
+        window.onload = function() {
+            loadDashboardData();
+        };
+    </script>
+}
