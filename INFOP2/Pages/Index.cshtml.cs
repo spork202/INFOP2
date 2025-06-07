@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace INFOP2.Pages
 {
@@ -8,16 +11,20 @@ namespace INFOP2.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        private readonly IConfiguration _configuration;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(ILogger<IndexModel> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _configuration = configuration;
         }
+
+        public string FirebaseConfigJson { get; set; }
 
         public void OnGet()
         {
-            _logger.LogInformation("Index page accessed by {User}", User.Identity.Name);
-            ViewData["Title"] = "Home page";
+            _logger.LogInformation("Dashboard page accessed by {User}", User.Identity?.Name);
+            FirebaseConfigJson = System.Text.Json.JsonSerializer.Serialize(_configuration.GetSection("Firebase").Get<Dictionary<string, string>>());
         }
     }
 }
