@@ -288,26 +288,33 @@
                 const card = `
                     <div class="col-md-6 mb-4">
                         <div class="card border-0 shadow-sm rounded-4 h-100" data-id="${category.Id}">
-                            <div class="card-header bg-light d-flex justify-content-between align-items-center bd-unset">
-                                <div class="d-flex align-items-center">
-                                    <div class="bg-primary bg-opacity-10 p-3 rounded-3 me-3">
-                                        <i class="fa-solid fa-folder text-primary fa-lg"></i>
+                            <div class="card-header bg-light bd-unset">
+                                <div class="d-flex flex-column flex-sm-row justify-content-between">
+                                    <div class="d-flex">
+                                        <div class="align-content-center flex-shrink-0 bg-primary bg-opacity-10 p-3 rounded-3 me-3">
+                                            <i class="fa-solid fa-folder text-primary fa-lg"></i>
+                                        </div>
+                                        <div>
+                                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                                <h5 class="mb-0 me-3">${category.Title}</h5>
+                                                <span class="text-muted flex-shrink-0 d-none d-sm-block">Date: ${category.Date || 'N/A'}</span>
+                                            </div>
+                                            <div class="d-flex gap-2">
+                                                <button class="btn btn-success btn-sm" onclick="openAddItemModal('${category.Id}')">
+                                                    <i class="fa-solid fa-plus me-1"></i>Add
+                                                </button>
+                                                <button class="btn btn-warning btn-sm" title="Edit" onclick="openEditCategory('${category.Id}')">
+                                                    <i class="fa-solid fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-danger btn-sm" title="Delete" onclick="openDeleteCategory('${category.Id}')">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h5 class="mb-1">${category.Title}</h5>
-                                        <p class="text-muted mb-0">Date: ${category.Date || 'N/A'}</p>
+                                    <div class="d-block d-sm-none mt-2">
+                                      <span class="text-muted">Date: ${category.Date || 'N/A'}</span>
                                     </div>
-                                </div>
-                                <div class="d-flex gap-2">
-                                    <button class="d-flex align-items-center btn btn-success btn-sm" onclick="openAddItemModal('${category.Id}')">
-                                        <i class="fa-solid fa-plus me-2"></i> Add
-                                    </button>
-                                    <button class="d-flex align-items-center btn btn-warning btn-sm" data-bs-tooltip="tooltip" title="Edit" onclick="openEditCategory('${category.Id}')">
-                                        <i class="fa-solid fa-edit"></i>
-                                    </button>
-                                    <button class="d-flex align-items-center btn btn-danger btn-sm" data-bs-tooltip="tooltip" title="Delete" onclick="openDeleteCategory('${category.Id}')">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
                                 </div>
                             </div>
                             <div class="card-body">
