@@ -388,7 +388,7 @@
                         <td>${transaction.Date ? transaction.Date.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : ''}</td>
                         <td>${transaction.Notes}</td>
                         <td>
-                            <button class="btn btn-sm btn-warning me-1" data-bs-tooltop="tooltip" title="Edit" onclick="openEdit('${transaction.Id}')"><i class="fa-solid fa-edit"></i></button>
+                            <button class="btn btn-sm btn-warning" data-bs-tooltop="tooltip" title="Edit" onclick="openEdit('${transaction.Id}')"><i class="fa-solid fa-edit"></i></button>
                             <button class="btn btn-sm btn-danger" data-bs-tooltop="tooltip" title="Delete" onclick="openDeleteEvent('${transaction.Id}')"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
