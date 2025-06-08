@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 
 namespace INFOP2.Pages
 {
+    [Authorize]
     public class CategoryManagement : PageModel
     {
         private readonly ILogger<CategoryManagement> _logger;

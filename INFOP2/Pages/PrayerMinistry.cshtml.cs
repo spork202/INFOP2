@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 namespace INFOP2.Pages
 {
+    [Authorize]
     public class PrayerMinistry : PageModel
     {
         private readonly ILogger<PrayerMinistry> _logger;
