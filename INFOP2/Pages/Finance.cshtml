@@ -73,6 +73,32 @@
                 </div>
             </div>
         </div>
+
+        <!-- Average Monthly Card -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 border-0 rounded-4 bg-gradient">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-container me-3 bg-info bg-opacity-10 rounded-3 p-3">
+                            <i class="fa-solid fa-chart-line text-info fa-xl"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h6 class="card-subtitle mb-1 text-muted small text-uppercase fw-semibold">Monthly Averages</h6>
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <small class="text-muted">Income</small>
+                                    <h5 class="mb-0 fw-bold" id="avg-monthly-income">0.00</h5>
+                                </div>
+                                <div>
+                                    <small class="text-muted">Expenses</small>
+                                    <h5 class="mb-0 fw-bold" id="avg-monthly-expenses">0.00</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
     <!-- Chart -->
@@ -84,6 +110,33 @@
                         <h5 class="card-title fw-semibold mb-0">Income vs Expenses (Monthly)</h5>
                     </div>
                     <canvas id="financeChart" height="100"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Charts Section -->
+    <div class="row mb-4 g-3">
+        <!-- Monthly Trends Chart -->
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title fw-semibold mb-0">Monthly Trends</h5>
+                    </div>
+                    <canvas id="trendsChart" height="250"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Distribution Chart -->
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title fw-semibold mb-0">Category Distribution</h5>
+                    </div>
+                    <canvas id="categoryChart" height="250"></canvas>
                 </div>
             </div>
         </div>
@@ -310,8 +363,10 @@
         let sortOrder = '@Model.SortOrder' || 'description_asc';
         let searchTerm = '@Model.SearchTerm' || '';
 
-        // Chart instance
+        // Chart instances
         let financeChart;
+        let trendsChart;
+        let categoryChart;
 
         // Load Transactions on page load
         window.onload = function () {
@@ -358,7 +413,7 @@
                 renderTable();
                 updatePagination();
                 updateSummary();
-                updateChart();
+                updateAllCharts();
                 if (transactions.length === 0) {
                     document.getElementById('no-data').classList.remove('d-none');
                 } else {
@@ -413,10 +468,70 @@
             document.getElementById('total-expenses').innerText = totalExpenses.toFixed(2);
             document.getElementById('net-balance').innerText = netBalance.toFixed(2);
             document.getElementById('net-balance').parentElement.className = netBalance >= 0 ? 'text-success' : 'text-danger';
+            
+            // Calculate and update monthly averages
+            updateMonthlyAverages();
         }
 
-        // Update Chart
-        function updateChart() {
+        // Calculate and Update Monthly Averages
+        function updateMonthlyAverages() {
+            const monthlyData = {};
+            const currentYear = new Date().getFullYear();
+            
+            // Initialize monthly data for the current year
+            for (let month = 0; month < 12; month++) {
+                const monthKey = `${currentYear}-${month + 1}`;
+                monthlyData[monthKey] = { income: 0, expenses: 0, hasTransactions: false };
+            }
+
+            // Aggregate transactions by month
+            transactions.forEach(transaction => {
+                if (transaction.Date) {
+                    const year = transaction.Date.getFullYear();
+                    const month = transaction.Date.getMonth() + 1;
+                    const monthKey = `${year}-${month}`;
+                    
+                    if (monthlyData[monthKey]) {
+                        monthlyData[monthKey].hasTransactions = true;
+                        if (transaction.Category === 'Income') {
+                            monthlyData[monthKey].income += transaction.Amount;
+                        } else if (transaction.Category === 'Expense') {
+                            monthlyData[monthKey].expenses += transaction.Amount;
+                        }
+                    }
+                }
+            });
+
+            // Calculate averages only for months with transactions
+            let totalMonthsWithTransactions = 0;
+            let totalMonthlyIncome = 0;
+            let totalMonthlyExpenses = 0;
+
+            Object.values(monthlyData).forEach(monthData => {
+                if (monthData.hasTransactions) {
+                    totalMonthsWithTransactions++;
+                    totalMonthlyIncome += monthData.income;
+                    totalMonthlyExpenses += monthData.expenses;
+                }
+            });
+
+            // Calculate and display averages
+            const avgMonthlyIncome = totalMonthsWithTransactions > 0 ? totalMonthlyIncome / totalMonthsWithTransactions : 0;
+            const avgMonthlyExpenses = totalMonthsWithTransactions > 0 ? totalMonthlyExpenses / totalMonthsWithTransactions : 0;
+
+            document.getElementById('avg-monthly-income').innerText = avgMonthlyIncome.toFixed(2);
+            document.getElementById('avg-monthly-expenses').innerText = avgMonthlyExpenses.toFixed(2);
+        }
+
+        // Update all charts
+        function updateAllCharts() {
+            updateFinanceChart();
+            updateTrendsChart();
+            updateCategoryChart();
+        }
+
+        // Update Finance Chart
+        function updateFinanceChart() {
             const monthlyData = {};
             const currentYear = new Date().getFullYear();
             for (let month = 0; month < 12; month++) {
@@ -475,6 +590,151 @@
                         x: { title: { display: true, text: 'Month' } }
                     },
                     plugins: { legend: { position: 'top' } }
+                }
+            });
+        }
+
+        // Update Trends Chart
+        function updateTrendsChart() {
+            const monthlyData = {};
+            const currentYear = new Date().getFullYear();
+            const lastYear = currentYear - 1;
+            
+            // Initialize data for last 12 months
+            for (let i = 0; i < 12; i++) {
+                const date = new Date(currentYear, new Date().getMonth() - i, 1);
+                const monthKey = date.toLocaleString('default', { month: 'short', year: 'numeric' });
+                monthlyData[monthKey] = { income: 0, expenses: 0, net: 0 };
+            }
+
+            // Aggregate data
+            transactions.forEach(transaction => {
+                if (transaction.Date) {
+                    const date = transaction.Date;
+                    const monthKey = date.toLocaleString('default', { month: 'short', year: 'numeric' });
+                    if (monthlyData[monthKey]) {
+                        if (transaction.Category === 'Income') {
+                            monthlyData[monthKey].income += transaction.Amount;
+                        } else if (transaction.Category === 'Expense') {
+                            monthlyData[monthKey].expenses += transaction.Amount;
+                        }
+                        monthlyData[monthKey].net = monthlyData[monthKey].income - monthlyData[monthKey].expenses;
+                    }
+                }
+            });
+
+            // Prepare data for chart
+            const labels = Object.keys(monthlyData).reverse();
+            const incomeData = labels.map(key => monthlyData[key].income);
+            const expensesData = labels.map(key => monthlyData[key].expenses);
+            const netData = labels.map(key => monthlyData[key].net);
+
+            if (trendsChart) {
+                trendsChart.destroy();
+            }
+
+            const ctx = document.getElementById('trendsChart').getContext('2d');
+            trendsChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Income',
+                            data: incomeData,
+                            borderColor: 'rgba(40, 167, 69, 1)',
+                            backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Expenses',
+                            data: expensesData,
+                            borderColor: 'rgba(220, 53, 69, 1)',
+                            backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Net',
+                            data: netData,
+                            borderColor: 'rgba(13, 110, 253, 1)',
+                            backgroundColor: 'rgba(13, 110, 253, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Amount' } },
+                        x: { title: { display: true, text: 'Month' } }
+                    },
+                    plugins: { legend: { position: 'top' } }
+                }
+            });
+        }
+
+        // Update Category Chart
+        function updateCategoryChart() {
+            const categoryData = {
+                Income: { total: 0, count: 0 },
+                Expense: { total: 0, count: 0 }
+            };
+
+            // Aggregate data by category
+            transactions.forEach(transaction => {
+                if (transaction.Category in categoryData) {
+                    categoryData[transaction.Category].total += transaction.Amount;
+                    categoryData[transaction.Category].count++;
+                }
+            });
+
+            // Calculate averages
+            const labels = Object.keys(categoryData);
+            const data = labels.map(category => categoryData[category].total);
+            const counts = labels.map(category => categoryData[category].count);
+
+            if (categoryChart) {
+                categoryChart.destroy();
+            }
+
+            const ctx = document.getElementById('categoryChart').getContext('2d');
+            categoryChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: [
+                            'rgba(40, 167, 69, 0.8)',
+                            'rgba(220, 53, 69, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(40, 167, 69, 1)',
+                            'rgba(220, 53, 69, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    const count = counts[context.dataIndex];
+                                    return `${label}: $${value.toFixed(2)} (${count} transactions)`;
+                                }
+                            }
+                        }
+                    }
                 }
             });
         }
