@@ -25,3 +25,7 @@ html {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+.color-muted {
+  color: lightgray;
+}
