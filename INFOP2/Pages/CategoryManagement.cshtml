@@ -291,7 +291,7 @@
                             <div class="card-header bg-light d-flex justify-content-between align-items-center bd-unset">
                                 <div class="d-flex align-items-center">
                                     <div class="bg-primary bg-opacity-10 p-3 rounded-3 me-3">
-                                        <i class="fas fa-folder text-primary fa-lg"></i>
+                                        <i class="fa-solid fa-folder text-primary fa-lg"></i>
                                     </div>
                                     <div>
                                         <h5 class="mb-1">${category.Title}</h5>
@@ -299,14 +299,14 @@
                                     </div>
                                 </div>
                                 <div class="d-flex gap-2">
-                                    <button class="btn btn-success btn-sm d-flex align-items-center" onclick="openAddItemModal('${category.Id}')">
-                                        <i class="fa fa-plus me-1"></i> Add
+                                    <button class="d-flex align-items-center btn btn-success btn-sm" onclick="openAddItemModal('${category.Id}')">
+                                        <i class="fa-solid fa-plus me-2"></i> Add
                                     </button>
-                                    <button class="btn btn-warning btn-sm d-flex align-items-center" data-bs-tooltip="tooltip" title="Edit" onclick="openEditCategory('${category.Id}')">
-                                        <i class="fa fa-edit me-1"></i> Edit
+                                    <button class="d-flex align-items-center btn btn-warning btn-sm" data-bs-tooltip="tooltip" title="Edit" onclick="openEditCategory('${category.Id}')">
+                                        <i class="fa-solid fa-edit"></i>
                                     </button>
-                                    <button class="btn btn-danger btn-sm d-flex align-items-center" data-bs-tooltip="tooltip" title="Delete" onclick="openDeleteCategory('${category.Id}')">
-                                        <i class="fa fa-trash me-1"></i> Delete
+                                    <button class="d-flex align-items-center btn btn-danger btn-sm" data-bs-tooltip="tooltip" title="Delete" onclick="openDeleteCategory('${category.Id}')">
+                                        <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </div>
                             </div>
@@ -325,11 +325,11 @@
                                                     <td class="fw-medium">${item.Name}</td>
                                                     <td class="text-end">
                                                         <div class="d-flex justify-content-end gap-2">
-                                                            <button class="btn btn-sm btn-warning d-flex align-items-center" data-bs-tooltip="tooltip" title="Edit" onclick="openEditItemModal('${category.Id}', '${item.Id}', '${item.Name}')">
-                                                                <i class="fa fa-edit me-1"></i> Edit
+                                                            <button class="btn btn-sm btn-warning" data-bs-tooltip="tooltip" title="Edit" onclick="openEditItemModal('${category.Id}', '${item.Id}', '${item.Name}')">
+                                                                <i class="fa-solid fa-edit"></i>
                                                             </button>
-                                                            <button class="btn btn-sm btn-danger d-flex align-items-center" data-bs-tooltip="tooltip" title="Delete" onclick="openDeleteItemModal('${category.Id}', '${item.Id}')">
-                                                                <i class="fa fa-trash me-1"></i> Delete
+                                                            <button class="btn btn-sm btn-danger" data-bs-tooltip="tooltip" title="Delete" onclick="openDeleteItemModal('${category.Id}', '${item.Id}')">
+                                                                <i class="fa-solid fa-trash"></i>
                                                             </button>
                                                         </div>
                                                     </td>

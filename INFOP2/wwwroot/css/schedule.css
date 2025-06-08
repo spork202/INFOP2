@@ -1,0 +1,29 @@
+﻿.drivers-list, .programs-list {
+    display: block;
+    line-height: 1.5;
+}
+.drivers-list .driver-entry, .programs-list .program-entry {
+    margin-bottom: 0.5rem;
+}
+.drivers-list .passengers, .programs-list .assigned-people {
+    margin-left: 1.5rem;
+}
+/* Copy button styling */
+.copy-btn {
+    font-size: 14px;
+}
+/* Feedback message styling */
+.copy-feedback {
+    position: absolute;
+    background: #28a745;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.copy-feedback.show {
+    opacity: 1;
+}
