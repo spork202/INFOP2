@@ -348,13 +348,20 @@
                         <p class="mb-0">Your Excel file should have the following columns (extra columns are ignored):</p>
                         <ul class="mb-0">
                             <li>NAME <b>(required)</b></li>
+                            <li>NICKNAME (optional)</li>
                             <li>BS FAMILY <b>(required)</b></li>
                             <li>MINISTRY <b>(required)</b></li>
                             <li>CONTACT NO. (optional)</li>
+                            <li>Birthdate (optional, format: DD/MM/YYYY)</li>
+                            <li>COUNTRY ADDRESS (optional)</li>
                             <li>KSA ADDRESS (optional)</li>
-                            <li>Birthdate (optional, format: MM/DD/YYYY)</li>
+                            <li>COMPANY (optional)</li>
+                            <li>JOB Position (optional)</li>
+                            <li>1ST WORSHIP DATE (optional, format: DD/MM/YYYY)</li>
+                            <li>BAPTIZED DATE (optional, format: DD/MM/YYYY)</li>
+                            <li>REMARKS (optional)</li>
                         </ul>
-                        <p class="mb-0 mt-2 small">Other columns (NICKNAME, COUNTRY ADDRESS, COMPANY, JOB Position, 1ST WORSHIP DATE, BAPTIZED DATE, REMARKS) will be ignored.</p>
+                        <p class="mb-0 mt-2 small">All columns above will be imported if present. Dates must be in DD/MM/YYYY format.</p>
                     </div>
                 </div>
                 <div class="modal-footer bg-light rounded-bottom">
@@ -995,16 +1002,45 @@
                         return;
                     }
 
-                    // Process each row, mapping only the relevant columns
+                    // Helper to parse DD/MM/YYYY
+                    function parseDDMMYYYY(val) {
+                        if (!val) return null;
+                        if (val instanceof Date) return val;
+                        if (typeof val === 'number') return new Date(val);
+                        if (typeof val === 'string') {
+                            const parts = val.split(/[\/\-]/);
+                            if (parts.length === 3) {
+                                const day = parseInt(parts[0], 10);
+                                const month = parseInt(parts[1], 10) - 1;
+                                const year = parseInt(parts[2], 10);
+                                if (!isNaN(day) && !isNaN(month) && !isNaN(year)) {
+                                    return new Date(year, month, day);
+                                }
+                            }
+                            // fallback: try Date constructor
+                            const d = new Date(val);
+                            if (!isNaN(d)) return d;
+                        }
+                        return null;
+                    }
+
+                    // Process each row, mapping all relevant columns
                     const importPromises = jsonData.map(row => {
                         const person = {
-                            Name: row['NAME'].toString().toLowerCase(),
-                            DisplayName: row['NAME'].toString(),
-                            BSFamily: row['BS FAMILY'].toString(),
-                            Ministry: row['MINISTRY'].toString(),
+                            Name: row['NAME']?.toString().toLowerCase() || '',
+                            DisplayName: row['NAME']?.toString() || '',
+                            Nickname: row['NICKNAME']?.toString() || '',
+                            BSFamily: row['BS FAMILY']?.toString() || '',
+                            Ministry: row['MINISTRY']?.toString() || '',
                             ContactNumber: row['CONTACT NO.']?.toString() || '',
+                            Birthdate: parseDDMMYYYY(row['Birthdate']),
+                            CountryAddress: row['COUNTRY ADDRESS']?.toString() || '',
                             KSAAddress: row['KSA ADDRESS']?.toString() || '',
-                            Birthdate: row['Birthdate'] ? new Date(row['Birthdate']) : null
+                            Company: row['COMPANY']?.toString() || '',
+                            JobPosition: row['JOB Position']?.toString() || '',
+                            FirstWorshipDate: parseDDMMYYYY(row['1ST WORSHIP DATE']),
+                            BaptizedDate: parseDDMMYYYY(row['BAPTIZED DATE']),
+                            Remarks: row['REMARKS']?.toString() || ''
                         };
                         return db.collection('people').add(person);
                     });
