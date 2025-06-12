@@ -7,6 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.DataProtection;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,13 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddScoped<INFOP2.Services.FirebaseAuthService>();
 builder.Services.AddLogging(logging => logging.AddConsole());
+
+// Configure Data Protection
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(Path.Combine(
+    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), 
+    "INFOP2-keys")))
+    .SetApplicationName("INFOP2");
 
 // Add authentication
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
