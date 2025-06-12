@@ -140,6 +140,9 @@
             <button class="btn btn-outline-secondary d-flex align-items-center" id="exportBtnMaster" data-bs-tooltip="tooltip" title="Export to Excel">
                 <i class="fa-solid fa-download me-2"></i> Export
             </button>
+            <button class="btn btn-outline-secondary d-flex align-items-center" id="importBtnMaster" data-bs-tooltip="tooltip" title="Import from Excel" data-bs-toggle="modal" data-bs-target="#importModal">
+                <i class="fa-solid fa-upload me-2"></i> Import
+            </button>
             <button class="btn btn-outline-secondary d-flex align-items-center copy-all-btn" onclick="copyAllData(this)" title="Copy all people data" aria-label="Copy all people data">
                 <i class="fa-solid fa-copy me-2"></i> Copy All
             </button>
@@ -307,6 +310,41 @@
         </div>
     </div>
 
+    <!-- Import Modal -->
+    <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-primary text-light rounded-top">
+                    <h5 class="modal-title" id="importModalLabel">Import from Excel</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="mb-3">
+                        <label for="excelFile" class="form-label fw-semibold">Select Excel File</label>
+                        <input type="file" class="form-control" id="excelFile" accept=".xlsx, .xls" />
+                        <div class="form-text">Supported formats: .xlsx, .xls</div>
+                    </div>
+                    <div class="alert alert-info">
+                        <h6 class="alert-heading">Excel File Format</h6>
+                        <p class="mb-0">Your Excel file should have the following columns:</p>
+                        <ul class="mb-0">
+                            <li>Name (required)</li>
+                            <li>BS Family (required)</li>
+                            <li>Ministry (required)</li>
+                            <li>Contact Number (optional)</li>
+                            <li>KSA Address (optional)</li>
+                            <li>Birthdate (optional, format: MM/DD/YYYY)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light rounded-bottom">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="importExcel()">Import</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Delete Event Modal -->
     <div class="modal fade" id="deleteEventModal" tabindex="-1" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -334,6 +372,9 @@
     <!-- Firebase Compatibility SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <!-- SheetJS for Excel handling -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 
     <!-- Initialize Firebase -->
     <script>
@@ -908,6 +949,79 @@
                     showError("Failed to delete record. Please try again.");
                 });
             });
+        }
+
+        // Import Excel File
+        function importExcel() {
+            const fileInput = document.getElementById('excelFile');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                showError('Please select a file to import.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+
+                    if (jsonData.length === 0) {
+                        showError('No data found in the Excel file.');
+                        return;
+                    }
+
+                    // Validate required fields
+                    const requiredFields = ['Name', 'BS Family', 'Ministry'];
+                    const missingFields = jsonData.some(row => 
+                        requiredFields.some(field => !row[field])
+                    );
+
+                    if (missingFields) {
+                        showError('Some rows are missing required fields (Name, BS Family, or Ministry).');
+                        return;
+                    }
+
+                    // Process each row
+                    const importPromises = jsonData.map(row => {
+                        const person = {
+                            Name: row['Name'].toString().toLowerCase(),
+                            DisplayName: row['Name'].toString(),
+                            BSFamily: row['BS Family'].toString(),
+                            Ministry: row['Ministry'].toString(),
+                            ContactNumber: row['Contact Number']?.toString() || '',
+                            KSAAddress: row['KSA Address']?.toString() || '',
+                            Birthdate: row['Birthdate'] ? new Date(row['Birthdate']) : null
+                        };
+
+                        return db.collection('people').add(person);
+                    });
+
+                    Promise.all(importPromises)
+                        .then(() => {
+                            $('#importModal').modal('hide');
+                            fileInput.value = '';
+                            loadPeople();
+                            showSuccess(`Successfully imported ${jsonData.length} records!`);
+                        })
+                        .catch(error => {
+                            console.error('Error importing data:', error);
+                            showError('Failed to import some records. Please check the data format.');
+                        });
+                } catch (error) {
+                    console.error('Error processing Excel file:', error);
+                    showError('Error processing the Excel file. Please check the file format.');
+                }
+            };
+
+            reader.onerror = function() {
+                showError('Error reading the file.');
+            };
+
+            reader.readAsArrayBuffer(file);
         }
     </script>
 }
