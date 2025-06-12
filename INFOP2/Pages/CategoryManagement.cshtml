@@ -226,13 +226,13 @@
         // Initialize Firebase
         let db = null;
         try {
-            console.log("Firebase Config:", firebaseConfig);
+            const firebaseConfig = @Html.Raw(Model.FirebaseConfigJson);
             if (!firebaseConfig || Object.keys(firebaseConfig).length === 0) {
                 throw new Error("Firebase configuration is empty or invalid");
             }
             const app = firebase.initializeApp(firebaseConfig);
             db = firebase.firestore();
-            console.log("Firebase initialized successfully, db:", !!db);
+            console.log("Firebase initialized successfully");
         } catch (error) {
             console.error("Firebase initialization error:", error);
         }
