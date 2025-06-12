@@ -218,7 +218,6 @@
         let db = null;
         try {
             const firebaseConfig = @Html.Raw(Model.FirebaseConfigJson);
-            console.log("Firebase Config:", firebaseConfig);
             if (!firebaseConfig || Object.keys(firebaseConfig).length === 0) {
                 throw new Error("Firebase configuration is empty or invalid");
             }
