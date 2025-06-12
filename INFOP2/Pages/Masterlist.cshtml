@@ -108,18 +108,6 @@
         </div>
     </div>
 
-    <!-- Chart -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="card shadow-sm border-0 rounded-4">
-                <div class="card-body p-4">
-                    <h5 class="card-title fw-semibold mb-3">People by BS Family</h5>
-                    <canvas id="masterlistChart" height="100"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Search and Add Button -->
     <div class="row mb-4 align-items-center">
         <div class="col-md-6 mb-3 mb-md-0">
@@ -162,16 +150,19 @@
                 <table class="table table-hover align-middle mb-0">
                     <thead class="bg-light">
                         <tr class="text-uppercase small text-muted">
-                            <th class="ps-4">
-                                <a id="sort-name" href="#" class="text-decoration-none text-dark d-flex align-items-center">
-                                    Name <i class="fa-solid fa-sort ms-2"></i>
-                                </a>
-                            </th>
+                            <th class="ps-4">Name</th>
+                            <th>Nickname</th>
                             <th>BS Family</th>
                             <th>Ministry</th>
                             <th>Contact No.</th>
-                            <th>KSA Address</th>
                             <th>Birthdate</th>
+                            <th>Country Address</th>
+                            <th>KSA Address</th>
+                            <th>Company</th>
+                            <th>Job Position</th>
+                            <th>1st Worship Date</th>
+                            <th>Baptized Date</th>
+                            <th>Remarks</th>
                             <th class="text-end pe-4">Actions</th>
                         </tr>
                     </thead>
@@ -216,6 +207,10 @@
                         <span id="add-name-error" class="text-danger small"></span>
                     </div>
                     <div class="mb-3">
+                        <label for="add-nickname" class="form-label fw-semibold">Nickname</label>
+                        <input id="add-nickname" class="form-control" />
+                    </div>
+                    <div class="mb-3">
                         <label for="add-bsfamily" class="form-label fw-semibold">BS Family</label>
                         <select id="add-bsfamily" class="form-select" required>
                             <option value="" disabled selected>Select BS Family</option>
@@ -239,12 +234,36 @@
                         <span id="add-contactnumber-error" class="text-danger small"></span>
                     </div>
                     <div class="mb-3">
+                        <label for="add-birthdate" class="form-label fw-semibold">Birthdate</label>
+                        <input id="add-birthdate" class="form-control" type="date" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="add-countryaddress" class="form-label fw-semibold">Country Address</label>
+                        <input id="add-countryaddress" class="form-control" />
+                    </div>
+                    <div class="mb-3">
                         <label for="add-ksaaddress" class="form-label fw-semibold">KSA Address</label>
                         <input id="add-ksaaddress" class="form-control" />
                     </div>
                     <div class="mb-3">
-                        <label for="add-birthdate" class="form-label fw-semibold">Birthdate</label>
-                        <input id="add-birthdate" class="form-control" type="date" />
+                        <label for="add-company" class="form-label fw-semibold">Company</label>
+                        <input id="add-company" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="add-jobposition" class="form-label fw-semibold">Job Position</label>
+                        <input id="add-jobposition" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="add-firstworshipdate" class="form-label fw-semibold">1st Worship Date</label>
+                        <input id="add-firstworshipdate" class="form-control" type="date" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="add-baptizeddate" class="form-label fw-semibold">Baptized Date</label>
+                        <input id="add-baptizeddate" class="form-control" type="date" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="add-remarks" class="form-label fw-semibold">Remarks</label>
+                        <input id="add-remarks" class="form-control" />
                     </div>
                 </div>
                 <div class="modal-footer bg-light rounded-bottom">
@@ -326,15 +345,16 @@
                     </div>
                     <div class="alert alert-info">
                         <h6 class="alert-heading">Excel File Format</h6>
-                        <p class="mb-0">Your Excel file should have the following columns:</p>
+                        <p class="mb-0">Your Excel file should have the following columns (extra columns are ignored):</p>
                         <ul class="mb-0">
-                            <li>Name (required)</li>
-                            <li>BS Family (required)</li>
-                            <li>Ministry (required)</li>
-                            <li>Contact Number (optional)</li>
-                            <li>KSA Address (optional)</li>
+                            <li>NAME <b>(required)</b></li>
+                            <li>BS FAMILY <b>(required)</b></li>
+                            <li>MINISTRY <b>(required)</b></li>
+                            <li>CONTACT NO. (optional)</li>
+                            <li>KSA ADDRESS (optional)</li>
                             <li>Birthdate (optional, format: MM/DD/YYYY)</li>
                         </ul>
+                        <p class="mb-0 mt-2 small">Other columns (NICKNAME, COUNTRY ADDRESS, COMPANY, JOB Position, 1ST WORSHIP DATE, BAPTIZED DATE, REMARKS) will be ignored.</p>
                     </div>
                 </div>
                 <div class="modal-footer bg-light rounded-bottom">
@@ -410,7 +430,6 @@
         let totalPages = 0;
         let sortOrder = '@Model.SortOrder' || 'name_asc';
         let searchTerm = '@Model.SearchTerm' || '';
-        let masterlistChart;
 
         window.onload = function () {
             if (!db) {
@@ -509,11 +528,18 @@
                         people.push({
                             Id: doc.id,
                             Name: data.DisplayName || data.Name || '',
+                            Nickname: data.Nickname || '',
                             BSFamily: data.BSFamily || '',
                             Ministry: data.Ministry || '',
                             ContactNumber: data.ContactNumber || '',
+                            Birthdate: data.Birthdate ? (data.Birthdate.seconds ? new Date(data.Birthdate.seconds * 1000) : new Date(data.Birthdate)) : null,
+                            CountryAddress: data.CountryAddress || '',
                             KSAAddress: data.KSAAddress || '',
-                            Birthdate: data.Birthdate ? new Date(data.Birthdate.seconds * 1000) : null
+                            Company: data.Company || '',
+                            JobPosition: data.JobPosition || '',
+                            FirstWorshipDate: data.FirstWorshipDate ? (data.FirstWorshipDate.seconds ? new Date(data.FirstWorshipDate.seconds * 1000) : new Date(data.FirstWorshipDate)) : null,
+                            BaptizedDate: data.BaptizedDate ? (data.BaptizedDate.seconds ? new Date(data.BaptizedDate.seconds * 1000) : new Date(data.BaptizedDate)) : null,
+                            Remarks: data.Remarks || ''
                         });
                     });
 
@@ -530,10 +556,6 @@
                     renderTable();
                     updatePagination();
                     updateSummary();
-                    updateChart();
-
-                    document.getElementById('table-container').style.display = people.length ? 'block' : 'none';
-                    document.getElementById('no-data').style.display = people.length ? 'none' : 'block';
                 }).catch(error => {
                     console.error("Error loading people:", error);
                     showError("Error loading people from Firestore.");
@@ -550,16 +572,33 @@
             const start = (currentPage - 1) * pageSize;
             const end = Math.min(start + pageSize, people.length);
 
+            function formatDate(date) {
+                if (!date) return 'N/A';
+                if (!(date instanceof Date)) date = new Date(date);
+                if (isNaN(date)) return 'N/A';
+                const day = String(date.getDate()).padStart(2, '0');
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const year = date.getFullYear();
+                return `${day}/${month}/${year}`;
+            }
+
             for (let i = start; i < end; i++) {
                 const person = people[i];
                 const row = `
                     <tr>
-                        <td>${person.Name}</td>
+                        <td>${person.Name || 'N/A'}</td>
+                        <td>${person.Nickname || 'N/A'}</td>
                         <td>${person.BSFamily || 'N/A'}</td>
                         <td>${person.Ministry || 'N/A'}</td>
                         <td>${person.ContactNumber || 'N/A'}</td>
+                        <td>${formatDate(person.Birthdate)}</td>
+                        <td>${person.CountryAddress || 'N/A'}</td>
                         <td>${person.KSAAddress || 'N/A'}</td>
-                        <td>${person.Birthdate ? person.Birthdate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : 'N/A'}</td>
+                        <td>${person.Company || 'N/A'}</td>
+                        <td>${person.JobPosition || 'N/A'}</td>
+                        <td>${formatDate(person.FirstWorshipDate)}</td>
+                        <td>${formatDate(person.BaptizedDate)}</td>
+                        <td>${person.Remarks || 'N/A'}</td>
                         <td>
                             <button class="btn btn-sm btn-warning me-1" data-bs-tooltip="tooltip" title="Edit" onclick="openEdit('${person.Id}')"><i class="fa-solid fa-edit"></i></button>
                             <button class="btn btn-sm btn-danger" data-bs-tooltip="tooltip" title="Delete" onclick="openDeleteEvent('${person.Id}')"><i class="fa-solid fa-trash"></i></button>
@@ -580,56 +619,6 @@
             document.getElementById('ministries').innerText = ministriesSet.length;
         }
 
-        function updateChart() {
-            const bsFamilyCounts = {};
-            people.forEach(person => {
-                const bsFamily = person.BSFamily || 'None';
-                bsFamilyCounts[bsFamily] = (bsFamilyCounts[bsFamily] || 0) + 1;
-            });
-
-            const labels = Object.keys(bsFamilyCounts);
-            const data = Object.values(bsFamilyCounts);
-            const backgroundColors = labels.map((_, index) => `hsl(${(index * 360 / labels.length) % 360}, 70%, 60%)`);
-
-            if (masterlistChart) {
-                masterlistChart.destroy();
-            }
-
-            const ctx = document.getElementById('masterlistChart').getContext('2d');
-            masterlistChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'People',
-                        data: data,
-                        backgroundColor: backgroundColors,
-                        borderColor: backgroundColors.map(color => color.replace('60%)', '50%)')),
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: { display: true, text: 'Number of People', color: '#718096', font: { size: 12 } },
-                            ticks: { color: '#718096' },
-                            grid: { color: '#edf2f7' }
-                        },
-                        x: {
-                            title: { display: true, text: 'BS Family', color: '#718096', font: { size: 12 } },
-                            ticks: { color: '#718096' },
-                            grid: { display: false }
-                        }
-                    },
-                    plugins: {
-                        legend: { display: false }
-                    }
-                }
-            });
-        }
-        
         function updatePagination() {
             const start = currentPage === 1 ? 1 : (currentPage - 1) * pageSize + 1;
             const end = Math.min(currentPage * pageSize, totalItems);
@@ -736,10 +725,17 @@
                 return;
             }
             const name = document.getElementById('add-name').value.trim();
+            const nickname = document.getElementById('add-nickname').value.trim();
             const bsFamily = document.getElementById('add-bsfamily').value;
             const ministry = document.getElementById('add-ministry').value;
             const contactNumber = document.getElementById('add-contactnumber').value.trim();
             const ksaAddress = document.getElementById('add-ksaaddress').value.trim();
+            const countryAddress = document.getElementById('add-countryaddress').value.trim();
+            const company = document.getElementById('add-company').value.trim();
+            const jobPosition = document.getElementById('add-jobposition').value.trim();
+            const firstWorshipDate = document.getElementById('add-firstworshipdate').value;
+            const baptizedDate = document.getElementById('add-baptizeddate').value;
+            const remarks = document.getElementById('add-remarks').value.trim();
             const birthdate = document.getElementById('add-birthdate').value;
 
             // Reset errors
@@ -768,20 +764,34 @@
             const person = {
                 Name: name.toLowerCase(),
                 DisplayName: name,
+                Nickname: nickname,
                 BSFamily: bsFamily,
                 Ministry: ministry,
                 ContactNumber: contactNumber,
                 KSAAddress: ksaAddress,
+                CountryAddress: countryAddress,
+                Company: company,
+                JobPosition: jobPosition,
+                FirstWorshipDate: firstWorshipDate ? new Date(firstWorshipDate) : null,
+                BaptizedDate: baptizedDate ? new Date(baptizedDate) : null,
+                Remarks: remarks,
                 Birthdate: birthdate ? new Date(birthdate) : null
             };
 
             db.collection('people').add(person).then(() => {
                 $('#addModal').modal('hide');
                 document.getElementById('add-name').value = '';
+                document.getElementById('add-nickname').value = '';
                 document.getElementById('add-bsfamily').value = '';
                 document.getElementById('add-ministry').value = '';
                 document.getElementById('add-contactnumber').value = '';
                 document.getElementById('add-ksaaddress').value = '';
+                document.getElementById('add-countryaddress').value = '';
+                document.getElementById('add-company').value = '';
+                document.getElementById('add-jobposition').value = '';
+                document.getElementById('add-firstworshipdate').value = '';
+                document.getElementById('add-baptizeddate').value = '';
+                document.getElementById('add-remarks').value = '';
                 document.getElementById('add-birthdate').value = '';
                 document.getElementById('add-name-error').innerText = '';
                 document.getElementById('add-bsfamily-error').innerText = '';
@@ -974,29 +984,28 @@
                         return;
                     }
 
-                    // Validate required fields
-                    const requiredFields = ['Name', 'BS Family', 'Ministry'];
+                    // Validate required fields (all caps, with spaces and periods as in the screenshot)
+                    const requiredFields = ['NAME', 'BS FAMILY', 'MINISTRY'];
                     const missingFields = jsonData.some(row => 
                         requiredFields.some(field => !row[field])
                     );
 
                     if (missingFields) {
-                        showError('Some rows are missing required fields (Name, BS Family, or Ministry).');
+                        showError('Some rows are missing required fields (NAME, BS FAMILY, or MINISTRY).');
                         return;
                     }
 
-                    // Process each row
+                    // Process each row, mapping only the relevant columns
                     const importPromises = jsonData.map(row => {
                         const person = {
-                            Name: row['Name'].toString().toLowerCase(),
-                            DisplayName: row['Name'].toString(),
-                            BSFamily: row['BS Family'].toString(),
-                            Ministry: row['Ministry'].toString(),
-                            ContactNumber: row['Contact Number']?.toString() || '',
-                            KSAAddress: row['KSA Address']?.toString() || '',
+                            Name: row['NAME'].toString().toLowerCase(),
+                            DisplayName: row['NAME'].toString(),
+                            BSFamily: row['BS FAMILY'].toString(),
+                            Ministry: row['MINISTRY'].toString(),
+                            ContactNumber: row['CONTACT NO.']?.toString() || '',
+                            KSAAddress: row['KSA ADDRESS']?.toString() || '',
                             Birthdate: row['Birthdate'] ? new Date(row['Birthdate']) : null
                         };
-
                         return db.collection('people').add(person);
                     });
 
