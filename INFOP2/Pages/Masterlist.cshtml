@@ -290,6 +290,10 @@
                         <span id="edit-name-error" class="text-danger small"></span>
                     </div>
                     <div class="mb-3">
+                        <label for="edit-nickname" class="form-label fw-semibold">Nickname</label>
+                        <input id="edit-nickname" class="form-control" />
+                    </div>
+                    <div class="mb-3">
                         <label for="edit-bsfamily" class="form-label fw-semibold">BS Family</label>
                         <select id="edit-bsfamily" class="form-select" required>
                             <option value="" disabled>Select BS Family</option>
@@ -313,12 +317,36 @@
                         <span id="edit-contactnumber-error" class="text-danger small"></span>
                     </div>
                     <div class="mb-3">
+                        <label for="edit-birthdate" class="form-label fw-semibold">Birthdate</label>
+                        <input id="edit-birthdate" class="form-control" type="date" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-countryaddress" class="form-label fw-semibold">Country Address</label>
+                        <input id="edit-countryaddress" class="form-control" />
+                    </div>
+                    <div class="mb-3">
                         <label for="edit-ksaaddress" class="form-label fw-semibold">KSA Address</label>
                         <input id="edit-ksaaddress" class="form-control" />
                     </div>
                     <div class="mb-3">
-                        <label for="edit-birthdate" class="form-label fw-semibold">Birthdate</label>
-                        <input id="edit-birthdate" class="form-control" type="date" />
+                        <label for="edit-company" class="form-label fw-semibold">Company</label>
+                        <input id="edit-company" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-jobposition" class="form-label fw-semibold">Job Position</label>
+                        <input id="edit-jobposition" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-firstworshipdate" class="form-label fw-semibold">1st Worship Date</label>
+                        <input id="edit-firstworshipdate" class="form-control" type="date" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-baptizeddate" class="form-label fw-semibold">Baptized Date</label>
+                        <input id="edit-baptizeddate" class="form-control" type="date" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-remarks" class="form-label fw-semibold">Remarks</label>
+                        <input id="edit-remarks" class="form-control" />
                     </div>
                 </div>
                 <div class="modal-footer bg-light rounded-bottom">
@@ -400,7 +428,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-    <!-- SheetJS for Excel handling -->
+    <!-- SheetJS for Excel handling (must be first!) -->
     <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 
     <!-- Initialize Firebase -->
@@ -685,8 +713,9 @@
                 const birthdate = person.Birthdate
                     ? person.Birthdate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' })
                     : 'N/A';
+                const displayName = person.DisplayName || person.Name || '';
                 return [
-                    `• Name: ${person.Name || 'N/A'}`,
+                    `• Name: ${displayName}`,
                     `  - BS Family: ${person.BSFamily || 'N/A'}`,
                     `  - Ministry: ${person.Ministry || 'N/A'}`,
                     `  - Contact No.: ${person.ContactNumber || 'N/A'}`,
@@ -816,12 +845,19 @@
             const person = people.find(p => p.Id === id);
             if (person) {
                 document.getElementById('edit-id').value = person.Id;
-                document.getElementById('edit-name').value = person.Name;
+                document.getElementById('edit-name').value = person.DisplayName || person.Name || '';
+                document.getElementById('edit-nickname').value = person.Nickname || '';
                 document.getElementById('edit-bsfamily').value = person.BSFamily || 'None';
                 document.getElementById('edit-ministry').value = person.Ministry || 'None';
                 document.getElementById('edit-contactnumber').value = person.ContactNumber || '';
-                document.getElementById('edit-ksaaddress').value = person.KSAAddress || '';
                 document.getElementById('edit-birthdate').value = person.Birthdate ? person.Birthdate.toISOString().split('T')[0] : '';
+                document.getElementById('edit-countryaddress').value = person.CountryAddress || '';
+                document.getElementById('edit-ksaaddress').value = person.KSAAddress || '';
+                document.getElementById('edit-company').value = person.Company || '';
+                document.getElementById('edit-jobposition').value = person.JobPosition || '';
+                document.getElementById('edit-firstworshipdate').value = person.FirstWorshipDate ? person.FirstWorshipDate.toISOString().split('T')[0] : '';
+                document.getElementById('edit-baptizeddate').value = person.BaptizedDate ? person.BaptizedDate.toISOString().split('T')[0] : '';
+                document.getElementById('edit-remarks').value = person.Remarks || '';
                 $('#editModal').modal('show');
             }
         }
@@ -834,11 +870,18 @@
             }
             const id = document.getElementById('edit-id').value;
             const name = document.getElementById('edit-name').value.trim();
+            const nickname = document.getElementById('edit-nickname').value.trim();
             const bsFamily = document.getElementById('edit-bsfamily').value;
             const ministry = document.getElementById('edit-ministry').value;
             const contactNumber = document.getElementById('edit-contactnumber').value.trim();
-            const ksaAddress = document.getElementById('edit-ksaaddress').value.trim();
             const birthdate = document.getElementById('edit-birthdate').value;
+            const countryAddress = document.getElementById('edit-countryaddress').value.trim();
+            const ksaAddress = document.getElementById('edit-ksaaddress').value.trim();
+            const company = document.getElementById('edit-company').value.trim();
+            const jobPosition = document.getElementById('edit-jobposition').value.trim();
+            const firstWorshipDate = document.getElementById('edit-firstworshipdate').value;
+            const baptizedDate = document.getElementById('edit-baptizeddate').value;
+            const remarks = document.getElementById('edit-remarks').value.trim();
 
             // Reset errors
             document.getElementById('edit-name-error').innerText = '';
@@ -866,11 +909,18 @@
             const person = {
                 Name: name.toLowerCase(),
                 DisplayName: name,
+                Nickname: nickname,
                 BSFamily: bsFamily,
                 Ministry: ministry,
                 ContactNumber: contactNumber,
+                Birthdate: birthdate ? new Date(birthdate) : null,
+                CountryAddress: countryAddress,
                 KSAAddress: ksaAddress,
-                Birthdate: birthdate ? new Date(birthdate) : null
+                Company: company,
+                JobPosition: jobPosition,
+                FirstWorshipDate: firstWorshipDate ? new Date(firstWorshipDate) : null,
+                BaptizedDate: baptizedDate ? new Date(baptizedDate) : null,
+                Remarks: remarks
             };
 
             db.collection('people').doc(id).update(person).then(() => {
@@ -923,13 +973,27 @@
 
         // Show Error Message
         function showError(message) {
-            const noData = document.getElementById('no-data');
-            if (noData) {
-                noData.innerText = message;
-                noData.style.display = 'block';
-                document.getElementById('table-container').style.display = 'none';
+            const successCard = document.getElementById('success-card');
+            const successMessage = document.getElementById('success-message');
+            if (successCard && successMessage) {
+                successMessage.innerText = message;
+                successCard.classList.remove('d-none');
+                successCard.classList.remove('border-success');
+                successCard.classList.add('border-danger');
+                successCard.querySelector('.card-title').classList.remove('text-success');
+                successCard.querySelector('.card-title').classList.add('text-danger');
+                successCard.querySelector('.card-title').innerText = 'Error!';
+                setTimeout(() => {
+                    successCard.classList.add('d-none');
+                    successCard.classList.remove('border-danger');
+                    successCard.classList.add('border-success');
+                    successCard.querySelector('.card-title').classList.remove('text-danger');
+                    successCard.querySelector('.card-title').classList.add('text-success');
+                    successCard.querySelector('.card-title').innerText = 'Success!';
+                }, 5000);
             } else {
-                console.error("No-data element not found");
+                console.error("Success card or message element not found");
+                alert(message); // Fallback to alert if card not found
             }
         }
 
@@ -971,50 +1035,64 @@
         // Import Excel File
         function importExcel() {
             const fileInput = document.getElementById('excelFile');
+            const feedback = document.getElementById('import-feedback');
+            const importBtn = document.getElementById('importBtn');
+            if (feedback) { feedback.style.display = 'none'; feedback.innerText = ''; }
+            if (importBtn) { importBtn.disabled = true; importBtn.innerText = 'Importing...'; }
+
             const file = fileInput.files[0];
-            
             if (!file) {
-                showError('Please select a file to import.');
+                if (feedback) { feedback.innerText = 'Please select a file to import.'; feedback.style.display = 'block'; }
+                if (importBtn) { importBtn.disabled = false; importBtn.innerText = 'Import'; }
                 return;
             }
 
             const reader = new FileReader();
             reader.onload = function(e) {
                 try {
+                    if (typeof XLSX === 'undefined') {
+                        if (feedback) { feedback.innerText = 'Excel library not loaded. Please refresh the page.'; feedback.style.display = 'block'; }
+                        if (importBtn) { importBtn.disabled = false; importBtn.innerText = 'Import'; }
+                        return;
+                    }
                     const data = new Uint8Array(e.target.result);
                     const workbook = XLSX.read(data, { type: 'array' });
                     const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
                     const jsonData = XLSX.utils.sheet_to_json(firstSheet);
 
                     if (jsonData.length === 0) {
-                        showError('No data found in the Excel file.');
+                        if (feedback) { feedback.innerText = 'No data found in the Excel file.'; feedback.style.display = 'block'; }
+                        if (importBtn) { importBtn.disabled = false; importBtn.innerText = 'Import'; }
                         return;
                     }
 
-                    // Validate required fields (all caps, with spaces and periods as in the screenshot)
-                    const requiredFields = ['NAME', 'BS FAMILY', 'MINISTRY'];
-                    const missingFields = jsonData.some(row => 
-                        requiredFields.some(field => !row[field])
-                    );
-
-                    if (missingFields) {
-                        showError('Some rows are missing required fields (NAME, BS FAMILY, or MINISTRY).');
-                        return;
-                    }
-
-                    // Helper to parse DD/MM/YYYY
+                    // No longer block import if required fields are missing
+                    // Helper to parse DD/MM/YYYY, DD-MMM-YY, etc.
                     function parseDDMMYYYY(val) {
                         if (!val) return null;
                         if (val instanceof Date) return val;
                         if (typeof val === 'number') return new Date(val);
                         if (typeof val === 'string') {
-                            const parts = val.split(/[\/\-]/);
+                            // Try DD/MM/YYYY or DD-MM-YYYY or DD-MMM-YY/YY
+                            let parts = val.split(/[\/\-]/);
                             if (parts.length === 3) {
-                                const day = parseInt(parts[0], 10);
-                                const month = parseInt(parts[1], 10) - 1;
-                                const year = parseInt(parts[2], 10);
-                                if (!isNaN(day) && !isNaN(month) && !isNaN(year)) {
-                                    return new Date(year, month, day);
+                                // If month is a string (e.g., "Jan")
+                                if (isNaN(parts[1])) {
+                                    // Try to parse month name
+                                    const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+                                    const monthIndex = months.indexOf(parts[1].toLowerCase().substring(0,3));
+                                    if (monthIndex !== -1) {
+                                        let year = parts[2];
+                                        if (year.length === 2) {
+                                            // crude Y2K fix: treat 00-49 as 2000-2049, 50-99 as 1950-1999
+                                            const yr = parseInt(year, 10);
+                                            year = (yr < 50 ? 2000 + yr : 1900 + yr).toString();
+                                        }
+                                        return new Date(parseInt(year, 10), monthIndex, parseInt(parts[0], 10));
+                                    }
+                                } else {
+                                    // Numeric month
+                                    return new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
                                 }
                             }
                             // fallback: try Date constructor
@@ -1024,23 +1102,39 @@
                         return null;
                     }
 
+                    // Log headers and a sample row for debugging
+                    function logExcelHeadersAndSampleRow(jsonData) {
+                        if (!jsonData || jsonData.length === 0) {
+                            console.warn('Excel import: No data found.');
+                            return;
+                        }
+                        const headers = Object.keys(jsonData[0]);
+                        console.log('Excel Detected Headers:', headers);
+                        console.log('Excel First Row Sample:', jsonData[0]);
+                    }
+
+                    logExcelHeadersAndSampleRow(jsonData);
+
                     // Process each row, mapping all relevant columns
                     const importPromises = jsonData.map(row => {
+                        function safeField(val, fallback = 'N/A') {
+                            return (val && val.toString().trim() !== '') ? val.toString() : fallback;
+                        }
                         const person = {
-                            Name: row['NAME']?.toString().toLowerCase() || '',
-                            DisplayName: row['NAME']?.toString() || '',
-                            Nickname: row['NICKNAME']?.toString() || '',
-                            BSFamily: row['BS FAMILY']?.toString() || '',
-                            Ministry: row['MINISTRY']?.toString() || '',
-                            ContactNumber: row['CONTACT NO.']?.toString() || '',
+                            Name: safeField(row['NAME']),
+                            DisplayName: safeField(row['NAME']),
+                            Nickname: safeField(row['NICKNAME']),
+                            BSFamily: safeField(row['BS FAMILY'], 'None'),
+                            Ministry: safeField(row['MINISTRY'], 'None'),
+                            ContactNumber: safeField(row['CONTACT NO.']),
                             Birthdate: parseDDMMYYYY(row['Birthdate']),
-                            CountryAddress: row['COUNTRY ADDRESS']?.toString() || '',
-                            KSAAddress: row['KSA ADDRESS']?.toString() || '',
-                            Company: row['COMPANY']?.toString() || '',
-                            JobPosition: row['JOB Position']?.toString() || '',
+                            CountryAddress: safeField(row['COUNTRY ADDRESS']),
+                            KSAAddress: safeField(row['KSA ADDRESS']),
+                            Company: safeField(row['COMPANY']),
+                            JobPosition: safeField(row['JOB Position']),
                             FirstWorshipDate: parseDDMMYYYY(row['1ST WORSHIP DATE']),
                             BaptizedDate: parseDDMMYYYY(row['BAPTIZED DATE']),
-                            Remarks: row['REMARKS']?.toString() || ''
+                            Remarks: safeField(row['REMARKS'])
                         };
                         return db.collection('people').add(person);
                     });
@@ -1053,20 +1147,96 @@
                             showSuccess(`Successfully imported ${jsonData.length} records!`);
                         })
                         .catch(error => {
-                            console.error('Error importing data:', error);
-                            showError('Failed to import some records. Please check the data format.');
+                            if (feedback) { feedback.innerText = 'Failed to import some records. Please check the data format.'; feedback.style.display = 'block'; }
                         });
                 } catch (error) {
-                    console.error('Error processing Excel file:', error);
-                    showError('Error processing the Excel file. Please check the file format.');
+                    if (feedback) { feedback.innerText = 'Error processing the Excel file. Please check the file format.'; feedback.style.display = 'block'; }
                 }
+                if (importBtn) { importBtn.disabled = false; importBtn.innerText = 'Import'; }
             };
-
             reader.onerror = function() {
-                showError('Error reading the file.');
+                if (feedback) { feedback.innerText = 'Error reading the file.'; feedback.style.display = 'block'; }
+                if (importBtn) { importBtn.disabled = false; importBtn.innerText = 'Import'; }
             };
-
             reader.readAsArrayBuffer(file);
         }
+
+        // Export to Excel
+        const exportBtn = document.getElementById('exportBtnMaster');
+        // Remove any existing event listeners
+        const newExportBtn = exportBtn.cloneNode(true);
+        exportBtn.parentNode.replaceChild(newExportBtn, exportBtn);
+        
+        newExportBtn.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent any default behavior
+            
+            if (people.length === 0) {
+                showError('No data to export.');
+                return;
+            }
+
+            // Format dates to DD/MM/YYYY
+            function formatDateForExport(date) {
+                if (!date) return '';
+                if (!(date instanceof Date)) date = new Date(date);
+                if (isNaN(date)) return '';
+                const day = String(date.getDate()).padStart(2, '0');
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const year = date.getFullYear();
+                return `${day}/${month}/${year}`;
+            }
+
+            // Prepare data for export
+            const exportData = people.map(person => {
+                // Get the name from DisplayName or Name field
+                const displayName = person.DisplayName || person.Name || '';
+                
+                return {
+                    'NAME': displayName,
+                    'NICKNAME': person.Nickname || '',
+                    'BS FAMILY': person.BSFamily || '',
+                    'MINISTRY': person.Ministry || '',
+                    'CONTACT NO.': person.ContactNumber || '',
+                    'Birthdate': formatDateForExport(person.Birthdate),
+                    'COUNTRY ADDRESS': person.CountryAddress || '',
+                    'KSA ADDRESS': person.KSAAddress || '',
+                    'COMPANY': person.Company || '',
+                    'JOB Position': person.JobPosition || '',
+                    '1ST WORSHIP DATE': formatDateForExport(person.FirstWorshipDate),
+                    'BAPTIZED DATE': formatDateForExport(person.BaptizedDate),
+                    'REMARKS': person.Remarks || ''
+                };
+            });
+
+            // Create worksheet
+            const ws = XLSX.utils.json_to_sheet(exportData);
+
+            // Set column widths
+            const wscols = [
+                {wch: 30}, // NAME
+                {wch: 15}, // NICKNAME
+                {wch: 20}, // BS FAMILY
+                {wch: 20}, // MINISTRY
+                {wch: 15}, // CONTACT NO.
+                {wch: 12}, // Birthdate
+                {wch: 30}, // COUNTRY ADDRESS
+                {wch: 30}, // KSA ADDRESS
+                {wch: 20}, // COMPANY
+                {wch: 20}, // JOB Position
+                {wch: 12}, // 1ST WORSHIP DATE
+                {wch: 12}, // BAPTIZED DATE
+                {wch: 30}  // REMARKS
+            ];
+            ws['!cols'] = wscols;
+
+            // Create workbook
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "People List");
+
+            // Generate Excel file
+            const fileName = `People_List_${new Date().toISOString().split('T')[0]}.xlsx`;
+            XLSX.writeFile(wb, fileName);
+        });
+
     </script>
 }
