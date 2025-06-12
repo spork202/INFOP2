@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.DataProtection;
-
+using Microsoft.AspNetCore.HttpOverrides; // Added for forwarded headers support
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,11 +18,17 @@ builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddScoped<INFOP2.Services.FirebaseAuthService>();
 builder.Services.AddLogging(logging => logging.AddConsole());
 
+// Configure Forwarded Headers for Docker/Proxy support
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.All;
+    options.KnownNetworks.Clear();
+    options.KnownProxies.Clear();
+});
+
 // Configure Data Protection
 builder.Services.AddDataProtection()
-    .PersistKeysToFileSystem(new DirectoryInfo(Path.Combine(
-    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), 
-    "INFOP2-keys")))
+    .PersistKeysToFileSystem(new DirectoryInfo("/app/keys"))
     .SetApplicationName("INFOP2");
 
 // Add authentication
@@ -54,9 +60,15 @@ builder.Services.AddAntiforgery(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
-if (!app.Environment.IsDevelopment())
+app.UseForwardedHeaders(); // Must come before other middleware
+
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error");
+    app.UseDeveloperExceptionPage(); // Show detailed errors
+}
+else
+{
+    app.UseExceptionHandler("/Error"); // Production error handling
     app.UseHsts();
 }
 
