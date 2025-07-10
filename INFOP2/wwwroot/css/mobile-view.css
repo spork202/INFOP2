@@ -1,0 +1,19 @@
+﻿@media (min-width: 768px) and (max-width: 1024px) {
+    .btn span.d-md-inline {
+        display: none !important;
+    }
+
+    .btn i.me-md-2 {
+        margin-right: 0 !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .btn span {
+        display: none !important;
+    }
+
+    .btn i.me-md-2 {
+        margin-right: 0 !important;
+    }
+}

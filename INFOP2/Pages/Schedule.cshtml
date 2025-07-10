@@ -34,20 +34,23 @@
     </div>
 
     <!-- Toolbar -->
-    <div class="d-flex justify-content-end mb-4 gap-2">
+    <div class="col-md-6 ms-auto d-flex justify-content-end gap-2">
         <button class="btn btn-success d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addDriverModal">
-            <i class="fa fa-plus me-2"></i> Add Driver
+            <i class="fa-solid fa-plus me-md-2"></i>
+            <span class="d-none d-md-inline">Add Driver</span>
         </button>
         <button class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addEventModal">
-            <i class="fa-solid fa-calendar-plus me-2"></i> Create Event
+            <i class="fa-solid fa-calendar-plus me-md-2"></i> 
+            <span class="d-none d-md-inline">Create Event</span>
         </button>
         <button class="btn btn-outline-secondary d-flex align-items-center" id="exportBtnSched" data-bs-tooltip="tooltip" title="Export to Excel">
-            <i class="fa-solid fa-download me-2"></i> Export
+            <i class="fa-solid fa-download me-md-2"></i>
+            <span class="d-none d-md-inline">Export</span>
         </button>
     </div>
 
     <!-- Schedule Events Container -->
-    <div id="events-container">
+    <div class="col-md-12 py-3" id="events-container" >
         <!-- Dynamically populated by JavaScript -->
     </div>
 </div>
