@@ -14,6 +14,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddScoped<INFOP2.Services.FirebaseAuthService>();
+builder.Services.AddSingleton<INFOP2.Services.FirestoreService>(provider =>
+    new INFOP2.Services.FirestoreService(
+        "projectdb1-86d6a", // <-- =Firebase project ID
+        "Credentials/firebase-key.json" // <-- Service account key
+    )
+);
 builder.Services.AddLogging(logging => logging.AddConsole());
 
 // Add authentication

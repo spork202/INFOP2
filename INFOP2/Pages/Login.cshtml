@@ -19,6 +19,11 @@
     <h1 class="mb-2 fw-bold">Login</h1>
     <p class="mb-4">Please enter your email and password</p>
 
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
     @if (!ModelState.IsValid)
     {
         <div class="alert alert-danger">
@@ -49,6 +54,7 @@
         </div>
 
         <button type="submit" class="btn btn-login">LOG IN</button>
+        
     </form>
 </div>
     <!-- Scripts -->

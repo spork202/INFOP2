@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace INFOP2.Pages
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class Finance : PageModel
     {
         private readonly ILogger<Finance> _logger;

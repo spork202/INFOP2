@@ -30,5 +30,18 @@ namespace INFOP2.Services
                 throw new Exception($"Authentication failed: {ex.Message}");
             }
         }
+
+        public async Task<string> RegisterAsync(string email, string password)
+        {
+            try
+            {
+                var auth = await _authProvider.CreateUserWithEmailAndPasswordAsync(email, password, null, true);
+                return auth.User.LocalId; // Firebase UID
+            }
+            catch (FirebaseAuthException ex)
+            {
+                throw new Exception($"Registration failed: {ex.Message}");
+            }
+        }
     }
 }

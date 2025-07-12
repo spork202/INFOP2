@@ -13,11 +13,13 @@ namespace INFOP2.Pages
     public class LoginModel : PageModel
     {
         private readonly FirebaseAuthService _firebaseAuthService;
+        private readonly FirestoreService _firestoreService;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(FirebaseAuthService firebaseAuthService, ILogger<LoginModel> logger)
+        public LoginModel(FirebaseAuthService firebaseAuthService, FirestoreService firestoreService, ILogger<LoginModel> logger)
         {
             _firebaseAuthService = firebaseAuthService;
+            _firestoreService = firestoreService;
             _logger = logger;
         }
 
@@ -48,10 +50,28 @@ namespace INFOP2.Pages
                 var token = await _firebaseAuthService.SignInAsync(Email, Password);
                 _logger.LogInformation("Firebase token received for {Email}", Email);
 
+                await _firestoreService.EnsureUserDocumentAsync(Email);
+
+                var role = await _firestoreService.GetUserRoleByEmailAsync(Email);
+
+                if (role != "admin" && role != "user")
+                {
+                    _logger.LogWarning("User {Email} attempted to log in with unknown role {Role}, access denied.", Email, role);
+                    ModelState.AddModelError(string.Empty, "Access denied. Your account does not have the required permissions.");
+                    return Page();
+                }
+
+                // Optionally, show a message for users
+                if (role == "user")
+                {
+                    TempData["InfoMessage"] = "You have view-only access.";
+                }
+
                 var claims = new[]
                 {
                     new Claim(ClaimTypes.Name, Email),
-                    new Claim("FirebaseToken", token)
+                    new Claim("FirebaseToken", token),
+                    new Claim(ClaimTypes.Role, role)
                 };
 
                 var claimsIdentity = new ClaimsIdentity(
