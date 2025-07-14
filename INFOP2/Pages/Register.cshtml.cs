@@ -47,7 +47,8 @@ namespace INFOP2.Pages
             try
             {
                 var uid = await _firebaseAuthService.RegisterAsync(Email, Password);
-                await _firestoreService.CreateUserWithRoleAsync(uid, "user");
+                // Always use email as document key for user in Firestore
+                await _firestoreService.CreateUserWithRoleAsync(Email, "User");
                 TempData["SuccessMessage"] = "Registration successful! You can now log in.";
                 return RedirectToPage("/Login");
             }

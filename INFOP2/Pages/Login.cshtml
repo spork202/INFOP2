@@ -13,17 +13,58 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="~/css/login.css" />
+    <style>
+        body {
+            background: #f8fafc;
+        }
+        .login-card {
+            max-width: 400px;
+            margin: 60px auto;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            border-radius: 1.5rem;
+            background: #fff;
+            padding: 2.5rem 2rem 2rem 2rem;
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 2rem 0 1.5rem 0;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .divider:not(:empty)::before {
+            margin-right: .75em;
+        }
+        .divider:not(:empty)::after {
+            margin-left: .75em;
+        }
+        .register-link {
+            margin-top: 2rem;
+            font-size: 1rem;
+        }
+        .register-link a {
+            color: #0d6efd;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-<div class="login-box">
-    <h1 class="mb-2 fw-bold">Login</h1>
-    <p class="mb-4">Please enter your email and password</p>
+<div class="login-card">
+    <h1 class="mb-3 fw-bold text-center">Login</h1>
+    <p class="mb-4 text-center text-muted">Please enter your email and password</p>
 
     @if (TempData["SuccessMessage"] != null)
     {
         <div class="alert alert-success">@TempData["SuccessMessage"]</div>
     }
-
     @if (!ModelState.IsValid)
     {
         <div class="alert alert-danger">
@@ -40,7 +81,6 @@
             <span class="input-group-text"><i class="fas fa-envelope icon-muted"></i></span>
             <input asp-for="Email" class="form-control br-l" placeholder="Enter your email" type="email" id="emailInput" />
         </div>
-
         <div class="mb-3 input-group">
             <span class="input-group-text"><i class="fas fa-lock icon-muted"></i></span>
             <input asp-for="Password" class="form-control br-lr" type="password" placeholder="Enter your password" id="passwordInput" />
@@ -52,12 +92,54 @@
             <input asp-for="RememberMe" class="form-check-input" id="rememberMe" />
             <label class="form-check-label" asp-for="RememberMe">Remember me</label>
         </div>
+        <button type="submit" class="btn btn-login w-100 mb-2">LOG IN</button>
 
-        <button type="submit" class="btn btn-login">LOG IN</button>
-        
+        <div class="divider">or</div>
+
+        <button id="google-signin-btn" type="button" class="btn btn-danger w-100 mb-2">
+            <i class="fab fa-google me-2"></i> Sign in with Google
+        </button>
+        <div class="register-link text-center">
+            <a href="/Register">Don't have an account? Register here</a>
+        </div>
     </form>
 </div>
     <!-- Scripts -->
     <script src="~/js/login.js" asp-append-version="true"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <script>
+        // TODO: Replace with your Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyDtLI6GfCKa-gyDN1kNHUetHQlYxskTQzY",
+            authDomain: "projectdb1-86d6a.firebaseapp.com",
+            projectId: "projectdb1-86d6a",
+            storageBucket: "projectdb1-86d6a.appspot.com",
+            messagingSenderId: "849255500579",
+            appId: "1:849255500579:web:2d425890d1302407efda96"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        document.getElementById('google-signin-btn').onclick = async function() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            try {
+                const result = await firebase.auth().signInWithPopup(provider);
+                const idToken = await result.user.getIdToken();
+                // Send idToken to your backend for verification and login
+                fetch('/Login?handler=Google', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ idToken })
+                }).then(res => {
+                    if (res.redirected) window.location = res.url;
+                    else res.json().then(data => {
+                        if (data.redirectUrl) window.location = data.redirectUrl;
+                    });
+                });
+            } catch (error) {
+                alert('Google sign-in failed: ' + error.message);
+            }
+        };
+    </script>
 </body>
-</html>
+</html> 

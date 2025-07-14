@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 using Microsoft.Extensions.Logging;
+using Google.Apis.Auth;
+using System.Text.Json;
+using System.Collections.Generic;
+using System.IO;
 
 namespace INFOP2.Pages
 {
@@ -54,7 +58,7 @@ namespace INFOP2.Pages
 
                 var role = await _firestoreService.GetUserRoleByEmailAsync(Email);
 
-                if (role != "admin" && role != "user")
+                if (role != "Admin" && role != "user")
                 {
                     _logger.LogWarning("User {Email} attempted to log in with unknown role {Role}, access denied.", Email, role);
                     ModelState.AddModelError(string.Empty, "Access denied. Your account does not have the required permissions.");
@@ -98,6 +102,41 @@ namespace INFOP2.Pages
                 ModelState.AddModelError(string.Empty, "Invalid email or password");
                 return Page();
             }
+        }
+
+        public async Task<IActionResult> OnPostGoogleAsync()
+        {
+            using var reader = new StreamReader(Request.Body);
+            var body = await reader.ReadToEndAsync();
+            var data = JsonSerializer.Deserialize<Dictionary<string, string>>(body);
+            var idToken = data["idToken"];
+
+            // Validate Google ID token and get payload
+            var payload = await GoogleJsonWebSignature.ValidateAsync(idToken);
+            var email = payload.Email;
+
+            // Authenticate with Firebase (optional, for extra validation)
+            var token = await _firebaseAuthService.SignInWithGoogleAsync(idToken);
+
+            // Ensure user exists in Firestore
+            await _firestoreService.EnsureUserDocumentAsync(email);
+
+            // Get role
+            var role = await _firestoreService.GetUserRoleByEmailAsync(email);
+
+            // Add claims and sign in
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.Name, email),
+                new Claim("FirebaseToken", token),
+                new Claim(ClaimTypes.Role, role)
+            };
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity)
+            );
+            return new JsonResult(new { success = true, redirectUrl = Url.Page("/Index") });
         }
     }
 }

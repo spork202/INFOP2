@@ -10,7 +10,7 @@ namespace INFOP2.Pages
 {
     using Microsoft.Extensions.Configuration;
 
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class Assetlist : PageModel
     {
         private readonly ILogger<Assetlist> _logger;

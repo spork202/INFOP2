@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace INFOP2.Pages
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class Schedule : PageModel
     {
       

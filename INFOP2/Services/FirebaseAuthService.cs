@@ -43,5 +43,18 @@ namespace INFOP2.Services
                 throw new Exception($"Registration failed: {ex.Message}");
             }
         }
+
+        public async Task<string> SignInWithGoogleAsync(string idToken)
+        {
+            try
+            {
+                var auth = await _authProvider.SignInWithOAuthAsync(FirebaseAuthType.Google, idToken);
+                return auth.FirebaseToken;
+            }
+            catch (FirebaseAuthException ex)
+            {
+                throw new Exception($"Google authentication failed: {ex.Message}");
+            }
+        }
     }
 }

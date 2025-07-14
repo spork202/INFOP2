@@ -41,6 +41,7 @@ namespace INFOP2.Services
 
         public async Task CreateUserWithRoleAsync(string uid, string role)
         {
+            // Use 'Admin' (capital A) for admin users
             var docRef = _firestoreDb.Collection("users").Document(uid);
             var userData = new Dictionary<string, object>
             {
@@ -79,6 +80,32 @@ namespace INFOP2.Services
                 }
             }
             return total;
+        }
+
+        // User documents must be keyed by email and have a 'role' field ('Admin' or 'User')
+        public async Task<List<(string Email, string Role)>> GetAllUsersAsync()
+        {
+            var users = new List<(string, string)>();
+            var snapshot = await _firestoreDb.Collection("users").GetSnapshotAsync();
+            foreach (var doc in snapshot.Documents)
+            {
+                var email = doc.Id;
+                var role = doc.ContainsField("role") ? doc.GetValue<string>("role") : "User";
+                users.Add((email, role));
+            }
+            return users;
+        }
+
+        public async Task UpdateUserRoleAsync(string email, string newRole)
+        {
+            var docRef = _firestoreDb.Collection("users").Document(email);
+            await docRef.UpdateAsync("role", newRole);
+        }
+
+        public async Task DeleteUserAsync(string email)
+        {
+            var docRef = _firestoreDb.Collection("users").Document(email);
+            await docRef.DeleteAsync();
         }
     }
 } 
